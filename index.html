@@ -1,0 +1,3784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ═══ PRIMARY SEO ═══ -->
+<title>SumnuTyping — Free Typing Speed Test, Games & Lessons</title>
+<meta name="description" content="Test and improve your typing speed for free at SumnuTyping.com. Take WPM typing tests, play Word Fall, Survival and Type Racer games, learn touch typing with beginner lessons, and compete on the global leaderboard.">
+<meta name="keywords" content="typing speed test, free typing test, WPM test, typing practice, touch typing, typing games, learn to type, typing lessons, typing speed, keyboard practice, type faster, words per minute, typing tutor, free typing games">
+<meta name="author" content="SumnuTyping">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://sumnutyping.com/">
+<meta name="google-site-verification" content="oIL7tnztrLbV3dwx9MMvxQR6gTOZl6VaVMyCcxpW2Zg" />
+
+<!-- ═══ OPEN GRAPH (Facebook, Discord, WhatsApp previews) ═══ -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sumnutyping.com/">
+<meta property="og:title" content="SumnuTyping — Free Typing Speed Test & Games">
+<meta property="og:description" content="Find out how fast you can type! Free WPM tests, typing games, touch typing lessons, and a global leaderboard. No sign-up required to start.">
+<meta property="og:image" content="https://sumnutyping.com/og-image.png">
+<meta property="og:site_name" content="SumnuTyping">
+<meta property="og:locale" content="en_US">
+
+<!-- ═══ TWITTER CARD ═══ -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://sumnutyping.com/">
+<meta name="twitter:title" content="SumnuTyping — Free Typing Speed Test & Games">
+<meta name="twitter:description" content="Find out how fast you can type! Free WPM tests, typing games, touch typing lessons, and a global leaderboard.">
+<meta name="twitter:image" content="https://sumnutyping.com/og-image.png">
+
+<!-- ═══ STRUCTURED DATA (Google Rich Results) ═══ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "SumnuTyping",
+  "url": "https://sumnutyping.com",
+  "description": "Free typing speed test, typing games, and touch typing lessons. Test your WPM, play Word Fall, Survival and Type Racer, learn touch typing from scratch, and compete on the global leaderboard.",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Typing speed test (WPM)",
+    "Word Fall typing game",
+    "Survival typing game",
+    "Type Racer game",
+    "Touch typing lessons",
+    "Global leaderboard",
+    "Progress tracking"
+  ],
+  "screenshot": "https://sumnutyping.com/og-image.png",
+  "author": {
+    "@type": "Organization",
+    "name": "SumnuTyping",
+    "url": "https://sumnutyping.com"
+  }
+}
+</script>
+
+<!-- ═══ FAVICON (inline SVG) ═══ -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%230A0A0F'/><text y='72' x='10' font-size='65' font-family='serif' fill='%23C9A84C'>S</text></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%230A0A0F'/><text y='72' x='10' font-size='65' font-family='serif' fill='%23C9A84C'>S</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9783662370073392" crossorigin="anonymous"></script>
+<style>
+  :root {
+    --bg: #0A0A0F;
+    --bg2: #111118;
+    --bg3: #18181F;
+    --bg4: #1E1E28;
+    --gold: #C9A84C;
+    --gold2: #E8C97A;
+    --gold-dim: #7A6130;
+    --cream: #F5F0E8;
+    --text: #E8E4DC;
+    --muted: #7A7870;
+    --muted2: #4A4840;
+    --green: #4CAF82;
+    --red: #E05454;
+    --blue: #5B8DEF;
+    --border: rgba(201,168,76,0.15);
+    --border2: rgba(201,168,76,0.08);
+    --glow: 0 0 40px rgba(201,168,76,0.1);
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Syne', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* NOISE TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* HEADER */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .logo {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .logo span { color: var(--cream); }
+
+  nav { display: flex; align-items: center; gap: 1.5rem; }
+  nav button {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 0.3rem 0;
+    transition: color 0.2s;
+    position: relative;
+  }
+  nav button.active, nav button:hover { color: var(--gold); }
+  nav button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0; right: 0;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .header-right { display: flex; align-items: center; gap: 1rem; }
+  .btn-primary {
+    background: var(--gold);
+    color: #0A0A0F;
+    border: none;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.55rem 1.25rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--gold2); transform: translateY(-1px); }
+  .btn-ghost {
+    background: none;
+    color: var(--text);
+    border: 1px solid var(--border);
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.55rem 1.25rem;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* PAGES */
+  .page { display: none; padding-top: 64px; min-height: 100vh; position: relative; z-index: 1; }
+  .page.active { display: block; }
+
+  /* ===== HOME PAGE ===== */
+  .hero {
+    padding: 5rem 2rem 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .hero-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-label::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+    display: block;
+  }
+  .hero p {
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    font-weight: 400;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-large {
+    padding: 0.9rem 2rem;
+    font-size: 0.9rem;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .stat-box {
+    background: var(--bg2);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: background 0.2s;
+  }
+  .stat-box:hover { background: var(--bg3); }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* AD BANNERS */
+  .ad-banner {
+    max-width: 1100px;
+    margin: 0 auto 2rem;
+    padding: 0 2rem;
+  }
+  .ad-slot {
+    background: var(--bg2);
+    border: 1px dashed var(--muted2);
+    padding: 1rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .ad-slot-728 { height: 90px; display: flex; align-items: center; justify-content: center; }
+  .ad-slot-300 { height: 250px; display: flex; align-items: center; justify-content: center; }
+  .ad-label { font-size: 0.6rem; letter-spacing: 0.15em; color: var(--muted2); margin-bottom: 0.2rem; }
+
+  /* FEATURES */
+  .features {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+  }
+  .section-label {
+    text-align: center;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 3rem;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 4rem;
+  }
+  .feature-card {
+    background: var(--bg2);
+    padding: 2rem;
+    transition: background 0.2s;
+  }
+  .feature-card:hover { background: var(--bg3); }
+  .feature-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .feature-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--cream);
+    margin-bottom: 0.6rem;
+  }
+  .feature-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; font-weight: 400; }
+
+  /* ===== PRACTICE PAGE ===== */
+  .practice-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+  }
+
+  .practice-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    flex-wrap: gap;
+  }
+
+  .practice-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--cream);
+  }
+
+  .mode-tabs {
+    display: flex;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .mode-tab {
+    background: none;
+    border: none;
+    border-right: 1px solid var(--border);
+    color: var(--muted);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .mode-tab:last-child { border-right: none; }
+  .mode-tab.active {
+    background: var(--gold);
+    color: #0A0A0F;
+  }
+  .mode-tab:not(.active):hover { background: var(--bg3); color: var(--gold); }
+
+  /* STATS BAR */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 1.5rem;
+  }
+  .stat-item {
+    background: var(--bg2);
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat-val {
+    font-family: var(--font-mono);
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: var(--gold);
+    line-height: 1;
+    transition: color 0.3s;
+  }
+  .stat-val.danger { color: var(--red); }
+  .stat-val.good { color: var(--green); }
+  .stat-lbl {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.25rem;
+  }
+
+  /* TYPING AREA */
+  .typing-container {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    min-width: 0;
+  }
+  .typing-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.5;
+  }
+
+  #text-display {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    line-height: 2;
+    letter-spacing: 0.04em;
+    margin-bottom: 1.5rem;
+    user-select: none;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    overflow: hidden;
+    max-width: 100%;
+    width: 100%;
+    display: block;
+  }
+
+  .char { transition: color 0.08s; display: inline; word-break: break-word; }
+  .char.pending { color: #FFFFFF; opacity: 0.9; }
+  .char.correct { color: #4CAF82; }
+  .char.wrong { color: #FF4444; background: rgba(255,68,68,0.12); border-radius: 2px; }
+  .char.current {
+    color: #FFFFFF;
+    border-bottom: 2px solid var(--gold);
+    animation: blink 0.8s infinite;
+  }
+
+  @keyframes blink {
+    0%, 50% { border-color: var(--gold); }
+    51%, 100% { border-color: transparent; }
+  }
+
+  #typing-input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    top: 0; left: 0;
+  }
+
+  .click-to-type {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.75rem;
+    border: 1px dashed var(--muted2);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .click-to-type:hover { border-color: var(--gold); color: var(--gold); }
+  .click-to-type.focused { border-color: var(--gold); color: var(--gold); border-style: solid; }
+
+  .practice-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .difficulty-select {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .diff-label { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+  select#difficulty {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    padding: 0.4rem 0.75rem;
+    cursor: pointer;
+    outline: none;
+  }
+  select#difficulty:focus { border-color: var(--gold); }
+
+  /* RESULTS OVERLAY */
+  .results-overlay {
+    display: none;
+    position: absolute;
+    inset: 0;
+    background: rgba(10,10,15,0.97);
+    z-index: 10;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+  }
+  .results-overlay.show { display: flex; }
+  .results-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+  }
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 500px;
+  }
+  .result-box {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 1rem;
+  }
+  .result-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+  }
+  .result-lbl { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.25rem; }
+  .results-actions { display: flex; gap: 1rem; }
+
+  /* AD SIDE */
+  .practice-with-ads {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) 300px;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    align-items: start;
+  }
+
+  /* ===== LEADERBOARD ===== */
+  .leaderboard-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+  }
+  .lb-title {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+  .lb-subtitle { color: var(--muted); font-size: 0.875rem; margin-bottom: 2rem; font-weight: 400; }
+
+  .lb-filters {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .lb-filter {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .lb-filter.active { background: var(--gold); color: #0A0A0F; border-color: var(--gold); }
+  .lb-filter:not(.active):hover { border-color: var(--gold); color: var(--gold); }
+
+  .lb-table {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  .lb-row {
+    display: grid;
+    grid-template-columns: 60px 1fr 100px 100px 100px 90px;
+    gap: 0;
+    border-bottom: 1px solid var(--border2);
+    align-items: center;
+    transition: background 0.15s;
+  }
+  .lb-row:last-child { border-bottom: none; }
+  .lb-row.header { background: var(--bg3); }
+  .lb-row:not(.header):hover { background: var(--bg3); }
+  .lb-cell {
+    padding: 0.9rem 1rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .lb-row.header .lb-cell {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted2);
+    font-weight: 500;
+  }
+  .lb-rank {
+    font-family: var(--font-mono);
+    color: var(--muted2);
+    font-size: 0.85rem;
+  }
+  .lb-rank.gold { color: var(--gold); font-weight: 500; }
+  .lb-rank.silver { color: #C0C0C0; }
+  .lb-rank.bronze { color: #CD7F32; }
+  .lb-name { color: var(--text); font-weight: 500; }
+  .lb-wpm {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    color: var(--gold);
+  }
+  .lb-acc { font-family: var(--font-mono); color: var(--green); }
+  .lb-badge {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--bg4);
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+  .lb-you { background: rgba(201,168,76,0.08); }
+  .lb-you .lb-name::after { content: ' (You)'; color: var(--gold); font-size: 0.75rem; }
+
+  /* ===== PROFILE ===== */
+  .profile-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+  }
+
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .profile-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .profile-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--bg4);
+    border: 2px solid var(--gold-dim);
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    color: var(--gold);
+  }
+  .profile-name {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--cream);
+    margin-bottom: 0.25rem;
+  }
+  .profile-joined { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; margin-bottom: 1.5rem; font-weight: 400; }
+  .profile-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  .badge {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .badge-gold { background: rgba(201,168,76,0.15); color: var(--gold); border: 1px solid var(--gold-dim); }
+  .badge-blue { background: rgba(91,141,239,0.15); color: var(--blue); border: 1px solid rgba(91,141,239,0.3); }
+  .badge-green { background: rgba(76,175,130,0.15); color: var(--green); border: 1px solid rgba(76,175,130,0.3); }
+
+  .profile-stats-mini {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .mini-stat {
+    background: var(--bg3);
+    padding: 0.75rem;
+    text-align: center;
+  }
+  .mini-num { font-family: var(--font-mono); font-size: 1.25rem; color: var(--gold); }
+  .mini-lbl { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }
+
+  .profile-right {}
+  .section-head {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--cream);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* HISTORY CHART */
+  .history-chart {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  #wpm-chart {
+    width: 100%;
+    height: 160px;
+  }
+
+  /* HISTORY TABLE */
+  .history-table {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  .history-row {
+    display: grid;
+    grid-template-columns: 1.5fr 90px 80px 80px 1fr;
+    border-bottom: 1px solid var(--border2);
+    align-items: center;
+  }
+  .history-row:last-child { border-bottom: none; }
+  .history-row.header { background: var(--bg3); }
+  .h-cell {
+    padding: 0.75rem 1rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .history-row.header .h-cell {
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted2);
+  }
+  .h-wpm { font-family: var(--font-mono); color: var(--gold); }
+  .h-acc { font-family: var(--font-mono); color: var(--green); }
+
+  /* SETTINGS FORM */
+  .settings-section {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .settings-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border2);
+  }
+  .settings-row:last-child { border-bottom: none; }
+  .settings-label { font-size: 0.875rem; color: var(--text); font-weight: 500; }
+  .settings-desc { font-size: 0.75rem; color: var(--muted); font-weight: 400; margin-top: 0.1rem; }
+  .toggle {
+    position: relative;
+    width: 44px;
+    height: 24px;
+  }
+  .toggle input { opacity: 0; width: 0; height: 0; }
+  .toggle-slider {
+    position: absolute;
+    inset: 0;
+    background: var(--bg4);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .toggle-slider::after {
+    content: '';
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 16px; height: 16px;
+    background: var(--muted);
+    transition: transform 0.2s, background 0.2s;
+  }
+  .toggle input:checked + .toggle-slider { background: rgba(201,168,76,0.2); border-color: var(--gold-dim); }
+  .toggle input:checked + .toggle-slider::after { transform: translateX(20px); background: var(--gold); }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg2);
+    border-top: 1px solid var(--border2);
+    padding: 3rem 2rem 2rem;
+    margin-top: 4rem;
+    position: relative;
+    z-index: 1;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 2rem;
+  }
+  .footer-brand .logo { display: block; margin-bottom: 0.75rem; font-size: 1.2rem; }
+  .footer-brand p { font-size: 0.8rem; color: var(--muted); line-height: 1.6; font-weight: 400; }
+  .footer-col h4 {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .footer-col a {
+    display: block;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s;
+    font-weight: 400;
+    cursor: pointer;
+  }
+  .footer-col a:hover { color: var(--cream); }
+  .footer-bottom {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-bottom p { font-size: 0.75rem; color: var(--muted2); font-weight: 400; }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--bg3);
+    border: 1px solid var(--gold-dim);
+    border-left: 3px solid var(--gold);
+    padding: 0.75rem 1.25rem;
+    font-size: 0.85rem;
+    color: var(--text);
+    z-index: 1000;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s;
+    max-width: 280px;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* SIGN IN MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+  }
+  .modal::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .modal-close {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--text); }
+  .modal h2 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--cream);
+    margin-bottom: 0.4rem;
+  }
+  .modal p { color: var(--muted); font-size: 0.875rem; margin-bottom: 1.5rem; font-weight: 400; }
+  .form-group { margin-bottom: 1rem; }
+  .form-group label { display: block; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+  .form-group input {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    padding: 0.65rem 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus { border-color: var(--gold); }
+  .modal-footer {
+    margin-top: 1.25rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .modal-footer a { color: var(--gold); cursor: pointer; text-decoration: none; }
+
+  /* ANIMATIONS */
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { animation: fadeIn 0.5s ease both; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; gap: 2rem; }
+    .features-grid { grid-template-columns: 1fr; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr) !important; }
+    .practice-with-ads { grid-template-columns: 1fr; }
+    .profile-grid { grid-template-columns: 1fr; }
+    .lb-row { grid-template-columns: 40px 1fr 70px 70px; }
+    .lb-cell:nth-child(5), .lb-cell:nth-child(6) { display: none; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .results-grid { grid-template-columns: repeat(2, 1fr); }
+    nav { gap: 0.75rem; }
+    nav button { font-size: 0.75rem; }
+  }
+
+  /* FULLSCREEN GAME */
+  .game-fullscreen {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 999 !important;
+    background: var(--bg) !important;
+    padding: 1.5rem !important;
+    overflow-y: auto !important;
+    display: block !important;
+  }
+  .game-fullscreen #wf-arena { height: calc(100vh - 220px) !important; }
+  .game-fullscreen #sv-word { font-size: 4rem !important; }
+  :fullscreen { background: var(--bg); }
+  :-webkit-full-screen { background: var(--bg); }
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="logo" onclick="showPage('home')">Sumnu<span>Typing</span></a>
+  <nav>
+    <button class="active" onclick="showPage('home', this)">Home</button>
+    <button onclick="showPage('practice', this)">Practice</button>
+    <button onclick="showPage('learn', this)">Learn</button>
+    <button onclick="showPage('games', this)">Games</button>
+    <button onclick="showPage('leaderboard', this)">Rankings</button>
+    <button onclick="showPage('profile', this)">My Profile</button>
+  </nav>
+  <div class="header-right" id="header-right">
+    <button class="btn-ghost" onclick="showModal('signin')" id="hdr-signin">Sign In</button>
+    <button class="btn-primary" onclick="showModal('signup')" id="hdr-signup">Join Free</button>
+    <div id="hdr-user" style="display:none;align-items:center;gap:0.75rem">
+      <span id="hdr-username" style="font-size:0.8rem;color:var(--gold);letter-spacing:0.05em"></span>
+      <button class="btn-ghost" onclick="signOut()" style="font-size:0.75rem;padding:0.4rem 0.9rem">Sign Out</button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HOME PAGE ===== -->
+<div id="page-home" class="page active">
+  <div class="hero fade-in">
+    <div>
+      <div class="hero-label">Elite Typing Training</div>
+      <h1>Type faster.<br>Think <em>sharper.</em></h1>
+      <p>Professional-grade typing practice for developers, writers, and anyone who wants to command their keyboard with precision and speed. Track your growth. Climb the ranks.</p>
+      <div class="hero-actions">
+        <button class="btn-primary btn-large" onclick="showPage('practice')">Start Practicing</button>
+        <button class="btn-ghost btn-large" onclick="showPage('leaderboard')">View Rankings</button>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-box">
+        <div class="stat-num" id="hero-wpm">--</div>
+        <div class="stat-label">Your Best WPM</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">14K+</div>
+        <div class="stat-label">Active Typists</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">98%</div>
+        <div class="stat-label">Avg. Accuracy</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Words to Type</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AD BANNER -->
+  <div class="ad-banner">
+    <div class="ad-slot ad-slot-728">
+      <div>
+        <div class="ad-label">Advertisement</div>
+        <div>728 × 90 — Leaderboard Ad</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="features fade-in">
+    <div class="section-label">Why SumnuTyping</div>
+    <div class="section-title">Built for serious improvement</div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <h3>Real-time WPM & Accuracy</h3>
+        <p>Watch your speed and accuracy update live as you type. Instant feedback helps you self-correct and build muscle memory faster.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📈</span>
+        <h3>Progress Tracking</h3>
+        <p>Every test is saved to your personal history. Visualize your improvement over days, weeks, and months with detailed charts.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🏆</span>
+        <h3>Global Leaderboards</h3>
+        <p>Compete with thousands of typists worldwide. Filter by daily, weekly, or all-time rankings. Find your place in the hierarchy.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🎯</span>
+        <h3>Multiple Modes</h3>
+        <p>Choose from timed tests (15s, 30s, 60s), word count goals, or code-specific passages. Tailor every session to your needs.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔤</span>
+        <h3>Difficulty Levels</h3>
+        <p>From everyday words to advanced vocabulary and programming syntax. Grow at your own pace from beginner to elite.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">💾</span>
+        <h3>Save & Sync</h3>
+        <p>Create a free account to save all your results, unlock badges, and access your stats from any device, any time.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══ RICH CONTENT SECTION (for Google AdSense approval) ═══ -->
+
+  <!-- AD BANNER -->
+  <div class="ad-banner">
+    <div class="ad-slot ad-slot-728">
+      <div><div class="ad-label">Advertisement</div><div>728 × 90 — Leaderboard Ad</div></div>
+    </div>
+  </div>
+
+  <div style="max-width:1100px;margin:0 auto;padding:0 2rem 4rem">
+
+    <!-- HOW TO IMPROVE TYPING SPEED -->
+    <article style="margin-bottom:4rem">
+      <div class="section-label">Tips & Guides</div>
+      <h2 class="section-title" style="text-align:left;margin-bottom:1.5rem">How to Improve Your Typing Speed</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem">
+        <div>
+          <p style="color:var(--muted);line-height:1.8;font-size:0.9rem;font-weight:400;margin-bottom:1rem">
+            Improving your typing speed is less about talent and more about consistent, deliberate practice. Most people type between 40 and 60 words per minute — professional typists and programmers often reach 80 to 100 WPM or more. The difference comes down to technique and repetition.
+          </p>
+          <p style="color:var(--muted);line-height:1.8;font-size:0.9rem;font-weight:400;margin-bottom:1rem">
+            The single most important thing you can do is learn to touch type — typing without looking at the keyboard. This feels slow at first but unlocks dramatic speed gains once the muscle memory sets in. Start with the home row keys (ASDF JKL;) and build outward from there.
+          </p>
+          <p style="color:var(--muted);line-height:1.8;font-size:0.9rem;font-weight:400">
+            Accuracy matters more than speed. Rushing leads to errors which actually slows you down. Focus on hitting every key correctly and your speed will naturally increase over time. A good rule of thumb: if your accuracy drops below 95%, slow down.
+          </p>
+        </div>
+        <div>
+          <h3 style="font-family:var(--font-display);font-size:1rem;color:var(--cream);margin-bottom:1rem">Top 5 Tips for Faster Typing</h3>
+          <div style="display:flex;flex-direction:column;gap:0.75rem">
+            <div style="background:var(--bg2);border:1px solid var(--border);padding:1rem;border-left:3px solid var(--gold)">
+              <div style="font-size:0.8rem;font-weight:600;color:var(--cream);margin-bottom:0.25rem">1. Use all ten fingers</div>
+              <div style="font-size:0.78rem;color:var(--muted);font-weight:400">Assign each finger to specific keys and never break that rule. It feels unnatural at first but becomes automatic within a few weeks.</div>
+            </div>
+            <div style="background:var(--bg2);border:1px solid var(--border);padding:1rem;border-left:3px solid var(--gold)">
+              <div style="font-size:0.8rem;font-weight:600;color:var(--cream);margin-bottom:0.25rem">2. Keep your eyes on the screen</div>
+              <div style="font-size:0.78rem;color:var(--muted);font-weight:400">Resist the urge to look down at your keyboard. Looking down breaks your rhythm and prevents muscle memory from forming.</div>
+            </div>
+            <div style="background:var(--bg2);border:1px solid var(--border);padding:1rem;border-left:3px solid var(--gold)">
+              <div style="font-size:0.8rem;font-weight:600;color:var(--cream);margin-bottom:0.25rem">3. Practice for 15 minutes daily</div>
+              <div style="font-size:0.78rem;color:var(--muted);font-weight:400">Short daily sessions beat long occasional ones. Consistency builds muscle memory far faster than marathon practice sessions.</div>
+            </div>
+            <div style="background:var(--bg2);border:1px solid var(--border);padding:1rem;border-left:3px solid var(--gold)">
+              <div style="font-size:0.8rem;font-weight:600;color:var(--cream);margin-bottom:0.25rem">4. Slow down to speed up</div>
+              <div style="font-size:0.78rem;color:var(--muted);font-weight:400">When learning new keys or patterns, go slow enough to be accurate every time. Speed follows accuracy automatically.</div>
+            </div>
+            <div style="background:var(--bg2);border:1px solid var(--border);padding:1rem;border-left:3px solid var(--gold)">
+              <div style="font-size:0.8rem;font-weight:600;color:var(--cream);margin-bottom:0.25rem">5. Track your progress</div>
+              <div style="font-size:0.78rem;color:var(--muted);font-weight:400">Seeing improvement over time is the best motivation. Use SumnuTyping's history chart to watch your WPM climb week over week.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- AD BANNER -->
+    <div class="ad-slot ad-slot-728" style="margin-bottom:3rem">
+      <div><div class="ad-label">Advertisement</div><div>728 × 90</div></div>
+    </div>
+
+    <!-- WHAT IS WPM -->
+    <article style="margin-bottom:4rem">
+      <h2 style="font-family:var(--font-display);font-size:1.5rem;color:var(--cream);margin-bottom:1rem">What is WPM and How is it Calculated?</h2>
+      <p style="color:var(--muted);line-height:1.8;font-size:0.9rem;font-weight:400;margin-bottom:1rem">
+        WPM stands for Words Per Minute — the standard measurement of typing speed. But a "word" in typing tests is not a real dictionary word. Instead, it is defined as five keystrokes, including spaces and punctuation. This standardization makes it fair to compare speeds across different texts.
+      </p>
+      <p style="color:var(--muted);line-height:1.8;font-size:0.9rem;font-weight:400;margin-bottom:1.5rem">
+        To calculate your WPM, divide the total number of characters you typed correctly by 5 (to get word equivalents), then divide by the number of minutes elapsed. SumnuTyping calculates this in real time as you type, updating your WPM counter every second.
+      </p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:1rem">
+        <div style="background:var(--bg2);padding:1.25rem;text-align:center">
+          <div style="font-family:var(--font-display);font-size:1.75rem;color:var(--red)">1–30</div>
+          <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:0.25rem">Beginner</div>
+          <div style="font-size:0.75rem;color:var(--muted2);margin-top:0.4rem;font-weight:400">Hunt and peck typist, still learning key positions</div>
+        </div>
+        <div style="background:var(--bg2);padding:1.25rem;text-align:center">
+          <div style="font-family:var(--font-display);font-size:1.75rem;color:var(--gold)">31–60</div>
+          <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:0.25rem">Average</div>
+          <div style="font-size:0.75rem;color:var(--muted2);margin-top:0.4rem;font-weight:400">Most adults type in this range with some practice</div>
+        </div>
+        <div style="background:var(--bg2);padding:1.25rem;text-align:center">
+          <div style="font-family:var(--font-display);font-size:1.75rem;color:var(--blue)">61–90</div>
+          <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:0.25rem">Proficient</div>
+          <div style="font-size:0.75rem;color:var(--muted2);margin-top:0.4rem;font-weight:400">Above average, typical for regular computer users</div>
+        </div>
+        <div style="background:var(--bg2);padding:1.25rem;text-align:center">
+          <div style="font-family:var(--font-display);font-size:1.75rem;color:var(--green)">91–120</div>
+          <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:0.25rem">Fast</div>
+          <div style="font-size:0.75rem;color:var(--muted2);margin-top:0.4rem;font-weight:400">Programmers, writers, and power users</div>
+        </div>
+        <div style="background:var(--bg2);padding:1.25rem;text-align:center">
+          <div style="font-family:var(--font-display);font-size:1.75rem;color:var(--gold)">120+</div>
+          <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:0.25rem">Elite</div>
+          <div style="font-size:0.75rem;color:var(--muted2);margin-top:0.4rem;font-weight:400">Top 1% of typists, dedicated practice required</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- FAQ -->
+    <article style="margin-bottom:4rem">
+      <h2 style="font-family:var(--font-display);font-size:1.5rem;color:var(--cream);margin-bottom:1.5rem">Frequently Asked Questions</h2>
+      <div style="display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border)">
+        <div style="background:var(--bg2);padding:1.25rem 1.5rem">
+          <div style="font-size:0.9rem;font-weight:600;color:var(--cream);margin-bottom:0.4rem">Is SumnuTyping completely free?</div>
+          <div style="font-size:0.82rem;color:var(--muted);line-height:1.7;font-weight:400">Yes, 100% free. All typing tests, games, lessons, and the global leaderboard are completely free with no hidden costs or premium tiers. The site is supported by advertising.</div>
+        </div>
+        <div style="background:var(--bg2);padding:1.25rem 1.5rem">
+          <div style="font-size:0.9rem;font-weight:600;color:var(--cream);margin-bottom:0.4rem">Do I need to create an account?</div>
+          <div style="font-size:0.82rem;color:var(--muted);line-height:1.7;font-weight:400">No account is needed to practice typing or play games. However, creating a free account lets you post scores to the global leaderboard, save your progress history, and earn achievement badges.</div>
+        </div>
+        <div style="background:var(--bg2);padding:1.25rem 1.5rem">
+          <div style="font-size:0.9rem;font-weight:600;color:var(--cream);margin-bottom:0.4rem">How long does it take to improve typing speed?</div>
+          <div style="font-size:0.82rem;color:var(--muted);line-height:1.7;font-weight:400">Most people see noticeable improvement within 2 to 4 weeks of daily practice. Going from 40 WPM to 70 WPM typically takes 1 to 3 months of consistent 15-minute daily sessions. Learning proper touch typing technique first is the fastest path to high speeds.</div>
+        </div>
+        <div style="background:var(--bg2);padding:1.25rem 1.5rem">
+          <div style="font-size:0.9rem;font-weight:600;color:var(--cream);margin-bottom:0.4rem">What is a good typing speed?</div>
+          <div style="font-size:0.82rem;color:var(--muted);line-height:1.7;font-weight:400">The average adult types between 40 and 60 WPM. A typing speed of 65 to 75 WPM is considered professional. Many jobs that require data entry or transcription expect at least 60 WPM. Programmers and writers who type all day often reach 80 to 100 WPM.</div>
+        </div>
+        <div style="background:var(--bg2);padding:1.25rem 1.5rem">
+          <div style="font-size:0.9rem;font-weight:600;color:var(--cream);margin-bottom:0.4rem">What are the typing games on SumnuTyping?</div>
+          <div style="font-size:0.82rem;color:var(--muted);line-height:1.7;font-weight:400">SumnuTyping features three typing games: Word Fall (type falling words before they hit the bottom), Survival (type words against a countdown timer with increasing difficulty), and Type Racer (race against your personal ghost to beat your own best time). All games have Easy, Medium, and Hard difficulty levels.</div>
+        </div>
+        <div style="background:var(--bg2);padding:1.25rem 1.5rem">
+          <div style="font-size:0.9rem;font-weight:600;color:var(--cream);margin-bottom:0.4rem">Can I use SumnuTyping to prepare for a job interview typing test?</div>
+          <div style="font-size:0.82rem;color:var(--muted);line-height:1.7;font-weight:400">Absolutely. SumnuTyping's timed tests closely replicate the format of professional typing assessments. Practice the 60-second test mode regularly and aim for consistent accuracy above 95%. You can also export your progress report to show employers your improvement over time.</div>
+        </div>
+        <div style="background:var(--bg2);padding:1.25rem 1.5rem">
+          <div style="font-size:0.9rem;font-weight:600;color:var(--cream);margin-bottom:0.4rem">How does the global leaderboard work?</div>
+          <div style="font-size:0.82rem;color:var(--muted);line-height:1.7;font-weight:400">After completing a typing test, signed-in users can post their score to the global leaderboard. Only each user's personal best score is displayed. You can filter the leaderboard by today, this week, all time, or by specific test duration.</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- WHY TYPING SPEED MATTERS -->
+    <article style="margin-bottom:3rem">
+      <h2 style="font-family:var(--font-display);font-size:1.5rem;color:var(--cream);margin-bottom:1rem">Why Typing Speed Matters in 2025</h2>
+      <p style="color:var(--muted);line-height:1.8;font-size:0.9rem;font-weight:400;margin-bottom:1rem">
+        In a world where knowledge work happens almost entirely on keyboards, typing speed is a genuine professional skill. A person who types 80 WPM completes the same written work in half the time of someone who types 40 WPM. Over a full working day that adds up to hours of extra productivity.
+      </p>
+      <p style="color:var(--muted);line-height:1.8;font-size:0.9rem;font-weight:400;margin-bottom:1rem">
+        For developers and programmers, fast typing means faster code iteration. For writers and journalists, it means thoughts flow from brain to screen without bottleneck. For students, it means faster note-taking and better exam performance. For customer service and data entry roles, minimum typing speed requirements are often listed in job descriptions.
+      </p>
+      <p style="color:var(--muted);line-height:1.8;font-size:0.9rem;font-weight:400">
+        Beyond professional benefits, fast accurate typing simply feels great. There is a reason the mechanical keyboard community has millions of passionate members — the tactile satisfaction of flying across keys without thinking is genuinely enjoyable. SumnuTyping exists to help you get there, one test at a time.
+      </p>
+    </article>
+
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="logo" onclick="showPage('home')">Sumnu<span>Typing</span></a>
+        <p>The premium typing practice platform. Free for everyone. Powered by dedication to craft and speed.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Practice</h4>
+        <a onclick="showPage('practice')" style="cursor:pointer">Quick Test</a>
+        <a onclick="showPage('practice')" style="cursor:pointer">Timed Mode</a>
+        <a onclick="showPage('practice')" style="cursor:pointer">Code Mode</a>
+        <a onclick="showPage('learn')" style="cursor:pointer">Lessons</a>
+      </div>
+      <div class="footer-col">
+        <h4>Games</h4>
+        <a onclick="showPage('games')" style="cursor:pointer">Word Fall</a>
+        <a onclick="showPage('games')" style="cursor:pointer">Survival</a>
+        <a onclick="showPage('games')" style="cursor:pointer">Type Racer</a>
+        <a onclick="showPage('leaderboard')" style="cursor:pointer">Rankings</a>
+      </div>
+      <div class="footer-col">
+        <h4>Account</h4>
+        <a onclick="showPage('profile')" style="cursor:pointer">My Profile</a>
+        <a onclick="showModal('signin')" style="cursor:pointer">Sign In</a>
+        <a onclick="showModal('signup')" style="cursor:pointer">Join Free</a>
+        <a href="https://www.buymeacoffee.com/sumnutyping" target="_blank">Support Us ☕</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a onclick="showPage('privacy')" style="cursor:pointer">Privacy Policy</a>
+        <a onclick="showPage('terms')" style="cursor:pointer">Terms of Service</a>
+        <a href="mailto:sales@sumnubooks.com">Advertise</a>
+        <a href="mailto:sales@sumnubooks.com">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 SumnuTyping.com — Free forever. No hidden costs.</p>
+      <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap">
+        <p>Contact: <a href="mailto:sales@sumnubooks.com" style="color:var(--muted)">sales@sumnubooks.com</a></p>
+        <a href="https://www.buymeacoffee.com/sumnutyping" target="_blank"
+          style="display:inline-flex;align-items:center;gap:0.5rem;background:#FFDD00;color:#000;font-family:var(--font-body);font-weight:700;font-size:0.78rem;padding:0.45rem 1rem;text-decoration:none;letter-spacing:0.03em;white-space:nowrap">
+          ☕ Buy Me a Coffee
+        </a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ===== PRACTICE PAGE ===== -->
+<div id="page-practice" class="page">
+  <div class="practice-with-ads">
+    <div class="practice-main">
+      <div class="practice-header" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:0.75rem">
+        <div>
+          <div class="practice-title" style="font-family:var(--font-display);font-size:1.4rem;color:var(--cream)">Typing Practice</div>
+        </div>
+        <div class="mode-tabs">
+          <button class="mode-tab active" onclick="setMode('timed',this)">Timed</button>
+          <button class="mode-tab" onclick="setMode('words',this)">Words</button>
+          <button class="mode-tab" onclick="setMode('code',this)">Code</button>
+        </div>
+      </div>
+
+      <!-- TIME SELECTOR -->
+      <div id="time-selector" style="display:flex;gap:0.5rem;margin-bottom:1.5rem;align-items:center">
+        <span style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-right:0.5rem">Duration</span>
+        <button class="lb-filter active" onclick="setDuration(15,this)">15s</button>
+        <button class="lb-filter" onclick="setDuration(30,this)">30s</button>
+        <button class="lb-filter" onclick="setDuration(60,this)">60s</button>
+        <button class="lb-filter" onclick="setDuration(120,this)">2min</button>
+      </div>
+
+      <!-- STATS BAR -->
+      <div class="stats-bar">
+        <div class="stat-item">
+          <div class="stat-val" id="wpm-display">0</div>
+          <div class="stat-lbl">WPM</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val" id="acc-display">100</div>
+          <div class="stat-lbl">Accuracy %</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val" id="timer-display">15</div>
+          <div class="stat-lbl">Seconds Left</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val" id="errors-display">0</div>
+          <div class="stat-lbl">Errors</div>
+        </div>
+      </div>
+
+      <!-- TYPING BOX -->
+      <div class="typing-container" onclick="focusInput()" id="typing-container">
+        <div id="text-display"></div>
+        <input type="text" id="typing-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+        <div class="click-to-type" id="click-hint">Click here or press any key to start typing</div>
+
+        <!-- RESULTS OVERLAY -->
+        <div class="results-overlay" id="results-overlay">
+          <div class="results-title">✦ Test Complete ✦</div>
+          <div class="results-grid">
+            <div class="result-box">
+              <div class="result-num" id="r-wpm">0</div>
+              <div class="result-lbl">WPM</div>
+            </div>
+            <div class="result-box">
+              <div class="result-num" id="r-acc">0%</div>
+              <div class="result-lbl">Accuracy</div>
+            </div>
+            <div class="result-box">
+              <div class="result-num" id="r-errors">0</div>
+              <div class="result-lbl">Errors</div>
+            </div>
+            <div class="result-box">
+              <div class="result-num" id="r-chars">0</div>
+              <div class="result-lbl">Characters</div>
+            </div>
+          </div>
+          <div id="r-personal-best" style="font-size:0.8rem;color:var(--gold);margin-bottom:1.5rem;letter-spacing:0.05em;height:1.2rem"></div>
+          <div id="lb-submit-area" style="width:100%;max-width:380px;margin-bottom:1rem">
+            <div id="lb-submit-signed-in" style="display:none">
+              <div style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;text-align:left">Post to leaderboard as <span id="lb-posting-as" style="color:var(--gold)"></span></div>
+              <button class="btn-primary" id="lb-submit-btn" onclick="submitToLeaderboard()" style="width:100%;padding:0.65rem;font-size:0.85rem">Post Score to Leaderboard</button>
+              <div id="lb-submit-status" style="font-size:0.75rem;margin-top:0.4rem;height:1rem;color:var(--muted)"></div>
+            </div>
+            <div id="lb-submit-guest" style="display:none">
+              <div style="background:var(--bg3);border:1px solid var(--border);padding:0.9rem 1rem;text-align:center">
+                <div style="font-size:0.82rem;color:var(--muted);margin-bottom:0.6rem;font-weight:400">Sign in to post your score to the leaderboard</div>
+                <div style="display:flex;gap:0.5rem;justify-content:center">
+                  <button class="btn-primary" onclick="closeModal('results-inline');showModal('signup')" style="font-size:0.78rem;padding:0.5rem 1rem">Create Account</button>
+                  <button class="btn-ghost" onclick="showModal('signin')" style="font-size:0.78rem;padding:0.5rem 1rem">Sign In</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="results-actions">
+            <button class="btn-primary" onclick="restartTest()">Try Again</button>
+            <button class="btn-ghost" onclick="saveResult()">Save Result</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="practice-controls">
+        <div class="difficulty-select">
+          <span class="diff-label">Level</span>
+          <select id="difficulty" onchange="restartTest()">
+            <option value="easy">Easy — Common words</option>
+            <option value="medium" selected>Medium — Varied vocab</option>
+            <option value="hard">Hard — Advanced words</option>
+            <option value="code">Code — Programming</option>
+          </select>
+        </div>
+        <button class="btn-ghost" onclick="restartTest()">↺ New Text</button>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDEBAR WITH ADS -->
+    <div style="display:flex;flex-direction:column;gap:1.5rem;padding-top:4rem">
+      <div class="ad-slot ad-slot-300">
+        <div>
+          <div class="ad-label">Advertisement</div>
+          <div>300 × 250</div>
+        </div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--border);padding:1.5rem">
+        <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem">Your Best Today</div>
+        <div style="font-family:var(--font-display);font-size:2.5rem;color:var(--cream)" id="sidebar-best">--</div>
+        <div style="font-size:0.7rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-top:0.2rem">Words Per Minute</div>
+        <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border2)">
+          <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem">Today's Rank</div>
+          <div style="font-family:var(--font-mono);font-size:1.2rem;color:var(--gold)">#--</div>
+        </div>
+      </div>
+      <div class="ad-slot ad-slot-300">
+        <div>
+          <div class="ad-label">Advertisement</div>
+          <div>300 × 250</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== LEADERBOARD PAGE ===== -->
+
+<!-- ===== LEARN PAGE ===== -->
+<div id="page-learn" class="page">
+  <div style="max-width:1000px;margin:0 auto;padding:2.5rem 2rem">
+
+    <!-- AD -->
+    <div class="ad-slot ad-slot-728" style="margin-bottom:2rem">
+      <div><div class="ad-label">Advertisement</div><div>728 × 90</div></div>
+    </div>
+
+    <div style="font-family:var(--font-display);font-size:1.75rem;color:var(--cream);margin-bottom:0.25rem">Learn to Type</div>
+    <div style="color:var(--muted);font-size:0.875rem;font-weight:400;margin-bottom:2rem">Master the keyboard from the ground up — finger by finger, row by row</div>
+
+    <!-- KEYBOARD DIAGRAM -->
+    <div style="background:var(--bg2);border:1px solid var(--border);padding:2rem;margin-bottom:2rem;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.5"></div>
+      <div style="font-family:var(--font-display);font-size:1.1rem;color:var(--cream);margin-bottom:0.5rem">Finger Placement Guide</div>
+      <div style="font-size:0.8rem;color:var(--muted);margin-bottom:1.5rem;font-weight:400">Hover over any key to see which finger to use. Colors show finger assignments.</div>
+      <div id="keyboard-diagram" style="font-family:var(--font-mono);user-select:none"></div>
+      <div style="display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:1.5rem" id="finger-legend"></div>
+    </div>
+
+    <!-- LESSONS -->
+    <div style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:1rem">Progressive Lessons</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-bottom:2rem" id="lessons-grid"></div>
+
+    <!-- LESSON PRACTICE AREA -->
+    <div id="lesson-area" style="display:none;background:var(--bg2);border:1px solid var(--border);padding:2rem;position:relative">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.5"></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:0.75rem">
+        <div>
+          <div style="font-family:var(--font-display);font-size:1.1rem;color:var(--cream)" id="lesson-title">Lesson</div>
+          <div style="font-size:0.8rem;color:var(--muted);font-weight:400;margin-top:0.2rem" id="lesson-desc"></div>
+        </div>
+        <button class="btn-ghost" onclick="closelesson()" style="font-size:0.78rem;padding:0.4rem 0.9rem">✕ Close</button>
+      </div>
+      <div class="stats-bar" style="margin-bottom:1.5rem">
+        <div class="stat-item"><div class="stat-val" id="l-wpm">0</div><div class="stat-lbl">WPM</div></div>
+        <div class="stat-item"><div class="stat-val" id="l-acc">100</div><div class="stat-lbl">Accuracy</div></div>
+        <div class="stat-item"><div class="stat-val" id="l-progress">0%</div><div class="stat-lbl">Progress</div></div>
+        <div class="stat-item"><div class="stat-val" id="l-errors">0</div><div class="stat-lbl">Errors</div></div>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--border);padding:2rem;cursor:text" onclick="focusLessonInput()">
+        <div id="lesson-text-display" style="font-family:var(--font-mono);font-size:1.15rem;line-height:2;letter-spacing:0.04em;word-wrap:break-word"></div>
+        <input type="text" id="lesson-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+          style="position:absolute;opacity:0;pointer-events:none;top:0;left:0" />
+      </div>
+      <div id="lesson-complete" style="display:none;text-align:center;padding:2rem">
+        <div style="font-family:var(--font-display);font-size:1.5rem;color:var(--gold);margin-bottom:1rem">✦ Lesson Complete! ✦</div>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+          <button class="btn-primary" onclick="retryLesson()">Try Again</button>
+          <button class="btn-ghost" onclick="closelesson()">Back to Lessons</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== GAMES PAGE ===== -->
+<div id="page-games" class="page">
+  <div style="max-width:1000px;margin:0 auto;padding:2.5rem 2rem">
+
+    <!-- AD -->
+    <div class="ad-slot ad-slot-728" style="margin-bottom:2rem">
+      <div><div class="ad-label">Advertisement</div><div>728 × 90</div></div>
+    </div>
+
+    <div style="font-family:var(--font-display);font-size:1.75rem;color:var(--cream);margin-bottom:0.25rem">Typing Games</div>
+    <div style="color:var(--muted);font-size:0.875rem;font-weight:400;margin-bottom:2rem">Practice your speed the fun way</div>
+
+    <!-- GAME SELECTOR -->
+    <div id="game-select-screen">
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap">
+        <span style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)">Difficulty</span>
+        <button class="game-diff-btn lb-filter active" data-diff="easy" onclick="setGameDifficulty('easy')">Easy</button>
+        <button class="game-diff-btn lb-filter" data-diff="medium" onclick="setGameDifficulty('medium')">Medium</button>
+        <button class="game-diff-btn lb-filter" data-diff="hard" onclick="setGameDifficulty('hard')">Hard</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-bottom:2rem">
+        <div class="feature-card" style="cursor:pointer;border:1px solid var(--border);transition:border-color 0.2s" onclick="startGame('wordfall')" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
+          <span class="feature-icon">🌧</span>
+          <h3>Word Fall</h3>
+          <p>Words rain down from the top of the screen. Type them before they hit the bottom or it's game over!</p>
+          <div style="margin-top:1rem;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold)">Click to Play →</div>
+        </div>
+        <div class="feature-card" style="cursor:pointer;border:1px solid var(--border);transition:border-color 0.2s" onclick="startGame('survival')" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
+          <span class="feature-icon">⚡</span>
+          <h3>Survival</h3>
+          <p>Type words as fast as you can. Each miss costs a life. Speed increases every 10 words. How long can you last?</p>
+          <div style="margin-top:1rem;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold)">Click to Play →</div>
+        </div>
+        <div class="feature-card" style="cursor:pointer;border:1px solid var(--border);transition:border-color 0.2s" onclick="startGame('racer')" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
+          <span class="feature-icon">🏁</span>
+          <h3>Type Racer</h3>
+          <p>Race against your personal ghost. Beat your previous time on the same passage to set a new record.</p>
+          <div style="margin-top:1rem;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold)">Click to Play →</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WORD FALL GAME -->
+    <div id="game-wordfall" style="display:none">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:0.75rem">
+        <div style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream)">🌧 Word Fall</div>
+        <div style="display:flex;gap:1rem;align-items:center">
+          <span style="font-family:var(--font-mono);color:var(--gold);font-size:1rem">Score: <span id="wf-score">0</span></span>
+          <span style="font-family:var(--font-mono);color:var(--red);font-size:1rem">Lives: <span id="wf-lives">3</span></span>
+          <button class="btn-ghost" onclick="toggleFullscreen('game-wordfall')" id="fs-btn-wordfall" style="font-size:0.75rem;padding:0.4rem 0.9rem" title="Fullscreen">⛶</button>
+          <button class="btn-ghost" onclick="stopGame('wordfall')" style="font-size:0.75rem;padding:0.4rem 0.9rem">✕ Quit</button>
+        </div>
+      </div>
+      <div id="wf-arena" style="background:var(--bg2);border:1px solid var(--border);height:400px;position:relative;overflow:hidden;margin-bottom:1rem">
+        <div id="wf-overlay" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(10,10,15,0.95);z-index:10">
+          <div style="font-family:var(--font-display);font-size:1.5rem;color:var(--gold);margin-bottom:0.5rem">🌧 Word Fall</div>
+          <div style="font-size:0.85rem;color:var(--muted);margin-bottom:1.5rem;font-weight:400">Type the falling words before they reach the bottom</div>
+          <button class="btn-primary" onclick="startWordFall()">Start Game</button>
+        </div>
+        <div id="wf-gameover" style="display:none;position:absolute;inset:0;flex-direction:column;align-items:center;justify-content:center;background:rgba(10,10,15,0.95);z-index:10;text-align:center">
+          <div style="font-family:var(--font-display);font-size:1.5rem;color:var(--red);margin-bottom:0.5rem">Game Over</div>
+          <div style="font-size:0.9rem;color:var(--muted);margin-bottom:0.25rem;font-weight:400">Final Score</div>
+          <div style="font-family:var(--font-display);font-size:3rem;color:var(--gold);margin-bottom:1.5rem" id="wf-final-score">0</div>
+          <div style="display:flex;gap:1rem">
+            <button class="btn-primary" onclick="startWordFall()">Play Again</button>
+            <button class="btn-ghost" onclick="stopGame('wordfall')">Back</button>
+          </div>
+        </div>
+      </div>
+      <input type="text" id="wf-input" placeholder="Type the falling words here…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+        style="width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:var(--font-mono);font-size:1rem;padding:0.75rem 1rem;outline:none"
+        oninput="checkWordFall(this.value)" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'"/>
+    </div>
+
+    <!-- SURVIVAL GAME -->
+    <div id="game-survival" style="display:none">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:0.75rem">
+        <div style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream)">⚡ Survival</div>
+        <div style="display:flex;gap:1rem;align-items:center">
+          <span style="font-family:var(--font-mono);color:var(--gold)">Score: <span id="sv-score">0</span></span>
+          <span style="font-family:var(--font-mono);color:var(--red)">Lives: <span id="sv-lives">❤️❤️❤️</span></span>
+          <button class="btn-ghost" onclick="toggleFullscreen('game-survival')" id="fs-btn-survival" style="font-size:0.75rem;padding:0.4rem 0.9rem" title="Fullscreen">⛶</button>
+          <button class="btn-ghost" onclick="stopGame('survival')" style="font-size:0.75rem;padding:0.4rem 0.9rem">✕ Quit</button>
+        </div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--border);padding:2rem;text-align:center;margin-bottom:1rem;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative">
+        <div id="sv-overlay" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(10,10,15,0.95);z-index:10">
+          <div style="font-family:var(--font-display);font-size:1.5rem;color:var(--gold);margin-bottom:0.5rem">⚡ Survival</div>
+          <div style="font-size:0.85rem;color:var(--muted);margin-bottom:1.5rem;font-weight:400">Type each word before time runs out. 3 misses and it's over!</div>
+          <button class="btn-primary" onclick="startSurvival()">Start Game</button>
+        </div>
+        <div id="sv-gameover" style="display:none;position:absolute;inset:0;flex-direction:column;align-items:center;justify-content:center;background:rgba(10,10,15,0.95);z-index:10;text-align:center">
+          <div style="font-family:var(--font-display);font-size:1.5rem;color:var(--red);margin-bottom:0.5rem">Game Over</div>
+          <div style="font-size:0.9rem;color:var(--muted);font-weight:400">You survived <span id="sv-final-score" style="color:var(--gold);font-weight:700">0</span> words</div>
+          <div style="font-size:0.8rem;color:var(--muted);margin-bottom:1.5rem;font-weight:400">Level reached: <span id="sv-final-level" style="color:var(--gold)">1</span></div>
+          <div style="display:flex;gap:1rem;justify-content:center">
+            <button class="btn-primary" onclick="startSurvival()">Play Again</button>
+            <button class="btn-ghost" onclick="stopGame('survival')">Back</button>
+          </div>
+        </div>
+        <div id="sv-timer-bar-wrap" style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--bg4)">
+          <div id="sv-timer-bar" style="height:100%;background:var(--gold);transition:width 0.1s linear;width:100%"></div>
+        </div>
+        <div id="sv-word" style="font-family:var(--font-mono);font-size:2.5rem;color:var(--cream);letter-spacing:0.05em"></div>
+        <div id="sv-level-badge" style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:0.5rem">Level <span id="sv-level">1</span></div>
+      </div>
+      <input type="text" id="sv-input" placeholder="Type the word above…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+        style="width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:var(--font-mono);font-size:1rem;padding:0.75rem 1rem;outline:none"
+        oninput="checkSurvival(this.value)" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'"/>
+    </div>
+
+    <!-- TYPE RACER GAME -->
+    <div id="game-racer" style="display:none">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:0.75rem">
+        <div style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream)">🏁 Type Racer</div>
+        <div style="display:flex;gap:0.5rem">
+          <button class="btn-ghost" onclick="toggleFullscreen('game-racer')" id="fs-btn-racer" style="font-size:0.75rem;padding:0.4rem 0.9rem" title="Fullscreen">⛶</button>
+          <button class="btn-ghost" onclick="stopGame('racer')" style="font-size:0.75rem;padding:0.4rem 0.9rem">✕ Quit</button>
+        </div>
+      </div>
+      <!-- RACE TRACK -->
+      <div style="background:var(--bg2);border:1px solid var(--border);padding:1.5rem;margin-bottom:1rem">
+        <div style="display:grid;grid-template-columns:80px 1fr;gap:0.75rem;align-items:center;margin-bottom:0.75rem">
+          <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold)">You</div>
+          <div style="background:var(--bg4);height:28px;border:1px solid var(--border);position:relative;overflow:hidden">
+            <div id="racer-you-bar" style="height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--gold));width:0%;transition:width 0.3s"></div>
+            <div id="racer-you-pct" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);font-family:var(--font-mono);font-size:0.75rem;color:var(--cream)">0%</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:80px 1fr;gap:0.75rem;align-items:center">
+          <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)">Ghost</div>
+          <div style="background:var(--bg4);height:28px;border:1px solid var(--border);position:relative;overflow:hidden">
+            <div id="racer-ghost-bar" style="height:100%;background:var(--bg3);border-right:2px solid var(--muted);width:0%;transition:width 0.3s"></div>
+            <div id="racer-ghost-pct" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);font-family:var(--font-mono);font-size:0.75rem;color:var(--muted)">0%</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:2rem;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border2)">
+          <div><div style="font-family:var(--font-mono);font-size:1.25rem;color:var(--gold)" id="racer-wpm">0</div><div style="font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)">Your WPM</div></div>
+          <div><div style="font-family:var(--font-mono);font-size:1.25rem;color:var(--muted)" id="racer-ghost-wpm">--</div><div style="font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)">Ghost WPM</div></div>
+          <div><div style="font-family:var(--font-mono);font-size:1.25rem;color:var(--cream)" id="racer-time">0.0s</div><div style="font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)">Time</div></div>
+        </div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--border);padding:2rem;margin-bottom:1rem;cursor:text;position:relative" onclick="focusRacerInput()">
+        <div id="racer-overlay" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(10,10,15,0.95);z-index:10;text-align:center">
+          <div style="font-family:var(--font-display);font-size:1.5rem;color:var(--gold);margin-bottom:0.5rem">🏁 Type Racer</div>
+          <div style="font-size:0.85rem;color:var(--muted);margin-bottom:0.25rem;font-weight:400" id="racer-ghost-msg">No ghost yet — complete a race to set one!</div>
+          <button class="btn-primary" style="margin-top:1rem" onclick="startRacer()">Start Race</button>
+        </div>
+        <div id="racer-finish" style="display:none;position:absolute;inset:0;flex-direction:column;align-items:center;justify-content:center;background:rgba(10,10,15,0.95);z-index:10;text-align:center;padding:2rem">
+          <div style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:0.5rem" id="racer-result-title">🏁 Finished!</div>
+          <div style="font-family:var(--font-mono);font-size:2.5rem;color:var(--gold);margin-bottom:0.25rem" id="racer-result-wpm">0</div>
+          <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem">WPM</div>
+          <div id="racer-result-msg" style="font-size:0.85rem;color:var(--muted);margin-bottom:1.5rem;font-weight:400"></div>
+          <div style="display:flex;gap:1rem;justify-content:center">
+            <button class="btn-primary" onclick="startRacer()">Race Again</button>
+            <button class="btn-ghost" onclick="stopGame('racer')">Back</button>
+          </div>
+        </div>
+        <div id="racer-text-display" style="font-family:var(--font-mono);font-size:1.1rem;line-height:2;letter-spacing:0.04em;word-wrap:break-word"></div>
+        <input type="text" id="racer-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+          style="position:absolute;opacity:0;pointer-events:none;top:0;left:0" />
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="page-leaderboard" class="page">
+  <div class="leaderboard-wrap fade-in">
+    <!-- AD TOP -->
+    <div class="ad-slot ad-slot-728" style="margin-bottom:2rem">
+      <div><div class="ad-label">Advertisement</div><div>728 × 90 — Leaderboard Ad</div></div>
+    </div>
+
+    <div class="lb-title">Global Rankings</div>
+    <div class="lb-subtitle">The world's fastest typists, ranked by peak performance</div>
+
+    <div class="lb-filters" id="lb-filters">
+      <button class="lb-filter active" onclick="setLbFilter('daily',this)">Today</button>
+      <button class="lb-filter" onclick="setLbFilter('weekly',this)">This Week</button>
+      <button class="lb-filter" onclick="setLbFilter('alltime',this)">All Time</button>
+      <button class="lb-filter" onclick="setLbFilter('60',this)">60s Test</button>
+      <button class="lb-filter" onclick="setLbFilter('30',this)">30s Test</button>
+    </div>
+
+    <div class="lb-table" id="lb-table">
+      <div class="lb-row header">
+        <div class="lb-cell">Rank</div>
+        <div class="lb-cell">Typist</div>
+        <div class="lb-cell">WPM</div>
+        <div class="lb-cell">Accuracy</div>
+        <div class="lb-cell">Tests</div>
+        <div class="lb-cell">Level</div>
+      </div>
+    </div>
+
+    <div style="text-align:center;padding:2rem 0">
+      <button class="btn-ghost" onclick="showModal('signup')">Create Account to Appear Here</button>
+    </div>
+
+    <!-- AD BOTTOM -->
+    <div class="ad-slot ad-slot-728" style="margin-top:1rem">
+      <div><div class="ad-label">Advertisement</div><div>728 × 90 — Leaderboard Ad</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PROFILE PAGE ===== -->
+<div id="page-profile" class="page">
+  <div class="profile-wrap fade-in">
+    <div style="margin-bottom:2rem">
+      <div style="font-family:var(--font-display);font-size:1.75rem;color:var(--cream);margin-bottom:0.25rem">My Profile</div>
+      <div style="color:var(--muted);font-size:0.875rem;font-weight:400">Track your progress and manage your account</div>
+    </div>
+
+    <div class="profile-grid">
+      <!-- LEFT: CARD -->
+      <div>
+        <div class="profile-card" style="margin-bottom:1.5rem" id="profile-card">
+          <div class="profile-avatar" id="profile-avatar">G</div>
+          <div class="profile-name" id="profile-name">Guest Typist</div>
+          <div class="profile-joined" id="profile-joined">Sign in to save progress</div>
+          <div class="profile-badges" id="profile-badges">
+            <span class="badge badge-gold">Newcomer</span>
+          </div>
+          <div id="profile-guest-btns">
+            <button class="btn-primary" style="width:100%;margin-bottom:0.5rem" onclick="showModal('signup')">Create Account</button>
+            <button class="btn-ghost" style="width:100%" onclick="showModal('signin')">Sign In</button>
+          </div>
+          <div id="profile-signout-btn" style="display:none">
+            <button class="btn-ghost" style="width:100%" onclick="signOut()">Sign Out</button>
+          </div>
+        </div>
+        <div style="background:var(--bg2);border:1px solid var(--border);padding:1.25rem;text-align:center;margin-top:1rem">
+          <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem">Enjoying SumnuTyping?</div>
+          <a href="https://www.buymeacoffee.com/sumnutyping" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;background:#FFDD00;color:#000;font-family:var(--font-body);font-weight:700;font-size:0.82rem;padding:0.6rem 1.25rem;text-decoration:none;width:100%;letter-spacing:0.03em;transition:opacity 0.2s" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+            ☕ Buy Me a Coffee
+          </a>
+        </div>
+        <div class="profile-stats-mini">
+          <div class="mini-stat">
+            <div class="mini-num" id="p-best">--</div>
+            <div class="mini-lbl">Best WPM</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mini-num" id="p-avg">--</div>
+            <div class="mini-lbl">Avg WPM</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mini-num" id="p-tests">0</div>
+            <div class="mini-lbl">Tests Taken</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mini-num" id="p-acc">--%</div>
+            <div class="mini-lbl">Avg Accuracy</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: HISTORY + SETTINGS -->
+      <div>
+        <div class="section-head">WPM Progress</div>
+        <div class="history-chart" style="margin-bottom:1.5rem">
+          <canvas id="wpm-chart" height="160"></canvas>
+          <div id="no-history" style="text-align:center;color:var(--muted);font-size:0.85rem;padding:2rem;font-weight:400">Complete tests to see your progress chart</div>
+        </div>
+
+        <div class="section-head">Achievements <span id="badges-count" style="font-size:0.7rem;color:var(--muted);font-weight:400;margin-left:0.5rem">0 / 15</span></div>
+        <div id="badges-container" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:0.75rem;margin-bottom:1.5rem"></div>
+
+        <div class="section-head">Recent Tests</div>
+        <div class="history-table" id="history-table">
+          <div class="history-row header">
+            <div class="h-cell">Date & Mode</div>
+            <div class="h-cell">WPM</div>
+            <div class="h-cell">Accuracy</div>
+            <div class="h-cell">Errors</div>
+            <div class="h-cell">Difficulty</div>
+          </div>
+          <div id="history-rows">
+            <div style="text-align:center;padding:2rem;color:var(--muted);font-size:0.85rem;font-weight:400">No tests recorded yet. Start practicing!</div>
+          </div>
+        </div>
+
+        <div class="section-head">Settings</div>
+        <div class="settings-section">
+          <div class="settings-row">
+            <div>
+              <div class="settings-label">Sound Effects</div>
+              <div class="settings-desc">Play a subtle click on keypress</div>
+            </div>
+            <label class="toggle"><input type="checkbox" id="set-sound" onchange="localStorage.setItem('sumnuSound',this.checked)"><div class="toggle-slider"></div></label>
+          </div>
+          <div class="settings-row">
+            <div>
+              <div class="settings-label">Show Live WPM</div>
+              <div class="settings-desc">Update WPM counter in real time</div>
+            </div>
+            <label class="toggle"><input type="checkbox" id="set-livewpm" checked><div class="toggle-slider"></div></label>
+          </div>
+          <div class="settings-row">
+            <div>
+              <div class="settings-label">Highlight Errors</div>
+              <div class="settings-desc">Mark incorrect characters in red</div>
+            </div>
+            <label class="toggle"><input type="checkbox" id="set-errors" checked><div class="toggle-slider"></div></label>
+          </div>
+          <div class="settings-row">
+            <div>
+              <div class="settings-label">Auto-save Results</div>
+              <div class="settings-desc">Automatically save each test result</div>
+            </div>
+            <label class="toggle"><input type="checkbox" id="set-autosave" checked><div class="toggle-slider"></div></label>
+          </div>
+        </div>
+
+        <div class="section-head" style="margin-top:2rem">Progress File</div>
+        <div style="background:var(--bg2);border:1px solid var(--border);padding:1.5rem;position:relative;overflow:hidden">
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.4"></div>
+          <p style="font-size:0.82rem;color:var(--muted);line-height:1.6;margin-bottom:1.25rem;font-weight:400">
+            Export all your results and settings to a <code style="font-family:var(--font-mono);font-size:0.78rem;color:var(--gold);background:var(--bg4);padding:0.1rem 0.35rem">.sumnudata</code> file you can keep on your computer. Load it back at any time — even on a different device — to restore your full history instantly.
+          </p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem">
+            <button class="btn-primary" onclick="exportProgress()" style="padding:0.75rem;font-size:0.8rem;display:flex;align-items:center;justify-content:center;gap:0.5rem">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Export Progress
+            </button>
+            <button class="btn-ghost" onclick="document.getElementById('import-file-input').click()" style="padding:0.75rem;font-size:0.8rem;display:flex;align-items:center;justify-content:center;gap:0.5rem">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              Load Progress File
+            </button>
+          </div>
+          <input type="file" id="import-file-input" accept=".sumnudata,.json" style="display:none" onchange="importProgress(event)" />
+          <div id="import-status" style="display:none;padding:0.75rem 1rem;font-size:0.8rem;border:1px solid;margin-bottom:0;"></div>
+          <div style="display:flex;align-items:center;gap:0.75rem;padding-top:1rem;border-top:1px solid var(--border2)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span style="font-size:0.72rem;color:var(--muted2);font-weight:400">Your data never leaves your device. The file is plain JSON you can open in any text editor.</span>
+          </div>
+        </div>
+
+        <div style="margin-top:1rem;background:var(--bg2);border:1px solid var(--border);padding:1rem 1.5rem">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div>
+              <div class="settings-label">Clear All Local Data</div>
+              <div class="settings-desc">Permanently erase all saved results from this browser</div>
+            </div>
+            <button class="btn-ghost" onclick="confirmClearData()" style="border-color:rgba(224,84,84,0.3);color:var(--red);font-size:0.75rem;padding:0.4rem 0.9rem">Clear Data</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== PRIVACY POLICY PAGE ===== -->
+<div id="page-privacy" class="page">
+  <div style="max-width:800px;margin:0 auto;padding:3rem 2rem">
+    <div style="font-family:var(--font-display);font-size:2rem;color:var(--cream);margin-bottom:0.5rem">Privacy Policy</div>
+    <div style="font-size:0.8rem;color:var(--muted);margin-bottom:2.5rem;font-weight:400">Last updated: May 2025</div>
+
+    <div style="display:flex;flex-direction:column;gap:2rem">
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">1. Introduction</h2>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">Welcome to SumnuTyping.com ("we", "our", or "us"). We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, and share information about you when you use our website at sumnutyping.com.</p>
+      </section>
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">2. Information We Collect</h2>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400;margin-bottom:0.75rem">We collect the following types of information:</p>
+        <ul style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400;padding-left:1.5rem">
+          <li style="margin-bottom:0.5rem"><strong style="color:var(--text)">Account Information:</strong> When you create an account, we collect your username, email address, and password (stored securely via Supabase authentication).</li>
+          <li style="margin-bottom:0.5rem"><strong style="color:var(--text)">Usage Data:</strong> We collect typing test results including words per minute (WPM), accuracy, errors, and test duration when you choose to save them.</li>
+          <li style="margin-bottom:0.5rem"><strong style="color:var(--text)">Local Storage Data:</strong> We store your typing history, settings preferences, and achievements locally in your browser using localStorage.</li>
+          <li style="margin-bottom:0.5rem"><strong style="color:var(--text)">Google Sign-In:</strong> If you sign in with Google, we receive your name and email address from Google. We do not receive your Google password.</li>
+          <li><strong style="color:var(--text)">Cookies and Tracking:</strong> We use cookies and similar technologies for authentication and to serve advertisements through Google AdSense.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">3. How We Use Your Information</h2>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400;margin-bottom:0.75rem">We use the information we collect to:</p>
+        <ul style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400;padding-left:1.5rem">
+          <li style="margin-bottom:0.5rem">Provide, operate, and maintain our typing practice service</li>
+          <li style="margin-bottom:0.5rem">Display your scores on the global leaderboard (only if you choose to post them)</li>
+          <li style="margin-bottom:0.5rem">Track your typing progress and improvement over time</li>
+          <li style="margin-bottom:0.5rem">Send you account-related emails such as password resets</li>
+          <li>Display relevant advertisements through Google AdSense</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">4. Google AdSense and Advertising</h2>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400;margin-bottom:0.75rem">We use Google AdSense to display advertisements on our site. Google AdSense uses cookies to serve ads based on your prior visits to our website and other websites on the internet. Google's use of advertising cookies enables it and its partners to serve ads based on your visit to our site.</p>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" style="color:var(--gold)">Google Ad Settings</a>. You can also opt out by visiting <a href="https://www.aboutads.info" target="_blank" style="color:var(--gold)">aboutads.info</a>.</p>
+      </section>
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">5. Data Sharing</h2>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">We do not sell your personal information to third parties. We share data only with:</p>
+        <ul style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400;padding-left:1.5rem;margin-top:0.75rem">
+          <li style="margin-bottom:0.5rem"><strong style="color:var(--text)">Supabase:</strong> Our database provider that stores account information and leaderboard scores.</li>
+          <li style="margin-bottom:0.5rem"><strong style="color:var(--text)">Google:</strong> For authentication (Google Sign-In) and advertising (Google AdSense).</li>
+          <li><strong style="color:var(--text)">Netlify:</strong> Our hosting provider that serves the website.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">6. Data Retention and Deletion</h2>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">Your account data is retained as long as your account is active. You may delete your local browser data at any time using the "Clear Data" option in your Profile settings. To request deletion of your account and associated data, contact us at sales@sumnubooks.com.</p>
+      </section>
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">7. Children's Privacy</h2>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">SumnuTyping is not directed to children under 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided us with personal information, please contact us and we will delete it promptly.</p>
+      </section>
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">8. Your Rights</h2>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">Depending on your location, you may have the right to access, correct, or delete your personal data. Users in the European Economic Area (EEA) have additional rights under GDPR. To exercise any of these rights, contact us at sales@sumnubooks.com.</p>
+      </section>
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">9. Changes to This Policy</h2>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">We may update this Privacy Policy from time to time. We will notify you of any changes by updating the date at the top of this page. Continued use of the site after changes constitutes acceptance of the updated policy.</p>
+      </section>
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">10. Contact Us</h2>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">If you have any questions about this Privacy Policy, please contact us at <a href="mailto:sales@sumnubooks.com" style="color:var(--gold)">sales@sumnubooks.com</a>.</p>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== TERMS OF SERVICE PAGE ===== -->
+<div id="page-terms" class="page">
+  <div style="max-width:800px;margin:0 auto;padding:3rem 2rem">
+    <div style="font-family:var(--font-display);font-size:2rem;color:var(--cream);margin-bottom:0.5rem">Terms of Service</div>
+    <div style="font-size:0.8rem;color:var(--muted);margin-bottom:2.5rem;font-weight:400">Last updated: May 2025</div>
+
+    <div style="display:flex;flex-direction:column;gap:2rem">
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">1. Acceptance of Terms</h2>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">By accessing or using SumnuTyping.com, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the site.</p>
+      </section>
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">2. Description of Service</h2>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">SumnuTyping provides a free online typing practice platform including typing speed tests, typing games, touch typing lessons, and a global leaderboard. The service is provided free of charge and is supported by advertising revenue.</p>
+      </section>
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">3. User Accounts</h2>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400;margin-bottom:0.75rem">You may use SumnuTyping without creating an account. If you create an account, you are responsible for maintaining the security of your account and password. You agree to provide accurate information when creating your account.</p>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">You must be at least 13 years old to create an account. We reserve the right to terminate accounts that violate these terms.</p>
+      </section>
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">4. Acceptable Use</h2>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400;margin-bottom:0.75rem">You agree not to:</p>
+        <ul style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400;padding-left:1.5rem">
+          <li style="margin-bottom:0.5rem">Use automated tools or bots to artificially inflate typing scores on the leaderboard</li>
+          <li style="margin-bottom:0.5rem">Attempt to hack, disrupt, or damage the site or its infrastructure</li>
+          <li style="margin-bottom:0.5rem">Use the site for any unlawful purpose</li>
+          <li style="margin-bottom:0.5rem">Impersonate another person or create misleading usernames</li>
+          <li>Attempt to bypass or manipulate the advertising system</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">5. Leaderboard and User Content</h2>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">When you post a score to the leaderboard, your chosen username and score become publicly visible. We reserve the right to remove any scores or usernames that we deem inappropriate or that appear to be fraudulently obtained.</p>
+      </section>
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">6. Advertising</h2>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">SumnuTyping displays advertisements served by Google AdSense. By using the site, you acknowledge that advertisements may be displayed. We are not responsible for the content of third-party advertisements.</p>
+      </section>
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">7. Disclaimer of Warranties</h2>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">SumnuTyping is provided "as is" without warranties of any kind. We do not guarantee that the site will be available at all times or that it will be error-free. We reserve the right to modify, suspend, or discontinue the service at any time.</p>
+      </section>
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">8. Limitation of Liability</h2>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">To the fullest extent permitted by law, SumnuTyping shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the site or inability to use the site.</p>
+      </section>
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">9. Changes to Terms</h2>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">We reserve the right to modify these Terms of Service at any time. Changes will be effective immediately upon posting. Continued use of the site after changes constitutes acceptance of the updated terms.</p>
+      </section>
+
+      <section>
+        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">10. Contact</h2>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">For questions about these Terms of Service, contact us at <a href="mailto:sales@sumnubooks.com" style="color:var(--gold)">sales@sumnubooks.com</a>.</p>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- SIGN IN MODAL -->
+<div class="modal-overlay" id="modal-signin">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('signin')">✕</button>
+    <h2>Welcome back</h2>
+    <p>Sign in to post scores and access your stats.</p>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" id="signin-email" placeholder="you@example.com" autocomplete="email">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="signin-password" placeholder="••••••••" autocomplete="current-password">
+    </div>
+    <div id="signin-error" style="font-size:0.8rem;color:var(--red);margin-bottom:0.75rem;min-height:1rem"></div>
+    <button class="btn-primary" style="width:100%;padding:0.75rem" id="signin-btn" onclick="doSignIn()">Sign In</button>
+    <div style="display:flex;align-items:center;gap:0.75rem;margin:1.25rem 0">
+      <div style="flex:1;height:1px;background:var(--border)"></div>
+      <span style="font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase">or</span>
+      <div style="flex:1;height:1px;background:var(--border)"></div>
+    </div>
+    <button onclick="doGoogleSignIn()" style="width:100%;padding:0.7rem;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:var(--font-body);font-size:0.85rem;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.75rem;transition:border-color 0.2s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.1 29.3 35 24 35c-6.1 0-11-4.9-11-11s4.9-11 11-11c2.8 0 5.3 1 7.2 2.8l5.7-5.7C33.8 7.1 29.1 5 24 5 13 5 4 14 4 25s9 20 20 20c11 0 20-9 20-20 0-1.5-.2-2.9-.4-4.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.5 16 19 13 24 13c2.8 0 5.3 1 7.2 2.8l5.7-5.7C33.8 7.1 29.1 5 24 5 16.3 5 9.7 9.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 45c5 0 9.6-1.9 13-5l-6-5.2C29.3 36.5 26.8 37 24 37c-5.2 0-9.6-2.9-11.3-7L6 34.3C9.4 40.6 16.2 45 24 45z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.2-4.3 5.5l6 5.2C40.9 35.4 44 30.6 44 25c0-1.5-.2-2.9-.4-4.5z"/></svg>
+      Continue with Google
+    </button>
+    <div class="modal-footer">Don't have an account? <a onclick="closeModal('signin');showModal('signup')">Create one free</a></div>
+  </div>
+</div>
+
+<!-- SIGN UP MODAL -->
+<div class="modal-overlay" id="modal-signup">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('signup')">✕</button>
+    <h2>Join SumnuTyping</h2>
+    <p>Free forever. Post scores, climb the rankings, track your progress.</p>
+    <div class="form-group">
+      <label>Username <span style="color:var(--muted);font-size:0.7rem">(shown on leaderboard)</span></label>
+      <input type="text" id="signup-username" placeholder="SpeedDemon42" maxlength="20" autocomplete="username">
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" id="signup-email" placeholder="you@example.com" autocomplete="email">
+    </div>
+    <div class="form-group">
+      <label>Password <span style="color:var(--muted);font-size:0.7rem">(min. 6 characters)</span></label>
+      <input type="password" id="signup-password" placeholder="••••••••" autocomplete="new-password">
+    </div>
+    <div id="signup-error" style="font-size:0.8rem;color:var(--red);margin-bottom:0.75rem;min-height:1rem"></div>
+    <button class="btn-primary" style="width:100%;padding:0.75rem" id="signup-btn" onclick="doSignUp()">Create Account</button>
+    <div style="display:flex;align-items:center;gap:0.75rem;margin:1.25rem 0">
+      <div style="flex:1;height:1px;background:var(--border)"></div>
+      <span style="font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase">or</span>
+      <div style="flex:1;height:1px;background:var(--border)"></div>
+    </div>
+    <button onclick="doGoogleSignIn()" style="width:100%;padding:0.7rem;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:var(--font-body);font-size:0.85rem;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.75rem;transition:border-color 0.2s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.1 29.3 35 24 35c-6.1 0-11-4.9-11-11s4.9-11 11-11c2.8 0 5.3 1 7.2 2.8l5.7-5.7C33.8 7.1 29.1 5 24 5C13 5 4 14 4 25s9 20 20 20c11 0 20-9 20-20 0-1.5-.2-2.9-.4-4.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.5 16 19 13 24 13c2.8 0 5.3 1 7.2 2.8l5.7-5.7C33.8 7.1 29.1 5 24 5 16.3 5 9.7 9.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 45c5 0 9.6-1.9 13-5l-6-5.2C29.3 36.5 26.8 37 24 37c-5.2 0-9.6-2.9-11.3-7L6 34.3C9.4 40.6 16.2 45 24 45z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.2-4.3 5.5l6 5.2C40.9 35.4 44 30.6 44 25c0-1.5-.2-2.9-.4-4.5z"/></svg>
+      Continue with Google
+    </button>
+    <div class="modal-footer">Already have an account? <a onclick="closeModal('signup');showModal('signin')">Sign in</a></div>
+  </div>
+</div>
+
+<!-- EMAIL CONFIRM MODAL -->
+<div class="modal-overlay" id="modal-confirm">
+  <div class="modal" style="max-width:380px;text-align:center">
+    <div style="font-size:2.5rem;margin-bottom:1rem">✉️</div>
+    <h2 style="margin-bottom:0.5rem">Check your email</h2>
+    <p style="margin-bottom:1.5rem">We sent a confirmation link to <strong id="confirm-email-shown"></strong>. Click it to activate your account, then come back and sign in.</p>
+    <button class="btn-primary" style="width:100%;padding:0.75rem" onclick="closeModal('confirm')">Got it</button>
+  </div>
+</div>
+
+<!-- CLEAR DATA CONFIRM MODAL -->
+<div class="modal-overlay" id="modal-cleardata">
+  <div class="modal" style="max-width:360px;text-align:center">
+    <div style="font-size:2rem;margin-bottom:1rem">⚠️</div>
+    <h2 style="margin-bottom:0.5rem">Clear All Data?</h2>
+    <p style="margin-bottom:1.5rem">This will permanently delete all <strong id="clear-count"></strong> saved test results and your personal best from this browser. This cannot be undone.</p>
+    <p style="font-size:0.8rem;color:var(--gold);margin-bottom:1.5rem;font-weight:400">Tip: Export your progress first to keep a backup.</p>
+    <div style="display:flex;gap:0.75rem">
+      <button class="btn-ghost" onclick="closeModal('cleardata')" style="flex:1;padding:0.75rem">Cancel</button>
+      <button onclick="clearAllData()" style="flex:1;padding:0.75rem;background:var(--red);border:none;color:#fff;font-family:var(--font-body);font-weight:700;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer">Yes, Clear It</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// STATE
+// ============================================================
+const state = {
+  currentMode: 'timed',
+  duration: 15,
+  timeLeft: 15,
+  timer: null,
+  started: false,
+  finished: false,
+  currentIndex: 0,
+  errors: 0,
+  totalTyped: 0,
+  correctTyped: 0,
+  startTime: null,
+  history: JSON.parse(localStorage.getItem('sumnuHistory') || '[]'),
+  bestWpm: parseInt(localStorage.getItem('sumnuBest') || '0'),
+  difficulty: 'medium'
+};
+
+// ============================================================
+// WORD BANKS
+// ============================================================
+const words = {
+  easy: ['the','be','to','of','and','a','in','that','have','it','for','not','on','with','he','as','you','do','at','this','but','his','by','from','they','we','say','her','she','or','an','will','my','one','all','would','there','their','what','so','up','out','if','about','who','get','which','go','me','when','make','can','like','time','no','just','him','know','take','people','into','year','your','good','some','could','them','see','other','than','then','now','look','only','come','its','over','think','also','back','after','use','two','how','our','work','first','well','way','even','new','want','because','any','these','give','day','most','us'],
+  medium: ['achieve','balance','careful','develop','explore','formula','genuine','helpful','improve','journey','knowledge','listen','measure','network','observe','patient','quality','require','service','thought','unique','variety','welcome','examine','forward','growth','harmony','insight','justice','kindness','language','morning','natural','outcome','problem','respond','simple','talent','useful','visible','written','benefit','capable','deliver','effort','failure','grateful','humble','involve','learned','method','notable','opinion','purpose','question','result','solution','theory','understand','value','wonder'],
+  hard: ['accommodate','ambiguous','benevolent','circumspect','deleterious','eloquence','fastidious','gregarious','hyperbole','idiosyncrasy','juxtapose','loquacious','melancholy','nonchalant','obfuscate','perspicacious','quintessential','recalcitrant','serendipity','trepidation','ubiquitous','vicarious','whimsical','xenophobia','zealous','abstraction','bureaucratic','colloquial','discombobulate','ephemeral','flabbergasted','garrulous','hypothetical','ineffable','judiciously','kaleidoscope','labyrinthine','magnanimous','nomenclature','ostentatious','paradoxical','quixotic','retrospective','sycophantic','transcendent'],
+  code: ['function','return','const','let','var','if','else','for','while','class','import','export','async','await','try','catch','true','false','null','undefined','array','object','string','number','boolean','void','interface','type','extends','implements','public','private','static','this','new','delete','typeof','instanceof','switch','case','break','continue','throw','default','module','require','console','log','push','pop','map','filter','reduce','forEach','length','index','value','key','event','callback','promise','resolve','reject','then','catch','finally']
+};
+
+const codePhrases = [
+  'const result = array.filter(item => item.value > 0).map(x => x.name);',
+  'async function fetchData(url) { const response = await fetch(url); return response.json(); }',
+  'class Component extends React.Component { render() { return <div>{this.props.children}</div>; } }',
+  'const sum = (a, b) => a + b; console.log(sum(5, 3));',
+  'let counter = 0; while (counter < 10) { counter++; }',
+  'try { const data = JSON.parse(input); } catch (error) { console.error(error.message); }',
+  'const obj = { name: "user", role: "admin", active: true };',
+  'array.forEach((element, index) => { if (index % 2 === 0) results.push(element); });'
+];
+
+// ============================================================
+// GENERATE TEXT
+// ============================================================
+function generateText() {
+  if (state.currentMode === 'code') {
+    return codePhrases[Math.floor(Math.random() * codePhrases.length)] + ' ' +
+           codePhrases[Math.floor(Math.random() * codePhrases.length)];
+  }
+  const diff = document.getElementById('difficulty')?.value || 'medium';
+  const pool = words[diff] || words.medium;
+  const count = 80;
+  let text = '';
+  for (let i = 0; i < count; i++) {
+    text += pool[Math.floor(Math.random() * pool.length)];
+    if (i < count - 1) text += ' ';
+  }
+  return text;
+}
+
+// ============================================================
+// RENDER TEXT
+// ============================================================
+let fullText = '';
+function renderText() {
+  fullText = generateText();
+  const display = document.getElementById('text-display');
+  display.innerHTML = fullText.split('').map((ch, i) =>
+    `<span class="char pending" data-i="${i}">${ch === ' ' ? '&nbsp;' : ch}</span>`
+  ).join('');
+}
+
+// ============================================================
+// INIT / RESTART
+// ============================================================
+function initTest() {
+  clearInterval(state.timer);
+  state.started = false;
+  state.finished = false;
+  state.currentIndex = 0;
+  state.errors = 0;
+  state.totalTyped = 0;
+  state.correctTyped = 0;
+  state.timeLeft = state.duration;
+  renderText();
+  updateCharHighlight();
+  document.getElementById('wpm-display').textContent = '0';
+  document.getElementById('acc-display').textContent = '100';
+  document.getElementById('timer-display').textContent = state.duration;
+  document.getElementById('errors-display').textContent = '0';
+  document.getElementById('typing-input').value = '';
+  document.getElementById('results-overlay').classList.remove('show');
+  document.getElementById('click-hint').style.display = 'block';
+  document.getElementById('click-hint').classList.remove('focused');
+  const sbBtn = document.getElementById('lb-submit-btn');
+  if (sbBtn) { sbBtn.disabled = false; sbBtn.textContent = 'Post Score to Leaderboard'; }
+  const sbStatus = document.getElementById('lb-submit-status');
+  if (sbStatus) sbStatus.textContent = '';
+}
+
+function restartTest() {
+  initTest();
+}
+
+// ============================================================
+// FOCUS
+// ============================================================
+function focusInput() {
+  const input = document.getElementById('typing-input');
+  input.focus();
+  document.getElementById('click-hint').classList.add('focused');
+  document.getElementById('click-hint').textContent = '— Typing mode active —';
+}
+
+// ============================================================
+// TYPING LOGIC
+// ============================================================
+document.addEventListener('keydown', (e) => {
+  const page = document.getElementById('page-practice');
+  if (!page.classList.contains('active')) return;
+  if (state.finished) return;
+  if (['Escape'].includes(e.key)) { restartTest(); return; }
+  focusInput();
+});
+
+document.getElementById('typing-input').addEventListener('input', function(e) {
+  if (state.finished) return;
+  const input = this.value;
+  const ch = input[input.length - 1];
+
+  if (!state.started && input.length > 0) {
+    state.started = true;
+    state.startTime = Date.now();
+    startTimer();
+  }
+
+  // Process the latest character
+  const idx = state.currentIndex;
+  if (idx >= fullText.length) return;
+
+  const expected = fullText[idx];
+  const span = document.querySelector(`[data-i="${idx}"]`);
+
+  if (ch === expected) {
+    span.className = 'char correct';
+    state.correctTyped++;
+  } else if (ch !== undefined) {
+    span.className = 'char wrong';
+    state.errors++;
+    document.getElementById('errors-display').textContent = state.errors;
+  }
+
+  state.currentIndex++;
+  state.totalTyped++;
+  this.value = '';
+
+  updateCharHighlight();
+  updateLiveStats();
+
+  if (state.currentMode === 'words' && state.currentIndex >= fullText.length) {
+    endTest();
+  }
+});
+
+function updateCharHighlight() {
+  const spans = document.querySelectorAll('.char');
+  spans.forEach((s, i) => {
+    if (i === state.currentIndex && !state.finished) {
+      if (!s.classList.contains('wrong') && !s.classList.contains('correct')) {
+        s.classList.remove('pending');
+        s.classList.add('current');
+      }
+    } else if (i > state.currentIndex && s.classList.contains('current')) {
+      s.classList.remove('current');
+      s.classList.add('pending');
+    }
+  });
+  const cur = document.querySelector(`[data-i="${state.currentIndex}"]`);
+  if (cur && !cur.classList.contains('correct') && !cur.classList.contains('wrong')) {
+    cur.classList.add('current');
+    cur.classList.remove('pending');
+  }
+}
+
+function updateLiveStats() {
+  if (!state.started) return;
+  const elapsed = (Date.now() - state.startTime) / 1000 / 60;
+  const wpm = elapsed > 0 ? Math.round((state.correctTyped / 5) / elapsed) : 0;
+  const acc = state.totalTyped > 0 ? Math.round((state.correctTyped / state.totalTyped) * 100) : 100;
+  document.getElementById('wpm-display').textContent = wpm;
+  document.getElementById('acc-display').textContent = acc;
+
+  const wpmEl = document.getElementById('wpm-display');
+  wpmEl.className = 'stat-val' + (wpm > 80 ? ' good' : wpm < 20 && state.started ? ' danger' : '');
+}
+
+// ============================================================
+// TIMER
+// ============================================================
+function startTimer() {
+  if (state.currentMode !== 'timed') return;
+  state.timer = setInterval(() => {
+    state.timeLeft--;
+    document.getElementById('timer-display').textContent = state.timeLeft;
+    if (state.timeLeft <= 0) endTest();
+  }, 1000);
+}
+
+// ============================================================
+// END TEST
+// ============================================================
+function endTest() {
+  clearInterval(state.timer);
+  state.finished = true;
+
+  const elapsed = (Date.now() - state.startTime) / 1000 / 60;
+  const wpm = elapsed > 0 ? Math.round((state.correctTyped / 5) / elapsed) : 0;
+  const acc = state.totalTyped > 0 ? Math.round((state.correctTyped / state.totalTyped) * 100) : 100;
+
+  document.getElementById('r-wpm').textContent = wpm;
+  document.getElementById('r-acc').textContent = acc + '%';
+  document.getElementById('r-errors').textContent = state.errors;
+  document.getElementById('r-chars').textContent = state.correctTyped;
+
+  const pb = document.getElementById('r-personal-best');
+  if (wpm > state.bestWpm) {
+    state.bestWpm = wpm;
+    localStorage.setItem('sumnuBest', wpm);
+    pb.textContent = '★ New Personal Best!';
+    document.getElementById('hero-wpm').textContent = wpm;
+    document.getElementById('sidebar-best').textContent = wpm;
+    document.getElementById('p-best').textContent = wpm;
+  } else {
+    pb.textContent = '';
+  }
+
+  document.getElementById('results-overlay').classList.add('show');
+  playSound('complete');
+
+  // Auto-save if enabled
+  if (document.getElementById('set-autosave')?.checked) {
+    doSaveResult(wpm, acc);
+  }
+}
+
+function saveResult() {
+  const wpm = parseInt(document.getElementById('r-wpm').textContent);
+  const acc = parseInt(document.getElementById('r-acc').textContent);
+  doSaveResult(wpm, acc);
+  showToast('Result saved to your profile!');
+}
+
+function doSaveResult(wpm, acc) {
+  const entry = {
+    date: new Date().toLocaleDateString(),
+    mode: state.currentMode + ' ' + (state.currentMode === 'timed' ? state.duration + 's' : ''),
+    wpm,
+    acc,
+    errors: state.errors,
+    diff: document.getElementById('difficulty')?.value || 'medium',
+    hour: new Date().getHours()
+  };
+  state.history.unshift(entry);
+  if (state.history.length > 50) state.history = state.history.slice(0, 50);
+  localStorage.setItem('sumnuHistory', JSON.stringify(state.history));
+  updateProfileStats();
+  renderHistoryTable();
+  renderChart();
+  checkAchievements();
+}
+
+// ============================================================
+// MODE & DURATION
+// ============================================================
+function setMode(mode, btn) {
+  state.currentMode = mode;
+  document.querySelectorAll('.mode-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const ts = document.getElementById('time-selector');
+  ts.style.display = mode === 'timed' ? 'flex' : 'none';
+  restartTest();
+}
+
+function setDuration(d, btn) {
+  state.duration = d;
+  document.querySelectorAll('#time-selector .lb-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  restartTest();
+}
+
+// ============================================================
+// SUPABASE
+// ============================================================
+const SUPABASE_URL = 'https://etzpivuheowkdtmgubxm.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_T5vqGLaPEszxb5e4V5bB4w_7TXNT-Tn';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// ============================================================
+// LEADERBOARD
+// ============================================================
+let currentLbFilter = 'daily';
+
+function getDateFilter(filter) {
+  const now = new Date();
+  if (filter === 'daily') {
+    const start = new Date(now); start.setHours(0,0,0,0);
+    return start.toISOString();
+  }
+  if (filter === 'weekly') {
+    const start = new Date(now); start.setDate(now.getDate() - 7);
+    return start.toISOString();
+  }
+  return null; // alltime, 60, 30 = no date filter
+}
+
+async function renderLeaderboard(filter) {
+  currentLbFilter = filter;
+  const table = document.getElementById('lb-table');
+  const header = table.querySelector('.lb-row.header').outerHTML;
+  table.innerHTML = header + `<div style="text-align:center;padding:2rem;color:var(--muted);font-size:0.85rem;font-weight:400">Loading scores…</div>`;
+
+  try {
+    let query = sb.from('scores').select('*').order('wpm', { ascending: false }).limit(50);
+
+    const dateFrom = getDateFilter(filter);
+    if (dateFrom) query = query.gte('created_at', dateFrom);
+    if (filter === '60') query = query.eq('mode', 'timed 60s');
+    if (filter === '30') query = query.eq('mode', 'timed 30s');
+
+    const { data, error } = await query;
+    if (error) throw error;
+
+    const myUsername = localStorage.getItem('sumnuUsername') || '';
+
+    // Deduplicate: keep only best score per username
+    const best = {};
+    (data || []).forEach(row => {
+      if (!best[row.username] || row.wpm > best[row.username].wpm) best[row.username] = row;
+    });
+    const rows_data = Object.values(best).sort((a,b) => b.wpm - a.wpm).slice(0, 25);
+
+    let rows = header;
+    if (rows_data.length === 0) {
+      rows += `<div style="text-align:center;padding:2.5rem;color:var(--muted);font-size:0.85rem;font-weight:400">No scores yet — be the first! Complete a test and post your score.</div>`;
+    } else {
+      rows_data.forEach((d, i) => {
+        const r = i + 1;
+        const rankClass = r===1?'gold':r===2?'silver':r===3?'bronze':'';
+        const isYou = myUsername && d.username.toLowerCase() === myUsername.toLowerCase();
+        const level = d.wpm >= 120 ? 'Grandmaster' : d.wpm >= 90 ? 'Elite' : d.wpm >= 70 ? 'Expert' : d.wpm >= 50 ? 'Advanced' : d.wpm >= 30 ? 'Intermediate' : 'Beginner';
+        const date = new Date(d.created_at).toLocaleDateString();
+        rows += `<div class="lb-row ${isYou?'lb-you':''}">
+          <div class="lb-cell"><span class="lb-rank ${rankClass}">${r===1?'👑':r===2?'🥈':r===3?'🥉':r}</span></div>
+          <div class="lb-cell lb-name">${escHtml(d.username)}</div>
+          <div class="lb-cell lb-wpm">${d.wpm}</div>
+          <div class="lb-cell lb-acc">${d.accuracy}%</div>
+          <div class="lb-cell" style="font-size:0.75rem;color:var(--muted)">${date}</div>
+          <div class="lb-cell"><span class="lb-badge">${level}</span></div>
+        </div>`;
+      });
+    }
+    table.innerHTML = rows;
+  } catch (err) {
+    table.innerHTML = header + `<div style="text-align:center;padding:2rem;color:var(--red);font-size:0.85rem;font-weight:400">Could not load scores. Check your connection.</div>`;
+    console.error(err);
+  }
+}
+
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function setLbFilter(filter, btn) {
+  document.querySelectorAll('#lb-filters .lb-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderLeaderboard(filter);
+}
+
+// ============================================================
+// AUTH STATE
+// ============================================================
+let currentUser = null;
+
+function updateAuthUI(user) {
+  currentUser = user;
+  const username = user?.user_metadata?.username || user?.user_metadata?.full_name?.split(' ')[0] || user?.user_metadata?.name?.split(' ')[0] || user?.email?.split('@')[0] || '';
+
+  // Header
+  const signinBtn = document.getElementById('hdr-signin');
+  const signupBtn = document.getElementById('hdr-signup');
+  const userDiv   = document.getElementById('hdr-user');
+  const userLabel = document.getElementById('hdr-username');
+  if (user) {
+    if (signinBtn) signinBtn.style.display = 'none';
+    if (signupBtn) signupBtn.style.display = 'none';
+    if (userDiv)   userDiv.style.display = 'flex';
+    if (userLabel) userLabel.textContent = username;
+  } else {
+    if (signinBtn) signinBtn.style.display = '';
+    if (signupBtn) signupBtn.style.display = '';
+    if (userDiv)   userDiv.style.display = 'none';
+  }
+
+  // Profile card
+  const avatarEl  = document.getElementById('profile-avatar');
+  const nameEl    = document.getElementById('profile-name');
+  const joinedEl  = document.getElementById('profile-joined');
+  const guestBtns = document.getElementById('profile-guest-btns');
+  const signoutBtn= document.getElementById('profile-signout-btn');
+  if (user) {
+    if (avatarEl)  avatarEl.textContent = username.charAt(0).toUpperCase();
+    if (nameEl)    nameEl.textContent = username;
+    if (joinedEl)  joinedEl.textContent = 'Signed in · ' + user.email;
+    if (guestBtns) guestBtns.style.display = 'none';
+    if (signoutBtn)signoutBtn.style.display = 'block';
+  } else {
+    if (avatarEl)  avatarEl.textContent = 'G';
+    if (nameEl)    nameEl.textContent = 'Guest Typist';
+    if (joinedEl)  joinedEl.textContent = 'Sign in to save progress';
+    if (guestBtns) guestBtns.style.display = 'block';
+    if (signoutBtn)signoutBtn.style.display = 'none';
+  }
+
+  // Post score area on results
+  const signedInArea = document.getElementById('lb-submit-signed-in');
+  const guestArea    = document.getElementById('lb-submit-guest');
+  const postingAs    = document.getElementById('lb-posting-as');
+  if (user) {
+    if (signedInArea) signedInArea.style.display = 'block';
+    if (guestArea)    guestArea.style.display = 'none';
+    if (postingAs)    postingAs.textContent = username;
+  } else {
+    if (signedInArea) signedInArea.style.display = 'none';
+    if (guestArea)    guestArea.style.display = 'block';
+  }
+}
+
+// Listen for auth state changes (login, logout, session restore)
+sb.auth.onAuthStateChange((_event, session) => {
+  updateAuthUI(session?.user || null);
+});
+
+// ============================================================
+// SIGN UP
+// ============================================================
+async function doSignUp() {
+  const username = document.getElementById('signup-username').value.trim();
+  const email    = document.getElementById('signup-email').value.trim();
+  const password = document.getElementById('signup-password').value;
+  const errEl    = document.getElementById('signup-error');
+  const btn      = document.getElementById('signup-btn');
+
+  errEl.textContent = '';
+  if (!username || username.length < 2) { errEl.textContent = 'Username must be at least 2 characters.'; return; }
+  if (!email)    { errEl.textContent = 'Please enter your email.'; return; }
+  if (password.length < 6) { errEl.textContent = 'Password must be at least 6 characters.'; return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Creating account…';
+
+  const { error } = await sb.auth.signUp({
+    email,
+    password,
+    options: { data: { username } }
+  });
+
+  btn.disabled = false;
+  btn.textContent = 'Create Account';
+
+  if (error) {
+    errEl.textContent = error.message;
+  } else {
+    closeModal('signup');
+    document.getElementById('confirm-email-shown').textContent = email;
+    showModal('confirm');
+  }
+}
+
+// ============================================================
+// SIGN IN
+// ============================================================
+async function doSignIn() {
+  const email    = document.getElementById('signin-email').value.trim();
+  const password = document.getElementById('signin-password').value;
+  const errEl    = document.getElementById('signin-error');
+  const btn      = document.getElementById('signin-btn');
+
+  errEl.textContent = '';
+  if (!email)    { errEl.textContent = 'Please enter your email.'; return; }
+  if (!password) { errEl.textContent = 'Please enter your password.'; return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Signing in…';
+
+  const { error } = await sb.auth.signInWithPassword({ email, password });
+
+  btn.disabled = false;
+  btn.textContent = 'Sign In';
+
+  if (error) {
+    errEl.textContent = error.message;
+  } else {
+    closeModal('signin');
+    showToast('Welcome back! You are signed in.');
+  }
+}
+
+// ============================================================
+// SIGN OUT
+// ============================================================
+async function signOut() {
+  await sb.auth.signOut();
+  showToast('Signed out successfully.');
+}
+
+// ============================================================
+// GOOGLE SIGN IN
+// ============================================================
+async function doGoogleSignIn() {
+  const { error } = await sb.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: 'https://sumnutyping.com'
+    }
+  });
+  if (error) {
+    showToast('Google sign-in failed. Please try again.');
+    console.error(error);
+  }
+}
+
+// ============================================================
+// SUBMIT SCORE TO LEADERBOARD
+// ============================================================
+async function submitToLeaderboard() {
+  if (!currentUser) {
+    showModal('signin');
+    return;
+  }
+
+  const statusEl = document.getElementById('lb-submit-status');
+  const btn      = document.getElementById('lb-submit-btn');
+  const wpm = parseInt(document.getElementById('r-wpm').textContent);
+  const acc = parseInt(document.getElementById('r-acc').textContent);
+
+  if (!wpm || wpm < 1) {
+    statusEl.style.color = 'var(--red)';
+    statusEl.textContent = 'No valid score to submit.';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Posting…';
+  statusEl.style.color = 'var(--muted)';
+  statusEl.textContent = 'Submitting…';
+
+  const username = currentUser.user_metadata?.username || currentUser.email.split('@')[0];
+
+  try {
+    const { error } = await sb.from('scores').insert({
+      username,
+      user_id: currentUser.id,
+      wpm,
+      accuracy: acc,
+      errors: state.errors,
+      mode: state.currentMode + (state.currentMode === 'timed' ? ' ' + state.duration + 's' : ''),
+      difficulty: document.getElementById('difficulty')?.value || 'medium'
+    });
+    if (error) throw error;
+
+    statusEl.style.color = 'var(--green)';
+    statusEl.textContent = '✓ Score posted to leaderboard!';
+    btn.textContent = 'Posted ✓';
+    showToast('Score posted! Check the Rankings page.');
+  } catch (err) {
+    statusEl.style.color = 'var(--red)';
+    statusEl.textContent = '✗ Failed to post. Try again.';
+    btn.disabled = false;
+    btn.textContent = 'Post Score to Leaderboard';
+    console.error(err);
+  }
+}
+
+// ============================================================
+// PROFILE / HISTORY
+// ============================================================
+function updateProfileStats() {
+  const h = state.history;
+  if (!h.length) return;
+  const wpms = h.map(x => x.wpm);
+  const best = Math.max(...wpms);
+  const avg = Math.round(wpms.reduce((a,b)=>a+b,0)/wpms.length);
+  const avgAcc = Math.round(h.map(x=>x.acc).reduce((a,b)=>a+b,0)/h.length);
+  document.getElementById('p-best').textContent = best;
+  document.getElementById('p-avg').textContent = avg;
+  document.getElementById('p-tests').textContent = h.length;
+  document.getElementById('p-acc').textContent = avgAcc + '%';
+  document.getElementById('hero-wpm').textContent = best;
+  document.getElementById('sidebar-best').textContent = best;
+}
+
+function renderHistoryTable() {
+  const container = document.getElementById('history-rows');
+  if (!state.history.length) {
+    container.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--muted);font-size:0.85rem;font-weight:400">No tests recorded yet. Start practicing!</div>';
+    return;
+  }
+  container.innerHTML = state.history.slice(0, 10).map(h => `
+    <div class="history-row">
+      <div class="h-cell">${h.date} · ${h.mode}</div>
+      <div class="h-cell h-wpm">${h.wpm}</div>
+      <div class="h-cell h-acc">${h.acc}%</div>
+      <div class="h-cell">${h.errors}</div>
+      <div class="h-cell">${h.diff}</div>
+    </div>
+  `).join('');
+}
+
+// SIMPLE CANVAS CHART
+function renderChart() {
+  const canvas = document.getElementById('wpm-chart');
+  const noHistory = document.getElementById('no-history');
+  if (!state.history.length) {
+    canvas.style.display = 'none';
+    noHistory.style.display = 'block';
+    return;
+  }
+  canvas.style.display = 'block';
+  noHistory.style.display = 'none';
+
+  const ctx = canvas.getContext('2d');
+  const data = state.history.slice(0, 15).reverse().map(h => h.wpm);
+  const W = canvas.offsetWidth || 500;
+  const H = 160;
+  canvas.width = W;
+  canvas.height = H;
+
+  ctx.clearRect(0, 0, W, H);
+
+  const max = Math.max(...data, 10);
+  const min = Math.min(...data, 0);
+  const range = max - min || 1;
+  const pad = { top: 20, right: 20, bottom: 30, left: 40 };
+
+  // Grid lines
+  ctx.strokeStyle = 'rgba(201,168,76,0.08)';
+  ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + (H - pad.top - pad.bottom) * (i / 4);
+    ctx.beginPath();
+    ctx.moveTo(pad.left, y);
+    ctx.lineTo(W - pad.right, y);
+    ctx.stroke();
+    const val = Math.round(max - (range * i / 4));
+    ctx.fillStyle = '#4A4840';
+    ctx.font = '10px DM Mono, monospace';
+    ctx.fillText(val, 4, y + 3);
+  }
+
+  if (data.length < 2) return;
+
+  const pts = data.map((v, i) => ({
+    x: pad.left + (i / (data.length - 1)) * (W - pad.left - pad.right),
+    y: pad.top + (1 - (v - min) / range) * (H - pad.top - pad.bottom)
+  }));
+
+  // Fill area
+  ctx.beginPath();
+  ctx.moveTo(pts[0].x, H - pad.bottom);
+  pts.forEach(p => ctx.lineTo(p.x, p.y));
+  ctx.lineTo(pts[pts.length-1].x, H - pad.bottom);
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(201,168,76,0.07)';
+  ctx.fill();
+
+  // Line
+  ctx.beginPath();
+  pts.forEach((p, i) => i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y));
+  ctx.strokeStyle = '#C9A84C';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Dots
+  pts.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 3, 0, Math.PI*2);
+    ctx.fillStyle = '#C9A84C';
+    ctx.fill();
+  });
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function showPage(name, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+
+  if (btn) {
+    btn.classList.add('active');
+  } else {
+    document.querySelectorAll('nav button').forEach(b => {
+      if (b.textContent.toLowerCase().includes(name) ||
+          (name==='home' && b.textContent==='Home')) b.classList.add('active');
+    });
+  }
+
+  if (name === 'leaderboard') renderLeaderboard('daily');
+  if (name === 'learn') { buildKeyboard(); buildLessonsGrid(); }
+  if (name === 'games') { document.getElementById('game-select-screen').style.display='block'; document.getElementById('game-wordfall').style.display='none'; document.getElementById('game-survival').style.display='none'; document.getElementById('game-racer').style.display='none'; }
+  if (name === 'profile') { updateProfileStats(); renderHistoryTable(); setTimeout(renderChart, 100); renderBadges(); }
+}
+
+// ============================================================
+// MODALS
+// ============================================================
+function showModal(name) {
+  document.getElementById('modal-' + name).classList.add('show');
+}
+function closeModal(name) {
+  document.getElementById('modal-' + name).classList.remove('show');
+}
+document.querySelectorAll('.modal-overlay').forEach(m => {
+  m.addEventListener('click', (e) => { if (e.target === m) m.classList.remove('show'); });
+});
+
+// ============================================================
+// TOAST
+// ============================================================
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ============================================================
+// ============================================================
+// EXPORT PROGRESS
+// ============================================================
+function exportProgress() {
+  const payload = {
+    _format: 'sumnudata',
+    _version: 1,
+    _exported: new Date().toISOString(),
+    _app: 'SumnuTyping.com',
+    bestWpm: state.bestWpm,
+    history: state.history,
+    settings: {
+      sound: document.getElementById('set-sound')?.checked || false,
+      liveWpm: document.getElementById('set-livewpm')?.checked !== false,
+      highlightErrors: document.getElementById('set-errors')?.checked !== false,
+      autosave: document.getElementById('set-autosave')?.checked !== false
+    }
+  };
+
+  const json = JSON.stringify(payload, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const date = new Date().toISOString().slice(0,10);
+  a.href = url;
+  a.download = `SumnuTyping-progress-${date}.sumnudata`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  showToast(`Progress exported — ${state.history.length} test${state.history.length !== 1 ? 's' : ''} saved to file`);
+}
+
+// ============================================================
+// IMPORT PROGRESS
+// ============================================================
+function importProgress(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const statusEl = document.getElementById('import-status');
+  statusEl.style.display = 'block';
+  statusEl.style.color = 'var(--muted)';
+  statusEl.style.borderColor = 'var(--border)';
+  statusEl.style.background = 'var(--bg3)';
+  statusEl.textContent = 'Reading file…';
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+
+      // Validate
+      if (data._format !== 'sumnudata') throw new Error('Not a valid SumnuTyping progress file.');
+      if (!Array.isArray(data.history)) throw new Error('File is missing history data.');
+
+      const incoming = data.history;
+      const existing = state.history;
+
+      // Merge: combine, deduplicate by (date+wpm+acc+errors), keep newest 100
+      const combined = [...incoming, ...existing];
+      const seen = new Set();
+      const merged = combined.filter(entry => {
+        const key = `${entry.date}|${entry.wpm}|${entry.acc}|${entry.errors}|${entry.mode}`;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      }).slice(0, 100);
+
+      // Sort by date descending (best-effort, dates are locale strings)
+      state.history = merged;
+      localStorage.setItem('sumnuHistory', JSON.stringify(merged));
+
+      // Restore best WPM
+      if (data.bestWpm && data.bestWpm > state.bestWpm) {
+        state.bestWpm = data.bestWpm;
+        localStorage.setItem('sumnuBest', data.bestWpm);
+        document.getElementById('hero-wpm').textContent = data.bestWpm;
+        document.getElementById('sidebar-best').textContent = data.bestWpm;
+      }
+
+      // Restore settings if present
+      if (data.settings) {
+        const s = data.settings;
+        const safe = (id, val) => { const el = document.getElementById(id); if (el) el.checked = val; };
+        safe('set-sound', s.sound);
+        safe('set-livewpm', s.liveWpm !== false);
+        safe('set-errors', s.highlightErrors !== false);
+        safe('set-autosave', s.autosave !== false);
+      }
+
+      updateProfileStats();
+      renderHistoryTable();
+      renderChart();
+
+      const newCount = incoming.length;
+      const mergedCount = merged.length - existing.length;
+      statusEl.style.color = 'var(--green)';
+      statusEl.style.borderColor = 'rgba(76,175,130,0.3)';
+      statusEl.style.background = 'rgba(76,175,130,0.07)';
+      statusEl.textContent = `✓ Loaded successfully — ${newCount} test${newCount !== 1 ? 's' : ''} in file, ${mergedCount > 0 ? mergedCount + ' new added' : 'all already present'} (${merged.length} total)`;
+      showToast('Progress file loaded successfully!');
+
+    } catch (err) {
+      statusEl.style.color = 'var(--red)';
+      statusEl.style.borderColor = 'rgba(224,84,84,0.3)';
+      statusEl.style.background = 'rgba(224,84,84,0.07)';
+      statusEl.textContent = '✗ Error: ' + err.message;
+    }
+    // Reset input so same file can be re-loaded if needed
+    event.target.value = '';
+  };
+  reader.readAsText(file);
+}
+
+// ============================================================
+// CLEAR DATA
+// ============================================================
+function confirmClearData() {
+  const el = document.getElementById('clear-count');
+  if (el) el.textContent = state.history.length + ' test' + (state.history.length !== 1 ? 's' : '');
+  document.getElementById('modal-cleardata').classList.add('show');
+}
+function clearAllData() {
+  state.history = [];
+  state.bestWpm = 0;
+  localStorage.removeItem('sumnuHistory');
+  localStorage.removeItem('sumnuBest');
+  closeModal('cleardata');
+  updateProfileStats();
+  renderHistoryTable();
+  renderChart();
+  document.getElementById('hero-wpm').textContent = '--';
+  document.getElementById('sidebar-best').textContent = '--';
+  document.getElementById('import-status').style.display = 'none';
+  showToast('All local data cleared.');
+}
+
+
+// ============================================================
+// KEYBOARD DIAGRAM
+// ============================================================
+const fingerColors = {
+  'pinky':   { bg:'rgba(91,141,239,0.18)', border:'rgba(91,141,239,0.5)', label:'#5B8DEF', name:'Pinky' },
+  'ring':    { bg:'rgba(76,175,130,0.18)', border:'rgba(76,175,130,0.5)', label:'#4CAF82', name:'Ring' },
+  'middle':  { bg:'rgba(201,168,76,0.18)', border:'rgba(201,168,76,0.5)', label:'#C9A84C', name:'Middle' },
+  'index':   { bg:'rgba(224,84,84,0.18)',  border:'rgba(224,84,84,0.5)',  label:'#E05454', name:'Index' },
+  'thumb':   { bg:'rgba(120,80,180,0.18)', border:'rgba(120,80,180,0.5)', label:'#9B6BD4', name:'Thumb' }
+};
+
+const keyboardLayout = [
+  [['`','pinky'],['1','pinky'],['2','ring'],['3','middle'],['4','index'],['5','index'],['6','index'],['7','index'],['8','middle'],['9','ring'],['0','pinky'],['-','pinky'],['=','pinky']],
+  [['q','pinky'],['w','ring'],['e','middle'],['r','index'],['t','index'],['y','index'],['u','index'],['i','middle'],['o','ring'],['p','pinky'],['[','pinky'],[']','pinky']],
+  [['a','pinky'],['s','ring'],['d','middle'],['f','index'],['g','index'],['h','index'],['j','index'],['k','middle'],['l','ring'],[';','pinky'],["'",'pinky']],
+  [['z','pinky'],['x','ring'],['c','middle'],['v','index'],['b','index'],['n','index'],['m','index'],[',','middle'],['.','ring'],['/','pinky']],
+  [['space','thumb']]
+];
+
+function buildKeyboard() {
+  const container = document.getElementById('keyboard-diagram');
+  if (!container) return;
+  container.innerHTML = '';
+  keyboardLayout.forEach(row => {
+    const rowDiv = document.createElement('div');
+    rowDiv.style.cssText = 'display:flex;gap:4px;margin-bottom:4px;justify-content:center';
+    row.forEach(([key, finger]) => {
+      const c = fingerColors[finger];
+      const btn = document.createElement('div');
+      const isSpace = key === 'space';
+      btn.style.cssText = `display:inline-flex;align-items:center;justify-content:center;background:${c.bg};border:1px solid ${c.border};color:${c.label};font-size:${isSpace?'0.65rem':'0.75rem'};padding:${isSpace?'0.4rem 3rem':'0.4rem 0.5rem'};min-width:${isSpace?'200px':'32px'};height:36px;cursor:default;letter-spacing:0.05em;text-transform:uppercase;font-family:var(--font-mono);transition:transform 0.1s`;
+      btn.textContent = isSpace ? 'SPACE' : key;
+      btn.title = `${key.toUpperCase()} — ${finger} finger`;
+      btn.addEventListener('mouseenter', () => { btn.style.transform = 'translateY(-2px)'; showFingerHint(finger, key); });
+      btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+      rowDiv.appendChild(btn);
+    });
+    container.appendChild(rowDiv);
+  });
+
+  // Legend
+  const legend = document.getElementById('finger-legend');
+  if (legend) {
+    legend.innerHTML = Object.entries(fingerColors).map(([f, c]) =>
+      `<div style="display:flex;align-items:center;gap:0.4rem;font-size:0.75rem">
+        <div style="width:12px;height:12px;background:${c.bg};border:1px solid ${c.border}"></div>
+        <span style="color:${c.label}">${c.name}</span>
+      </div>`
+    ).join('');
+  }
+}
+
+function showFingerHint(finger, key) {}
+
+// ============================================================
+// LESSONS
+// ============================================================
+const lessonData = [
+  { id:'homerow', title:'Home Row', icon:'🏠', desc:'The foundation of touch typing', keys:'asdf jkl;', color:'var(--gold)',
+    words:['aaa','sss','ddd','fff','jjj','kkk','lll','asd','fj','fds','jkl','asdfjkl','fads','flask','lads','flags','glad','dash','fall','hall','jags','asks','add','all','dad','lad','sad','fad','fall','lass'], unlocked:true },
+  { id:'toprow', title:'Top Row', icon:'⬆️', desc:'Q W E R T Y U I O P', keys:'qwerty uiop', color:'#5B8DEF',
+    words:['we','you','our','top','type','power','quiet','write','port','quite','poetry','proper','tower','query','route','outer','quote','upper','pore','reput'], unlocked:false },
+  { id:'bottomrow', title:'Bottom Row', icon:'⬇️', desc:'Z X C V B N M', keys:'zxcvbnm', color:'#4CAF82',
+    words:['can','van','ban','man','cab','nab','vim','zinc','exam','vent','civic','blank','crumb','venom','combo','numb','buxom','max','mix','box','vex'], unlocked:false },
+  { id:'fullalpha', title:'Full Alphabet', icon:'🔤', desc:'All 26 letters combined', keys:'a-z', color:'#9B6BD4',
+    words:['the','be','to','of','and','have','it','for','not','on','with','he','as','you','do','at','this','but','his','by','from','they','we','say','her','she','or','will','my','one','all','would','there'], unlocked:false },
+  { id:'numbers', title:'Numbers', icon:'🔢', desc:'0 1 2 3 4 5 6 7 8 9', keys:'0-9', color:'#E05454',
+    words:['1','2','3','12','23','45','100','2024','3.14','1000','42','99','2025','1234','567','890','11','22','33','44','55','66','77','88','99','100'], unlocked:false },
+  { id:'punctuation', title:'Punctuation', icon:'✍️', desc:'Commas, periods, and more', keys:'. , ! ? ; :', color:'#C9A84C',
+    words:['hello.','world!','yes,','no.','wait!','done.','ok?','nice!','well,','stop!','go!','run.','fast,','slow.','good!','bad?','sure,','fine.','wow!','hmm?'], unlocked:false }
+];
+
+let currentLesson = null;
+let lessonText = '';
+let lessonIndex = 0;
+let lessonErrors = 0;
+let lessonTyped = 0;
+let lessonCorrect = 0;
+let lessonStartTime = null;
+let lessonStarted = false;
+const completedLessons = JSON.parse(localStorage.getItem('sumnuLessons') || '[]');
+
+function buildLessonsGrid() {
+  var grid = document.getElementById('lessons-grid');
+  if (!grid) return;
+  lessonData.forEach(function(l, i) {
+    l.unlocked = i === 0 || completedLessons.includes(lessonData[i-1].id);
+  });
+  var out = '';
+  lessonData.forEach(function(l) {
+    var done = completedLessons.includes(l.id);
+    var locked = !l.unlocked;
+    var doneHtml = done ? '<div style="position:absolute;top:0.75rem;right:0.75rem;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);background:rgba(76,175,130,0.15);border:1px solid rgba(76,175,130,0.3);padding:0.15rem 0.5rem">Done</div>' : '';
+    var lockHtml = locked ? '<div style="position:absolute;top:0.75rem;right:0.75rem;font-size:0.75rem;color:var(--muted2)">Locked</div>' : '';
+    var cursor = locked ? 'not-allowed' : 'pointer';
+    var opacity = locked ? '0.5' : '1';
+    var dataId = locked ? '' : ' data-lesson-id="' + l.id + '"';
+    out += '<div class="lesson-card"' + dataId + ' style="background:var(--bg2);border:1px solid var(--border);padding:1.5rem;cursor:' + cursor + ';opacity:' + opacity + ';position:relative">';
+    out += doneHtml + lockHtml;
+    out += '<div style="font-size:1.5rem;margin-bottom:0.75rem">' + l.icon + '</div>';
+    out += '<div style="font-family:var(--font-display);font-size:1rem;color:var(--cream);margin-bottom:0.3rem">' + l.title + '</div>';
+    out += '<div style="font-size:0.8rem;color:var(--muted);font-weight:400;margin-bottom:0.75rem">' + l.desc + '</div>';
+    out += '<div style="font-family:var(--font-mono);font-size:0.75rem;color:' + (locked ? 'var(--muted2)' : 'var(--gold)') + '">' + l.keys + '</div>';
+    out += '</div>';
+  });
+  grid.innerHTML = out;
+  grid.querySelectorAll('.lesson-card[data-lesson-id]').forEach(function(card) {
+    card.addEventListener('click', function() { startLesson(this.dataset.lessonId); });
+    card.addEventListener('mouseenter', function() { this.style.transform = 'translateY(-2px)'; });
+    card.addEventListener('mouseleave', function() { this.style.transform = ''; });
+  });
+}
+
+function startLesson(id) {
+  currentLesson = lessonData.find(l => l.id === id);
+  if (!currentLesson) return;
+  lessonIndex = 0; lessonErrors = 0; lessonTyped = 0; lessonCorrect = 0; lessonStarted = false; lessonStartTime = null;
+  // Build text from lesson words (repeat to get ~60 chars min)
+  let w = [...currentLesson.words];
+  let txt = '';
+  while (txt.length < 120) {
+    txt += w[Math.floor(Math.random()*w.length)] + ' ';
+  }
+  lessonText = txt.trim();
+  document.getElementById('lesson-title').textContent = currentLesson.icon + ' ' + currentLesson.title;
+  document.getElementById('lesson-desc').textContent = currentLesson.desc;
+  document.getElementById('lesson-area').style.display = 'block';
+  document.getElementById('lesson-complete').style.display = 'none';
+  document.getElementById('lessons-grid').style.display = 'none';
+  document.querySelector('#page-learn .section-head') && (document.querySelector('#page-learn .section-head').style.display='none');
+  renderLessonText();
+  focusLessonInput();
+}
+
+function renderLessonText() {
+  const display = document.getElementById('lesson-text-display');
+  if (!display) return;
+  display.innerHTML = lessonText.split('').map((ch,i) => {
+    let cls = i < lessonIndex ? 'correct' : i === lessonIndex ? 'current' : 'pending';
+    return `<span class="char ${cls}">${ch === ' ' ? '&nbsp;' : ch}</span>`;
+  }).join('');
+}
+
+function focusLessonInput() {
+  const inp = document.getElementById('lesson-input');
+  if (inp) inp.focus();
+}
+
+document.addEventListener('keydown', (e) => {
+  const page = document.getElementById('page-learn');
+  if (!page || !page.classList.contains('active')) return;
+  if (!document.getElementById('lesson-area') || document.getElementById('lesson-area').style.display === 'none') return;
+  focusLessonInput();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const inp = document.getElementById('lesson-input');
+  if (inp) inp.addEventListener('input', function() {
+    if (document.getElementById('lesson-complete').style.display !== 'none') return;
+    const ch = this.value.slice(-1);
+    this.value = '';
+    if (!lessonStarted) { lessonStarted = true; lessonStartTime = Date.now(); }
+    const expected = lessonText[lessonIndex];
+    const span = document.querySelectorAll('#lesson-text-display .char')[lessonIndex];
+    if (ch === expected) {
+      if (span) span.className = 'char correct';
+      lessonCorrect++;
+    } else {
+      if (span) span.className = 'char wrong';
+      lessonErrors++;
+    }
+    lessonIndex++; lessonTyped++;
+    // Update current cursor
+    const next = document.querySelectorAll('#lesson-text-display .char')[lessonIndex];
+    if (next && next.classList.contains('pending')) next.className = 'char current';
+    // Update stats
+    const elapsed = (Date.now() - lessonStartTime) / 1000 / 60;
+    const wpm = elapsed > 0 ? Math.round((lessonCorrect/5)/elapsed) : 0;
+    const acc = lessonTyped > 0 ? Math.round((lessonCorrect/lessonTyped)*100) : 100;
+    const pct = Math.round((lessonIndex/lessonText.length)*100);
+    document.getElementById('l-wpm').textContent = wpm;
+    document.getElementById('l-acc').textContent = acc;
+    document.getElementById('l-progress').textContent = pct + '%';
+    document.getElementById('l-errors').textContent = lessonErrors;
+    if (lessonIndex >= lessonText.length) completeLesson();
+  });
+});
+
+function completeLesson() {
+  if (!completedLessons.includes(currentLesson.id)) {
+    completedLessons.push(currentLesson.id);
+    localStorage.setItem('sumnuLessons', JSON.stringify(completedLessons));
+  }
+  document.getElementById('lesson-complete').style.display = 'block';
+  playSound('complete');
+  showToast('Lesson complete! ' + currentLesson.title + ' unlocked next lesson.');
+}
+
+function retryLesson() {
+  if (currentLesson) startLesson(currentLesson.id);
+}
+
+function closelesson() {
+  document.getElementById('lesson-area').style.display = 'none';
+  document.getElementById('lessons-grid').style.display = 'grid';
+  buildLessonsGrid();
+}
+
+// ============================================================
+// GAMES CORE
+// ============================================================
+function startGame(name) {
+  document.getElementById('game-select-screen').style.display = 'none';
+  document.getElementById('game-wordfall').style.display = 'none';
+  document.getElementById('game-survival').style.display = 'none';
+  document.getElementById('game-racer').style.display = 'none';
+  document.getElementById('game-' + name).style.display = 'block';
+}
+
+function stopGame(name) {
+  if (name === 'wordfall') stopWordFall();
+  if (name === 'survival') stopSurvival();
+  if (name === 'racer') stopRacer();
+  document.getElementById('game-' + name).style.display = 'none';
+  document.getElementById('game-select-screen').style.display = 'block';
+}
+
+const gameWords = ['the','be','to','of','and','have','it','for','not','on','with','he','as','you','do','at','this','but','his','by','from','they','we','say','her','she','or','will','my','one','all','would','there','their','what','so','up','out','if','about','who','get','which','go','me','when','make','can','like','time','no','just','him','know','take','people','into','year','your','good','some','could','them','see','other','than','then','now','look','only','come','its','over','think','also','back','after','use','two','how','our','work','first','well','way','even','new','want','because','any','these','give','day','most','us','great','between','need','large','often','hand','high','place','hold','turn','without','follow','act','why','ask','men','change','went','light','kind','off','play','spell','air','away','animal','house','point','page','letter','mother','answer','found','study','still','learn','plant','cover','food','sun','four','between','state','keep','eye','never','last','let','thought','city','tree','cross','farm','hard','start','might','story','saw','far','sea','draw','left','late','run','while','press','close','night','real','life','few','north','open','seem','together','next','white','children','begin','got','walk','example','ease','paper','group','always','music','those','both','mark','book','often','letter','until','mile','river','car','feet','care','second','enough','plain','girl','usual','young','ready','above','ever','red','list','though','feel','talk','bird','soon','body','dog','family','direct','pose','leave','song','measure','door','product','black','short','numeral','class','wind','question','happen','complete','ship','area','half','rock','order','fire','south','problem','piece','told','knew','pass','since','top','whole','king','space','heard','best','hour','better','true','during','hundred','five','remember','step','early','hold','west','ground','interest','reach','fast','verb','sing','listen','six','table','travel','less','morning'];
+
+function randWord() { return gameWords[Math.floor(Math.random()*gameWords.length)]; }
+
+// ============================================================
+// WORD FALL GAME
+// ============================================================
+let wfInterval = null, wfSpawnInterval = null, wfScore = 0, wfLives = 3, wfSpeed = 1, wfActive = false;
+
+function startWordFall() {
+  wfScore = 0; wfLives = 3; wfSpeed = 1; wfActive = true;
+  document.getElementById('wf-score').textContent = 0;
+  document.getElementById('wf-lives').textContent = '❤️❤️❤️';
+  document.getElementById('wf-overlay').style.display = 'none';
+  document.getElementById('wf-gameover').style.display = 'none';
+  document.getElementById('wf-input').value = '';
+  document.getElementById('wf-input').focus();
+  // Clear old words
+  const arena = document.getElementById('wf-arena');
+  arena.querySelectorAll('.wf-word').forEach(e => e.remove());
+  clearInterval(wfInterval); clearInterval(wfSpawnInterval);
+  // Spawn words
+  wfSpawnInterval = setInterval(spawnWFWord, 1800);
+  wfInterval = setInterval(tickWordFall, 50);
+  spawnWFWord();
+}
+
+function spawnWFWord() {
+  if (!wfActive) return;
+  const arena = document.getElementById('wf-arena');
+  const word = getDiffWord();
+  const el = document.createElement('div');
+  el.className = 'wf-word';
+  el.textContent = word;
+  el.dataset.word = word;
+  el.dataset.y = 0;
+  const maxLeft = Math.max(0, arena.offsetWidth - word.length * 12 - 20);
+  el.style.cssText = `position:absolute;top:0px;left:${Math.floor(Math.random()*maxLeft)}px;font-family:var(--font-mono);font-size:1rem;color:var(--gold);letter-spacing:0.05em;white-space:nowrap;padding:0.2rem 0.5rem;background:var(--bg3);border:1px solid var(--border)`;
+  arena.appendChild(el);
+}
+
+function tickWordFall() {
+  if (!wfActive) return;
+  const arena = document.getElementById('wf-arena');
+  const arenaH = arena.offsetHeight;
+  const speed = 0.6 + (wfScore * 0.015);
+  arena.querySelectorAll('.wf-word').forEach(el => {
+    let y = parseFloat(el.dataset.y) + speed;
+    el.dataset.y = y;
+    el.style.top = y + 'px';
+    if (y + 40 >= arenaH) {
+      el.remove();
+      wfLives--;
+      const hearts = ['','❤️','❤️❤️','❤️❤️❤️'];
+      document.getElementById('wf-lives').textContent = hearts[Math.max(0,wfLives)] || '💔';
+      if (wfLives <= 0) endWordFall();
+    }
+  });
+}
+
+function checkWordFall(val) {
+  if (!wfActive) return;
+  const arena = document.getElementById('wf-arena');
+  const trimmed = val.trim().toLowerCase();
+  let matched = false;
+  arena.querySelectorAll('.wf-word').forEach(el => {
+    if (el.dataset.word === trimmed) {
+      el.remove();
+      wfScore++;
+      document.getElementById('wf-score').textContent = wfScore;
+      matched = true;
+      playSound('word');
+    }
+  });
+  if (matched) document.getElementById('wf-input').value = '';
+}
+
+function endWordFall() {
+  wfActive = false;
+  clearInterval(wfInterval); clearInterval(wfSpawnInterval);
+  document.getElementById('wf-final-score').textContent = wfScore;
+  const go = document.getElementById('wf-gameover');
+  go.style.display = 'flex';
+}
+
+function stopWordFall() {
+  wfActive = false;
+  clearInterval(wfInterval); clearInterval(wfSpawnInterval);
+  document.getElementById('wf-overlay').style.display = 'flex';
+  document.getElementById('wf-gameover').style.display = 'none';
+  const arena = document.getElementById('wf-arena');
+  arena.querySelectorAll('.wf-word').forEach(e => e.remove());
+}
+
+// ============================================================
+// SURVIVAL GAME
+// ============================================================
+let svActive = false, svScore = 0, svLives = 3, svLevel = 1, svTimer = null, svTimeLeft = 0, svCurrentWord = '';
+
+function startSurvival() {
+  svActive = true; svScore = 0; svLives = 3; svLevel = 1;
+  document.getElementById('sv-overlay').style.display = 'none';
+  document.getElementById('sv-gameover').style.display = 'none';
+  document.getElementById('sv-score').textContent = 0;
+  document.getElementById('sv-lives').textContent = '❤️❤️❤️';
+  document.getElementById('sv-level').textContent = 1;
+  document.getElementById('sv-input').value = '';
+  document.getElementById('sv-input').focus();
+  nextSurvivalWord();
+}
+
+function nextSurvivalWord() {
+  if (!svActive) return;
+  clearInterval(svTimer);
+  svCurrentWord = getDiffWord();
+  document.getElementById('sv-word').textContent = svCurrentWord;
+  document.getElementById('sv-input').value = '';
+  const timeLimit = Math.max(1500, 4000 - (svLevel * 200));
+  svTimeLeft = timeLimit;
+  const bar = document.getElementById('sv-timer-bar');
+  bar.style.width = '100%';
+  bar.style.background = 'var(--gold)';
+  const tick = 50;
+  svTimer = setInterval(() => {
+    svTimeLeft -= tick;
+    const pct = Math.max(0, (svTimeLeft / timeLimit) * 100);
+    bar.style.width = pct + '%';
+    bar.style.background = pct < 30 ? 'var(--red)' : pct < 60 ? '#E8A000' : 'var(--gold)';
+    if (svTimeLeft <= 0) {
+      clearInterval(svTimer);
+      svLives--;
+      const hearts = ['','❤️','❤️❤️','❤️❤️❤️'];
+      document.getElementById('sv-lives').textContent = hearts[Math.max(0,svLives)] || '💔';
+      if (svLives <= 0) endSurvival();
+      else nextSurvivalWord();
+    }
+  }, tick);
+}
+
+function checkSurvival(val) {
+  if (!svActive) return;
+  if (val.trim().toLowerCase() === svCurrentWord) {
+    svScore++;
+    playSound('word');
+    if (svScore % 10 === 0) { svLevel++; document.getElementById('sv-level').textContent = svLevel; playSound('complete'); }
+    document.getElementById('sv-score').textContent = svScore;
+    nextSurvivalWord();
+  }
+}
+
+function endSurvival() {
+  svActive = false; clearInterval(svTimer);
+  document.getElementById('sv-final-score').textContent = svScore;
+  document.getElementById('sv-final-level').textContent = svLevel;
+  const go = document.getElementById('sv-gameover');
+  go.style.display = 'flex';
+}
+
+function stopSurvival() {
+  svActive = false; clearInterval(svTimer);
+  document.getElementById('sv-overlay').style.display = 'flex';
+  document.getElementById('sv-gameover').style.display = 'none';
+  document.getElementById('sv-word').textContent = '';
+  document.getElementById('sv-timer-bar').style.width = '100%';
+}
+
+// ============================================================
+// TYPE RACER GAME
+// ============================================================
+let racerActive = false, racerText = '', racerIndex = 0, racerErrors = 0, racerCorrect = 0;
+let racerStartTime = null, racerStarted = false, racerRAF = null;
+let racerGhost = JSON.parse(localStorage.getItem('sumnuRacerGhost') || 'null');
+let racerGhostWpm = 0;
+
+function startRacer() {
+  racerActive = true; racerIndex = 0; racerErrors = 0; racerCorrect = 0; racerStarted = false; racerStartTime = null;
+  // Build passage from common words
+  let txt = '';
+  while (txt.length < 200) txt += randWord() + ' ';
+  racerText = txt.trim();
+  document.getElementById('racer-overlay').style.display = 'none';
+  document.getElementById('racer-finish').style.display = 'none';
+  document.getElementById('racer-you-bar').style.width = '0%';
+  document.getElementById('racer-you-pct').textContent = '0%';
+  document.getElementById('racer-ghost-bar').style.width = '0%';
+  document.getElementById('racer-ghost-pct').textContent = '0%';
+  document.getElementById('racer-wpm').textContent = '0';
+  document.getElementById('racer-time').textContent = '0.0s';
+  if (racerGhost) {
+    racerGhostWpm = racerGhost.wpm;
+    document.getElementById('racer-ghost-wpm').textContent = racerGhostWpm;
+  }
+  renderRacerText();
+  focusRacerInput();
+  if (racerRAF) cancelAnimationFrame(racerRAF);
+  racerTick();
+}
+
+function renderRacerText() {
+  const display = document.getElementById('racer-text-display');
+  if (!display) return;
+  display.innerHTML = racerText.split('').map((ch,i) => {
+    let cls = i < racerIndex ? 'correct' : i === racerIndex ? 'current' : 'pending';
+    return `<span class="char ${cls}">${ch === ' ' ? '&nbsp;' : ch}</span>`;
+  }).join('');
+}
+
+function focusRacerInput() {
+  const inp = document.getElementById('racer-input');
+  if (inp) inp.focus();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const inp = document.getElementById('racer-input');
+  if (inp) inp.addEventListener('input', function() {
+    if (!racerActive) return;
+    const ch = this.value.slice(-1);
+    this.value = '';
+    if (!racerStarted) { racerStarted = true; racerStartTime = Date.now(); }
+    const expected = racerText[racerIndex];
+    const span = document.querySelectorAll('#racer-text-display .char')[racerIndex];
+    if (ch === expected) {
+      if (span) span.className = 'char correct';
+      racerCorrect++; racerIndex++;
+    } else {
+      if (span) { span.className = 'char wrong'; setTimeout(()=>{ span.className='char current'; },300); }
+      racerErrors++;
+    }
+    const next = document.querySelectorAll('#racer-text-display .char')[racerIndex];
+    if (next && next.classList.contains('pending')) next.className = 'char current';
+    if (racerIndex >= racerText.length) finishRacer();
+  });
+});
+
+function racerTick() {
+  if (!racerActive) return;
+  if (racerStarted && racerStartTime) {
+    const elapsed = (Date.now() - racerStartTime) / 1000;
+    const wpm = elapsed > 0 ? Math.round((racerCorrect/5)/(elapsed/60)) : 0;
+    const youPct = Math.round((racerIndex / racerText.length) * 100);
+    document.getElementById('racer-wpm').textContent = wpm;
+    document.getElementById('racer-time').textContent = elapsed.toFixed(1) + 's';
+    document.getElementById('racer-you-bar').style.width = youPct + '%';
+    document.getElementById('racer-you-pct').textContent = youPct + '%';
+    if (racerGhost) {
+      const ghostChars = racerGhostWpm * 5 * (elapsed / 60);
+      const ghostPct = Math.min(100, Math.round((ghostChars / racerText.length) * 100));
+      document.getElementById('racer-ghost-bar').style.width = ghostPct + '%';
+      document.getElementById('racer-ghost-pct').textContent = ghostPct + '%';
+    }
+  }
+  racerRAF = requestAnimationFrame(racerTick);
+}
+
+function finishRacer() {
+  racerActive = false;
+  if (racerRAF) cancelAnimationFrame(racerRAF);
+  const elapsed = (Date.now() - racerStartTime) / 1000;
+  const wpm = Math.round((racerCorrect/5)/(elapsed/60));
+  document.getElementById('racer-result-wpm').textContent = wpm;
+  const prevBest = racerGhost ? racerGhost.wpm : 0;
+  if (wpm > prevBest) {
+    racerGhost = { wpm };
+    localStorage.setItem('sumnuRacerGhost', JSON.stringify(racerGhost));
+    document.getElementById('racer-result-title').textContent = '🏆 New Best!';
+    document.getElementById('racer-result-msg').textContent = 'You beat your ghost! New ghost set at ' + wpm + ' WPM.';
+    document.getElementById('racer-ghost-msg').textContent = 'Ghost: ' + wpm + ' WPM';
+  } else {
+    document.getElementById('racer-result-title').textContent = '🏁 Finished!';
+    document.getElementById('racer-result-msg').textContent = prevBest > 0 ? 'Ghost was ' + prevBest + ' WPM. Keep going!' : 'Complete another race to race your ghost!';
+  }
+  document.getElementById('racer-finish').style.display = 'flex';
+}
+
+function stopRacer() {
+  racerActive = false;
+  if (racerRAF) cancelAnimationFrame(racerRAF);
+  document.getElementById('racer-overlay').style.display = 'flex';
+  document.getElementById('racer-finish').style.display = 'none';
+}
+
+
+// ============================================================
+// FULLSCREEN
+// ============================================================
+function toggleFullscreen(gameId) {
+  var el = document.getElementById(gameId);
+  var btn = document.getElementById('fs-btn-' + gameId.replace('game-',''));
+  var isFs = el.classList.contains('game-fullscreen');
+
+  if (!isFs) {
+    // Try native fullscreen first
+    if (el.requestFullscreen) {
+      el.requestFullscreen().catch(function() { cssFullscreen(el, btn, true); });
+    } else if (el.webkitRequestFullscreen) {
+      el.webkitRequestFullscreen();
+    } else {
+      cssFullscreen(el, btn, true);
+      return;
+    }
+    el.classList.add('game-fullscreen');
+    if (btn) btn.textContent = '✕FS';
+    // Re-focus input after going fullscreen
+    setTimeout(function() {
+      var inp = el.querySelector('input[type=text]');
+      if (inp) inp.focus();
+    }, 300);
+  } else {
+    if (document.exitFullscreen && document.fullscreenElement) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    }
+    cssFullscreen(el, btn, false);
+  }
+}
+
+function cssFullscreen(el, btn, enter) {
+  if (enter) {
+    el.classList.add('game-fullscreen');
+    if (btn) btn.textContent = '✕FS';
+    setTimeout(function() {
+      var inp = el.querySelector('input[type=text]');
+      if (inp) inp.focus();
+    }, 100);
+  } else {
+    el.classList.remove('game-fullscreen');
+    if (btn) btn.textContent = '⛶';
+  }
+}
+
+// Exit fullscreen on Escape key or fullscreen change event
+document.addEventListener('fullscreenchange', function() {
+  if (!document.fullscreenElement) {
+    ['wordfall','survival','racer'].forEach(function(name) {
+      var el = document.getElementById('game-' + name);
+      var btn = document.getElementById('fs-btn-' + name);
+      if (el) el.classList.remove('game-fullscreen');
+      if (btn) btn.textContent = '⛶';
+    });
+  }
+});
+document.addEventListener('webkitfullscreenchange', function() {
+  if (!document.webkitFullscreenElement) {
+    ['wordfall','survival','racer'].forEach(function(name) {
+      var el = document.getElementById('game-' + name);
+      var btn = document.getElementById('fs-btn-' + name);
+      if (el) el.classList.remove('game-fullscreen');
+      if (btn) btn.textContent = '⛶';
+    });
+  }
+});
+
+
+// ============================================================
+// SOUND ENGINE (Web Audio API — no files needed)
+// ============================================================
+var audioCtx = null;
+function getAudioCtx() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  return audioCtx;
+}
+
+function playSound(type) {
+  var soundOn = document.getElementById('set-sound');
+  if (!soundOn || !soundOn.checked) return;
+  try {
+    var ctx = getAudioCtx();
+    var osc = ctx.createOscillator();
+    var gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    if (type === 'click') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(800, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(600, ctx.currentTime + 0.03);
+      gain.gain.setValueAtTime(0.08, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.04);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.04);
+    } else if (type === 'error') {
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(180, ctx.currentTime);
+      gain.gain.setValueAtTime(0.1, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.12);
+    } else if (type === 'word') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(520, ctx.currentTime);
+      osc.frequency.setValueAtTime(680, ctx.currentTime + 0.05);
+      gain.gain.setValueAtTime(0.09, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.12);
+    } else if (type === 'complete') {
+      var notes = [523, 659, 784, 1047];
+      notes.forEach(function(freq, i) {
+        var o2 = ctx.createOscillator();
+        var g2 = ctx.createGain();
+        o2.connect(g2); g2.connect(ctx.destination);
+        o2.type = 'sine';
+        o2.frequency.value = freq;
+        g2.gain.setValueAtTime(0, ctx.currentTime + i * 0.1);
+        g2.gain.linearRampToValueAtTime(0.12, ctx.currentTime + i * 0.1 + 0.02);
+        g2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.1 + 0.2);
+        o2.start(ctx.currentTime + i * 0.1);
+        o2.stop(ctx.currentTime + i * 0.1 + 0.2);
+      });
+    } else if (type === 'badge') {
+      var notes2 = [659, 784, 988, 1319];
+      notes2.forEach(function(freq, i) {
+        var o2 = ctx.createOscillator();
+        var g2 = ctx.createGain();
+        o2.connect(g2); g2.connect(ctx.destination);
+        o2.type = 'sine';
+        o2.frequency.value = freq;
+        g2.gain.setValueAtTime(0, ctx.currentTime + i * 0.08);
+        g2.gain.linearRampToValueAtTime(0.15, ctx.currentTime + i * 0.08 + 0.02);
+        g2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.08 + 0.25);
+        o2.start(ctx.currentTime + i * 0.08);
+        o2.stop(ctx.currentTime + i * 0.08 + 0.25);
+      });
+    }
+  } catch(e) {}
+}
+
+
+// ============================================================
+// ACHIEVEMENTS
+// ============================================================
+var allBadges = [
+  { id:'first_test',    icon:'🎯', title:'First Steps',      desc:'Complete your first test',              check: function(s) { return s.history.length >= 1; } },
+  { id:'ten_tests',     icon:'🔥', title:'On a Roll',        desc:'Complete 10 tests',                     check: function(s) { return s.history.length >= 10; } },
+  { id:'fifty_tests',   icon:'💪', title:'Dedicated',        desc:'Complete 50 tests',                     check: function(s) { return s.history.length >= 50; } },
+  { id:'hundred_tests', icon:'🏆', title:'Century',          desc:'Complete 100 tests',                    check: function(s) { return s.history.length >= 100; } },
+  { id:'wpm_40',        icon:'⚡', title:'Getting Warmed Up', desc:'Reach 40 WPM',                         check: function(s) { return s.bestWpm >= 40; } },
+  { id:'wpm_60',        icon:'🚀', title:'Above Average',    desc:'Reach 60 WPM',                          check: function(s) { return s.bestWpm >= 60; } },
+  { id:'wpm_80',        icon:'🌟', title:'Speed Typist',     desc:'Reach 80 WPM',                          check: function(s) { return s.bestWpm >= 80; } },
+  { id:'wpm_100',       icon:'💫', title:'Century Typist',   desc:'Reach 100 WPM',                         check: function(s) { return s.bestWpm >= 100; } },
+  { id:'wpm_120',       icon:'👑', title:'Elite',            desc:'Reach 120 WPM',                         check: function(s) { return s.bestWpm >= 120; } },
+  { id:'perfect_acc',   icon:'🎖️', title:'Perfectionist',   desc:'Complete a test with 100% accuracy',    check: function(s) { return s.history.some(function(h){ return h.acc >= 100; }); } },
+  { id:'acc_98',        icon:'🔬', title:'Sharp Eye',        desc:'Complete a test with 98%+ accuracy',    check: function(s) { return s.history.some(function(h){ return h.acc >= 98; }); } },
+  { id:'streak_3',      icon:'📅', title:'3 Day Streak',     desc:'Practice 3 days in a row',              check: function(s) { return checkStreak(s, 3); } },
+  { id:'streak_7',      icon:'🗓️', title:'Week Warrior',    desc:'Practice 7 days in a row',              check: function(s) { return checkStreak(s, 7); } },
+  { id:'all_lessons',   icon:'📚', title:'Scholar',          desc:'Complete all typing lessons',           check: function(s) { return completedLessons.length >= 6; } },
+  { id:'night_owl',     icon:'🦉', title:'Night Owl',        desc:'Complete a test after midnight',        check: function(s) { return s.history.some(function(h){ return h.hour !== undefined && (h.hour >= 0 && h.hour < 5); }); } }
+];
+
+function checkStreak(s, days) {
+  if (!s.history.length) return false;
+  var dates = s.history.map(function(h) { return h.date; });
+  var unique = dates.filter(function(v,i,a){ return a.indexOf(v)===i; });
+  if (unique.length < days) return false;
+  var streak = 1;
+  var today = new Date();
+  for (var i = 1; i < days; i++) {
+    var d = new Date(today); d.setDate(d.getDate() - i);
+    var ds = d.toLocaleDateString();
+    if (unique.indexOf(ds) < 0) return false;
+    streak++;
+  }
+  return streak >= days;
+}
+
+var earnedBadges = JSON.parse(localStorage.getItem('sumnuBadges') || '[]');
+
+function checkAchievements() {
+  var newlyEarned = [];
+  allBadges.forEach(function(badge) {
+    if (earnedBadges.indexOf(badge.id) < 0 && badge.check(state)) {
+      earnedBadges.push(badge.id);
+      newlyEarned.push(badge);
+    }
+  });
+  if (newlyEarned.length) {
+    localStorage.setItem('sumnuBadges', JSON.stringify(earnedBadges));
+    newlyEarned.forEach(function(badge, i) {
+      setTimeout(function() {
+        showBadgeToast(badge);
+        playSound('badge');
+      }, i * 1500);
+    });
+    renderBadges();
+  }
+}
+
+function showBadgeToast(badge) {
+  var t = document.getElementById('toast');
+  t.innerHTML = '<div style="font-size:1.1rem;margin-bottom:0.2rem">' + badge.icon + ' Achievement Unlocked!</div><div style="font-size:0.9rem;color:var(--gold);font-weight:600">' + badge.title + '</div><div style="font-size:0.75rem;color:var(--muted);margin-top:0.2rem">' + badge.desc + '</div>';
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 4000);
+}
+
+function renderBadges() {
+  var container = document.getElementById('badges-container');
+  if (!container) return;
+  var out = '';
+  allBadges.forEach(function(badge) {
+    var earned = earnedBadges.indexOf(badge.id) >= 0;
+    out += '<div style="background:var(--bg3);border:1px solid ' + (earned ? 'var(--gold-dim)' : 'var(--border2)') + ';padding:1rem;text-align:center;opacity:' + (earned ? '1' : '0.4') + ';position:relative" title="' + badge.desc + '">';
+    if (earned) out += '<div style="position:absolute;top:0.4rem;right:0.4rem;width:8px;height:8px;background:var(--gold);border-radius:50%"></div>';
+    out += '<div style="font-size:1.75rem;margin-bottom:0.4rem">' + badge.icon + '</div>';
+    out += '<div style="font-size:0.75rem;font-weight:500;color:' + (earned ? 'var(--cream)' : 'var(--muted)') + ';margin-bottom:0.2rem">' + badge.title + '</div>';
+    out += '<div style="font-size:0.65rem;color:var(--muted2);font-weight:400">' + badge.desc + '</div>';
+    out += '</div>';
+  });
+  container.innerHTML = out;
+  // Update count
+  var countEl = document.getElementById('badges-count');
+  if (countEl) countEl.textContent = earnedBadges.length + ' / ' + allBadges.length;
+}
+
+
+// ============================================================
+// GAME DIFFICULTY
+// ============================================================
+var gameDifficulty = localStorage.getItem('sumnuGameDiff') || 'medium';
+
+var diffWordPools = {
+  easy:   ['the','be','to','of','and','a','in','that','have','it','for','not','on','with','he','as','you','do','at','this','but','his','by','from','they','we','say','her','she','or','an','will','my','one','all','would','there','their','what','so','up','out','if','about','who','get','which','go','me','when','make','can','like','time','no','just','him','know','take','good','some','them','see','than','then','now','look','only','come','over','think','back','after','use','two','how','our','work','well','way','new','want','give','day','most','us'],
+  medium: gameWords,
+  hard:   ['accommodate','ambiguous','benevolent','circumspect','deleterious','eloquence','fastidious','gregarious','hyperbole','idiosyncrasy','juxtapose','loquacious','melancholy','nonchalant','obfuscate','perspicacious','quintessential','recalcitrant','serendipity','trepidation','ubiquitous','vicarious','whimsical','abstraction','bureaucratic','colloquial','ephemeral','flabbergasted','garrulous','hypothetical','ineffable','kaleidoscope','labyrinthine','magnanimous','nomenclature','ostentatious','paradoxical','retrospective','sycophantic','transcendent','amalgamate','bewildering','capitulate','discombobulate','exacerbate','fortuitous','grandiloquent','harbinger','idiosyncratic','judiciously']
+};
+
+function getDiffWord() {
+  var pool = diffWordPools[gameDifficulty] || diffWordPools.medium;
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+function setGameDifficulty(diff) {
+  gameDifficulty = diff;
+  localStorage.setItem('sumnuGameDiff', diff);
+  document.querySelectorAll('.game-diff-btn').forEach(function(b) {
+    b.classList.toggle('active', b.dataset.diff === diff);
+  });
+}
+
+// ============================================================
+// BOOT
+// ============================================================
+window.addEventListener('load', () => {
+  initTest();
+  if (state.bestWpm > 0) {
+    document.getElementById('hero-wpm').textContent = state.bestWpm;
+    document.getElementById('sidebar-best').textContent = state.bestWpm;
+    document.getElementById('p-best').textContent = state.bestWpm;
+  }
+  updateProfileStats();
+  // Auth state is restored automatically by onAuthStateChange above
+  // Restore sound setting
+  var savedSound = localStorage.getItem('sumnuSound');
+  if (savedSound === 'true') {
+    var soundEl = document.getElementById('set-sound');
+    if (soundEl) soundEl.checked = true;
+  }
+  // Init game difficulty
+  var savedDiff = localStorage.getItem('sumnuGameDiff');
+  if (savedDiff) { gameDifficulty = savedDiff; }
+});
+</script>
+</body>
+</html>
