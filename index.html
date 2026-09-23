@@ -121,11 +121,14 @@
     left: 0;
     right: 0;
     z-index: 100;
-    padding: 0 2rem;
-    height: 64px;
+    padding: 0.55rem 1.25rem;
+    min-height: 64px;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.35rem 1rem;
     background: rgba(10,10,15,0.85);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border2);
@@ -142,7 +145,7 @@
   }
   .logo span { color: var(--cream); }
 
-  nav { display: flex; align-items: center; gap: 1.5rem; }
+  nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0.55rem 1rem; max-width: 100%; }
   nav button {
     background: none;
     border: none;
@@ -166,6 +169,17 @@
     height: 1px;
     background: var(--gold);
   }
+  nav a.nav-link {
+    color: var(--muted);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.3rem 0;
+  }
+  nav a.nav-link:hover { color: var(--gold); }
 
   .header-right { display: flex; align-items: center; gap: 1rem; }
   .btn-primary {
@@ -198,7 +212,7 @@
   .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
 
   /* PAGES */
-  .page { display: none; padding-top: 64px; min-height: 100vh; position: relative; z-index: 1; }
+  .page { display: none; padding-top: 88px; min-height: 100vh; position: relative; z-index: 1; }
   .page.active { display: block; }
 
   /* ===== HOME PAGE ===== */
@@ -989,6 +1003,11 @@
   .fade-in { animation: fadeIn 0.5s ease both; }
 
   /* RESPONSIVE */
+  @media (max-width: 1200px) {
+    header { align-items: flex-start; }
+    nav { flex: 1 0 100%; order: 3; }
+    .page { padding-top: 118px; }
+  }
   @media (max-width: 768px) {
     .hero { grid-template-columns: 1fr; gap: 2rem; }
     .features-grid { grid-template-columns: 1fr; }
@@ -999,8 +1018,10 @@
     .lb-cell:nth-child(5), .lb-cell:nth-child(6) { display: none; }
     .footer-inner { grid-template-columns: 1fr 1fr; }
     .results-grid { grid-template-columns: repeat(2, 1fr); }
-    nav { gap: 0.75rem; }
-    nav button { font-size: 0.75rem; }
+    header { align-items: flex-start; }
+    nav { flex: 1 0 100%; order: 3; gap: 0.45rem 0.7rem; }
+    nav button, nav a.nav-link { font-size: 0.75rem; }
+    .page { padding-top: 148px; }
   }
 
   /* FULLSCREEN GAME */
@@ -1024,7 +1045,7 @@
 
 <!-- HEADER -->
 <header>
-  <a class="logo" onclick="showPage('home')">Sumnu<span>Typing</span></a>
+  <a class="logo" href="/" onclick="showPage('home'); return false;">Sumnu<span>Typing</span></a>
   <nav>
     <button class="active" onclick="showPage('home', this)">Home</button>
     <button onclick="showPage('practice', this)">Practice</button>
@@ -1032,6 +1053,8 @@
     <button onclick="showPage('games', this)">Games</button>
     <button onclick="showPage('leaderboard', this)">Rankings</button>
     <button onclick="showPage('profile', this)">My Profile</button>
+    <a class="nav-link" href="/guides/">Guides</a>
+    <a class="nav-link" href="/about/">About</a>
   </nav>
   <div class="header-right" id="header-right">
     <button class="btn-ghost" onclick="showModal('signin')" id="hdr-signin">Sign In</button>
@@ -1150,6 +1173,7 @@
           <p style="color:var(--muted);line-height:1.8;font-size:0.9rem;font-weight:400">
             Accuracy matters more than speed. Rushing leads to errors which actually slows you down. Focus on hitting every key correctly and your speed will naturally increase over time. A good rule of thumb: if your accuracy drops below 95%, slow down.
           </p>
+          <p style="margin-top:1rem"><a href="/guides/improve-typing-speed/" style="color:var(--gold);font-size:0.85rem">Read the full guide: how to improve typing speed</a></p>
         </div>
         <div>
           <h3 style="font-family:var(--font-display);font-size:1rem;color:var(--cream);margin-bottom:1rem">Top 5 Tips for Faster Typing</h3>
@@ -1220,6 +1244,7 @@
           <div style="font-size:0.75rem;color:var(--muted2);margin-top:0.4rem;font-weight:400">Top 1% of typists, dedicated practice required</div>
         </div>
       </div>
+      <p style="margin-top:1rem"><a href="/guides/what-is-wpm/" style="color:var(--gold);font-size:0.85rem">Read the full guide: what WPM means on SumnuTyping</a></p>
     </article>
 
     <!-- FAQ -->
@@ -1259,7 +1284,7 @@
 
     <!-- WHY TYPING SPEED MATTERS -->
     <article style="margin-bottom:3rem">
-      <h2 style="font-family:var(--font-display);font-size:1.5rem;color:var(--cream);margin-bottom:1rem">Why Typing Speed Matters in 2025</h2>
+      <h2 style="font-family:var(--font-display);font-size:1.5rem;color:var(--cream);margin-bottom:1rem">Why Typing Speed Matters</h2>
       <p style="color:var(--muted);line-height:1.8;font-size:0.9rem;font-weight:400;margin-bottom:1rem">
         In a world where knowledge work happens almost entirely on keyboards, typing speed is a genuine professional skill. A person who types 80 WPM completes the same written work in half the time of someone who types 40 WPM. Over a full working day that adds up to hours of extra productivity.
       </p>
@@ -1269,6 +1294,23 @@
       <p style="color:var(--muted);line-height:1.8;font-size:0.9rem;font-weight:400">
         Beyond professional benefits, fast accurate typing simply feels great. There is a reason the mechanical keyboard community has millions of passionate members — the tactile satisfaction of flying across keys without thinking is genuinely enjoyable. SumnuTyping exists to help you get there, one test at a time.
       </p>
+      <p style="margin-top:1rem"><a href="/guides/why-typing-matters/" style="color:var(--gold);font-size:0.85rem">Read the full guide: why typing speed matters</a></p>
+    </article>
+
+    <article style="margin-bottom:3rem">
+      <h2 style="font-family:var(--font-display);font-size:1.5rem;color:var(--cream);margin-bottom:1rem">Guides</h2>
+      <p style="color:var(--muted);line-height:1.8;font-size:0.9rem;font-weight:400;margin-bottom:1rem">Longer reading has its own address, so you can open a topic without scrolling this page. The tools on this site are unchanged.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.75rem 1.25rem;font-size:0.85rem">
+        <a href="/about/" style="color:var(--gold)">About</a>
+        <a href="/guides/" style="color:var(--gold)">All guides</a>
+        <a href="/guides/practice/" style="color:var(--gold)">Practice modes</a>
+        <a href="/guides/learn/" style="color:var(--gold)">Learn hub</a>
+        <a href="/guides/games/" style="color:var(--gold)">Games</a>
+        <a href="/guides/what-is-wpm/" style="color:var(--gold)">What is WPM</a>
+        <a href="/changelog/" style="color:var(--gold)">Updates</a>
+        <a href="/privacy/" style="color:var(--gold)">Privacy</a>
+        <a href="/terms/" style="color:var(--gold)">Terms</a>
+      </div>
     </article>
 
   </div>
@@ -1276,7 +1318,7 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">
-        <a class="logo" onclick="showPage('home')">Sumnu<span>Typing</span></a>
+        <a class="logo" href="/" onclick="showPage('home'); return false;">Sumnu<span>Typing</span></a>
         <p>The premium typing practice platform. Free for everyone. Powered by dedication to craft and speed.</p>
       </div>
       <div class="footer-col">
@@ -1285,6 +1327,8 @@
         <a onclick="showPage('practice')" style="cursor:pointer">Timed Mode</a>
         <a onclick="showPage('practice')" style="cursor:pointer">Code Mode</a>
         <a onclick="showPage('learn')" style="cursor:pointer">Lessons</a>
+        <a href="/guides/practice/">Practice guide</a>
+        <a href="/guides/learn/">Learn hub</a>
       </div>
       <div class="footer-col">
         <h4>Games</h4>
@@ -1292,6 +1336,7 @@
         <a onclick="showPage('games')" style="cursor:pointer">Survival</a>
         <a onclick="showPage('games')" style="cursor:pointer">Type Racer</a>
         <a onclick="showPage('leaderboard')" style="cursor:pointer">Rankings</a>
+        <a href="/guides/games/">Games guide</a>
       </div>
       <div class="footer-col">
         <h4>Account</h4>
@@ -1302,14 +1347,17 @@
       </div>
       <div class="footer-col">
         <h4>Legal</h4>
-        <a onclick="showPage('privacy')" style="cursor:pointer">Privacy Policy</a>
-        <a onclick="showPage('terms')" style="cursor:pointer">Terms of Service</a>
+        <a href="/about/">About</a>
+        <a href="/guides/">Guides</a>
+        <a href="/changelog/">Updates</a>
+        <a href="/privacy/">Privacy Policy</a>
+        <a href="/terms/">Terms of Service</a>
         <a href="mailto:sales@sumnubooks.com">Advertise</a>
         <a href="mailto:sales@sumnubooks.com">Contact Us</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 SumnuTyping.com — Free forever. No hidden costs.</p>
+      <p>© 2026 SumnuTyping.com — Free to use. Meant to be ad-supported.</p>
       <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap">
         <p>Contact: <a href="mailto:sales@sumnubooks.com" style="color:var(--muted)">sales@sumnubooks.com</a></p>
         <a href="https://www.buymeacoffee.com/sumnutyping" target="_blank"
@@ -1455,6 +1503,18 @@
       </div>
     </div>
   </div>
+  <section style="max-width:1100px;margin:0 auto;padding:0 2rem 3rem">
+    <div style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem">How to use this screen</div>
+    <h2 style="font-family:var(--font-display);font-size:1.35rem;color:var(--cream);margin-bottom:0.75rem">Timed, Words, and Code are not the same drill</h2>
+    <p style="color:var(--muted);line-height:1.75;font-size:0.9rem;font-weight:400;margin-bottom:0.75rem">Timed starts a clock on the first key and stops at 15 seconds, 30 seconds, 60 seconds, or 2 minutes. Words hides that clock and ends when you finish the passage. Code swaps the passage for short programming lines. Live WPM counts correct characters divided by five, divided by minutes. Accuracy is correct keys divided by every key. A miss is marked and the cursor moves on.</p>
+    <p style="color:var(--muted);line-height:1.75;font-size:0.9rem;font-weight:400;margin-bottom:0.75rem">If accuracy is under 95 percent, slow down or drop a level. The formula, a worked example, and the speed bands are in the WPM guide, not repeated here. Lessons are the place to learn a row. Games are a different kind of pressure.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:0.75rem 1.25rem;font-size:0.85rem">
+      <a href="/guides/practice/" style="color:var(--gold)">Practice guide</a>
+      <a href="/guides/what-is-wpm/" style="color:var(--gold)">What is WPM</a>
+      <a href="/guides/learn/" style="color:var(--gold)">Lessons</a>
+      <a href="/guides/games/" style="color:var(--gold)">Games</a>
+    </div>
+  </section>
 </div>
 
 <!-- ===== LEADERBOARD PAGE ===== -->
@@ -1469,7 +1529,19 @@
     </div>
 
     <div style="font-family:var(--font-display);font-size:1.75rem;color:var(--cream);margin-bottom:0.25rem">Learn to Type</div>
-    <div style="color:var(--muted);font-size:0.875rem;font-weight:400;margin-bottom:2rem">Master the keyboard from the ground up — finger by finger, row by row</div>
+    <div style="color:var(--muted);font-size:0.875rem;font-weight:400;margin-bottom:0.75rem">Master the keyboard from the ground up — finger by finger, row by row</div>
+    <p style="color:var(--muted);line-height:1.7;font-size:0.85rem;font-weight:400;margin-bottom:0.75rem">Six lessons run in order: home row, top row, bottom row, full alphabet, numbers, punctuation. The next lesson stays locked in this browser until you finish the one before it. The diagram is QWERTY. Read the short note for a lesson before you drill it.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:0.6rem 1rem;font-size:0.82rem;margin-bottom:1.5rem">
+      <a href="/guides/learn/" style="color:var(--gold)">Learn hub</a>
+      <a href="/guides/learn/home-row/" style="color:var(--gold)">Home row</a>
+      <a href="/guides/learn/top-row/" style="color:var(--gold)">Top row</a>
+      <a href="/guides/learn/bottom-row/" style="color:var(--gold)">Bottom row</a>
+      <a href="/guides/learn/full-alphabet/" style="color:var(--gold)">Full alphabet</a>
+      <a href="/guides/learn/numbers/" style="color:var(--gold)">Numbers</a>
+      <a href="/guides/learn/punctuation/" style="color:var(--gold)">Punctuation</a>
+      <a href="/guides/practice/" style="color:var(--gold)">Practice</a>
+      <a href="/guides/games/" style="color:var(--gold)">Games</a>
+    </div>
 
     <!-- KEYBOARD DIAGRAM -->
     <div style="background:var(--bg2);border:1px solid var(--border);padding:2rem;margin-bottom:2rem;position:relative;overflow:hidden">
@@ -1491,6 +1563,7 @@
         <div>
           <div style="font-family:var(--font-display);font-size:1.1rem;color:var(--cream)" id="lesson-title">Lesson</div>
           <div style="font-size:0.8rem;color:var(--muted);font-weight:400;margin-top:0.2rem" id="lesson-desc"></div>
+          <a id="lesson-notes-link" href="/guides/learn/" style="display:inline-block;margin-top:0.35rem;font-size:0.78rem;color:var(--gold);text-decoration:none">Read the lesson notes</a>
         </div>
         <button class="btn-ghost" onclick="closelesson()" style="font-size:0.78rem;padding:0.4rem 0.9rem">✕ Close</button>
       </div>
@@ -1526,7 +1599,14 @@
     </div>
 
     <div style="font-family:var(--font-display);font-size:1.75rem;color:var(--cream);margin-bottom:0.25rem">Typing Games</div>
-    <div style="color:var(--muted);font-size:0.875rem;font-weight:400;margin-bottom:2rem">Practice your speed the fun way</div>
+    <div style="color:var(--muted);font-size:0.875rem;font-weight:400;margin-bottom:0.75rem">Practice your speed the fun way</div>
+    <p style="color:var(--muted);line-height:1.7;font-size:0.85rem;font-weight:400;margin-bottom:0.75rem">Word Fall, Survival, and Type Racer train different habits. Easy, Medium, and Hard change the word list for Word Fall and Survival. Type Racer races a ghost of your own saved speed. The long version is one guide, not three thin posts.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:0.6rem 1rem;font-size:0.82rem;margin-bottom:1.5rem">
+      <a href="/guides/games/" style="color:var(--gold)">Games guide</a>
+      <a href="/guides/practice/" style="color:var(--gold)">Practice modes</a>
+      <a href="/guides/learn/" style="color:var(--gold)">Lessons</a>
+      <a href="/guides/what-is-wpm/" style="color:var(--gold)">What is WPM</a>
+    </div>
 
     <!-- GAME SELECTOR -->
     <div id="game-select-screen">
@@ -1876,7 +1956,8 @@
 <div id="page-privacy" class="page">
   <div style="max-width:800px;margin:0 auto;padding:3rem 2rem">
     <div style="font-family:var(--font-display);font-size:2rem;color:var(--cream);margin-bottom:0.5rem">Privacy Policy</div>
-    <div style="font-size:0.8rem;color:var(--muted);margin-bottom:2.5rem;font-weight:400">Last updated: May 2025</div>
+    <div style="font-size:0.8rem;color:var(--muted);margin-bottom:1rem;font-weight:400">Last updated: September 23, 2026</div>
+    <p style="color:var(--muted);line-height:1.7;font-size:0.85rem;font-weight:400;margin-bottom:2rem">The indexable copy of this policy is at <a href="/privacy/" style="color:var(--gold)">/privacy/</a>. This September 23, 2026 update does not add live ad units.</p>
 
     <div style="display:flex;flex-direction:column;gap:2rem">
 
@@ -1911,7 +1992,7 @@
 
       <section>
         <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">4. Google AdSense and Advertising</h2>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400;margin-bottom:0.75rem">We use Google AdSense to display advertisements on our site. Google AdSense uses cookies to serve ads based on your prior visits to our website and other websites on the internet. Google's use of advertising cookies enables it and its partners to serve ads based on your visit to our site.</p>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400;margin-bottom:0.75rem">The site loads Google’s AdSense script and shows labeled advertisement placeholders. This September 23, 2026 update does not add live ad units. Because the script loads, Google may receive technical data under Google’s own policies. If live units are enabled later, this section will be updated first. The canonical wording is on the <a href="/privacy/" style="color:var(--gold)">privacy page</a>.</p>
         <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" style="color:var(--gold)">Google Ad Settings</a>. You can also opt out by visiting <a href="https://www.aboutads.info" target="_blank" style="color:var(--gold)">aboutads.info</a>.</p>
       </section>
 
@@ -1958,7 +2039,8 @@
 <div id="page-terms" class="page">
   <div style="max-width:800px;margin:0 auto;padding:3rem 2rem">
     <div style="font-family:var(--font-display);font-size:2rem;color:var(--cream);margin-bottom:0.5rem">Terms of Service</div>
-    <div style="font-size:0.8rem;color:var(--muted);margin-bottom:2.5rem;font-weight:400">Last updated: May 2025</div>
+    <div style="font-size:0.8rem;color:var(--muted);margin-bottom:1rem;font-weight:400">Last updated: September 23, 2026</div>
+    <p style="color:var(--muted);line-height:1.7;font-size:0.85rem;font-weight:400;margin-bottom:2rem">The indexable copy of these terms is at <a href="/terms/" style="color:var(--gold)">/terms/</a>.</p>
 
     <div style="display:flex;flex-direction:column;gap:2rem">
 
@@ -1997,7 +2079,7 @@
 
       <section>
         <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">6. Advertising</h2>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">SumnuTyping displays advertisements served by Google AdSense. By using the site, you acknowledge that advertisements may be displayed. We are not responsible for the content of third-party advertisements.</p>
+        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">The site loads Google’s AdSense script and shows labeled advertisement placeholders. This September 23, 2026 revision does not turn on live ad units. If live units are added later, the privacy policy will be updated first. We are not responsible for the content of third-party advertisements if they are shown. The canonical wording is on the <a href="/terms/" style="color:var(--gold)">terms page</a>.</p>
       </section>
 
       <section>
@@ -3050,17 +3132,17 @@ function showFingerHint(finger, key) {}
 // LESSONS
 // ============================================================
 const lessonData = [
-  { id:'homerow', title:'Home Row', icon:'🏠', desc:'The foundation of touch typing', keys:'asdf jkl;', color:'var(--gold)',
+  { id:'homerow', title:'Home Row', icon:'🏠', desc:'The foundation of touch typing', keys:'asdf jkl;', color:'var(--gold)', guide:'/guides/learn/home-row/',
     words:['aaa','sss','ddd','fff','jjj','kkk','lll','asd','fj','fds','jkl','asdfjkl','fads','flask','lads','flags','glad','dash','fall','hall','jags','asks','add','all','dad','lad','sad','fad','fall','lass'], unlocked:true },
-  { id:'toprow', title:'Top Row', icon:'⬆️', desc:'Q W E R T Y U I O P', keys:'qwerty uiop', color:'#5B8DEF',
+  { id:'toprow', title:'Top Row', icon:'⬆️', desc:'Q W E R T Y U I O P', keys:'qwerty uiop', color:'#5B8DEF', guide:'/guides/learn/top-row/',
     words:['we','you','our','top','type','power','quiet','write','port','quite','poetry','proper','tower','query','route','outer','quote','upper','pore','reput'], unlocked:false },
-  { id:'bottomrow', title:'Bottom Row', icon:'⬇️', desc:'Z X C V B N M', keys:'zxcvbnm', color:'#4CAF82',
+  { id:'bottomrow', title:'Bottom Row', icon:'⬇️', desc:'Z X C V B N M', keys:'zxcvbnm', color:'#4CAF82', guide:'/guides/learn/bottom-row/',
     words:['can','van','ban','man','cab','nab','vim','zinc','exam','vent','civic','blank','crumb','venom','combo','numb','buxom','max','mix','box','vex'], unlocked:false },
-  { id:'fullalpha', title:'Full Alphabet', icon:'🔤', desc:'All 26 letters combined', keys:'a-z', color:'#9B6BD4',
+  { id:'fullalpha', title:'Full Alphabet', icon:'🔤', desc:'All 26 letters combined', keys:'a-z', color:'#9B6BD4', guide:'/guides/learn/full-alphabet/',
     words:['the','be','to','of','and','have','it','for','not','on','with','he','as','you','do','at','this','but','his','by','from','they','we','say','her','she','or','will','my','one','all','would','there'], unlocked:false },
-  { id:'numbers', title:'Numbers', icon:'🔢', desc:'0 1 2 3 4 5 6 7 8 9', keys:'0-9', color:'#E05454',
+  { id:'numbers', title:'Numbers', icon:'🔢', desc:'0 1 2 3 4 5 6 7 8 9', keys:'0-9', color:'#E05454', guide:'/guides/learn/numbers/',
     words:['1','2','3','12','23','45','100','2024','3.14','1000','42','99','2025','1234','567','890','11','22','33','44','55','66','77','88','99','100'], unlocked:false },
-  { id:'punctuation', title:'Punctuation', icon:'✍️', desc:'Commas, periods, and more', keys:'. , ! ? ; :', color:'#C9A84C',
+  { id:'punctuation', title:'Punctuation', icon:'✍️', desc:'Commas, periods, and more', keys:'. , ! ? ; :', color:'#C9A84C', guide:'/guides/learn/punctuation/',
     words:['hello.','world!','yes,','no.','wait!','done.','ok?','nice!','well,','stop!','go!','run.','fast,','slow.','good!','bad?','sure,','fine.','wow!','hmm?'], unlocked:false }
 ];
 
@@ -3118,6 +3200,8 @@ function startLesson(id) {
   lessonText = txt.trim();
   document.getElementById('lesson-title').textContent = currentLesson.icon + ' ' + currentLesson.title;
   document.getElementById('lesson-desc').textContent = currentLesson.desc;
+  var notesLink = document.getElementById('lesson-notes-link');
+  if (notesLink) notesLink.href = currentLesson.guide || '/guides/learn/';
   document.getElementById('lesson-area').style.display = 'block';
   document.getElementById('lesson-complete').style.display = 'none';
   document.getElementById('lessons-grid').style.display = 'none';
@@ -3778,7 +3862,48 @@ window.addEventListener('load', () => {
   // Init game difficulty
   var savedDiff = localStorage.getItem('sumnuGameDiff');
   if (savedDiff) { gameDifficulty = savedDiff; }
+  applyEntryFromQuery();
 });
+
+function applyEntryFromQuery() {
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var page = params.get('page');
+    var pages = { home:1, practice:1, learn:1, games:1, leaderboard:1, profile:1, privacy:1, terms:1 };
+    if (!page || !pages[page]) return;
+    showPage(page);
+    if (page === 'practice') {
+      var mode = (params.get('mode') || '').toLowerCase();
+      if (mode === 'timed' || mode === 'words' || mode === 'code') {
+        var modeBtn = null;
+        document.querySelectorAll('#page-practice .mode-tab').forEach(function(b) {
+          if (b.textContent.trim().toLowerCase() === mode) modeBtn = b;
+        });
+        if (modeBtn) setMode(mode, modeBtn);
+      }
+      var dur = parseInt(params.get('duration'), 10);
+      if ((!mode || mode === 'timed') && (dur === 15 || dur === 30 || dur === 60 || dur === 120)) {
+        var durBtn = null;
+        document.querySelectorAll('#time-selector .lb-filter').forEach(function(b) {
+          var label = b.textContent.trim().toLowerCase();
+          if ((dur === 120 && label === '2min') || label === String(dur) + 's') durBtn = b;
+        });
+        if (durBtn) setDuration(dur, durBtn);
+      }
+    }
+    if (page === 'learn') {
+      var lesson = params.get('lesson');
+      if (lesson) {
+        var found = lessonData.find(function(l) { return l.id === lesson; });
+        if (found && found.unlocked) startLesson(found.id);
+      }
+    }
+    if (page === 'games') {
+      var game = params.get('game');
+      if (game === 'wordfall' || game === 'survival' || game === 'racer') startGame(game);
+    }
+  } catch (err) {}
+}
 </script>
 </body>
 </html>
