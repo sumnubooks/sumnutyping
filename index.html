@@ -215,85 +215,178 @@
   .page { display: none; padding-top: 88px; min-height: 100vh; position: relative; z-index: 1; }
   .page.active { display: block; }
 
-  /* ===== HOME PAGE ===== */
-  .hero {
-    padding: 5rem 2rem 3rem;
-    max-width: 1100px;
+  /* ===== HOME PAGE — typing arena ===== */
+  .home-hero {
+    max-width: 980px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
+    padding: 1.35rem 1.25rem 2.75rem;
   }
-  .hero-label {
-    font-size: 0.7rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
+  .hero-eyebrow {
     color: var(--gold);
-    margin-bottom: 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 0 0 10px;
   }
-  .hero-label::before {
-    content: '';
-    width: 24px;
-    height: 1px;
-    background: var(--gold);
-  }
-  .hero h1 {
+  .hero-title {
     font-family: var(--font-display);
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 900;
-    line-height: 1.1;
+    font-weight: 600;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    line-height: 1.15;
     color: var(--cream);
-    margin-bottom: 1.5rem;
+    margin: 0 0 8px;
   }
-  .hero h1 em {
-    font-style: normal;
+  .hero-title em {
+    font-style: italic;
     color: var(--gold);
-    display: block;
   }
-  .hero p {
+  .hero-sub {
     color: var(--muted);
-    line-height: 1.7;
-    font-size: 1rem;
-    margin-bottom: 2rem;
+    font-size: 15px;
     font-weight: 400;
+    max-width: 42rem;
+    margin: 0 0 22px;
+    line-height: 1.5;
   }
-  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn-large {
-    padding: 0.9rem 2rem;
-    font-size: 0.9rem;
+  .hero-modes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
   }
-
-  .hero-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
+  .hero-chip {
+    border: 1px solid rgba(201,168,76,0.35);
+    background: transparent;
+    color: var(--muted);
+    padding: 6px 12px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 999px;
   }
-  .stat-box {
-    background: var(--bg2);
-    padding: 2rem 1.5rem;
-    text-align: center;
-    transition: background 0.2s;
-  }
-  .stat-box:hover { background: var(--bg3); }
-  .stat-num {
-    font-family: var(--font-display);
-    font-size: 2.5rem;
+  .hero-chip.active {
+    color: #111;
+    background: var(--gold);
+    border-color: var(--gold);
     font-weight: 700;
-    color: var(--gold);
-    line-height: 1;
-    margin-bottom: 0.4rem;
   }
-  .stat-label {
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
+  .hero-chip:not(.active):hover { border-color: var(--gold); color: var(--gold2); }
+  .hero-stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .hero-stat {
+    border: 1px solid rgba(201,168,76,0.35);
+    background: var(--bg2);
+    padding: 12px 14px;
+    text-align: center;
+  }
+  .hero-stat-n {
+    font-family: var(--font-display);
+    font-size: 28px;
+    color: var(--gold);
+    line-height: 1.1;
+  }
+  .hero-stat-l {
+    font-size: 10px;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--muted);
+    margin-top: 4px;
+  }
+  .hero-arena {
+    border: 1px solid rgba(201,168,76,0.35);
+    background: linear-gradient(180deg, #141414 0%, #0d0d0d 100%);
+    padding: 28px 24px 18px;
+    position: relative;
+    box-shadow: 0 0 0 1px rgba(201,168,76,0.08), 0 24px 60px rgba(0,0,0,0.45);
+    cursor: text;
+  }
+  .hero-arena-label {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .hero-passage {
+    position: relative;
+    font-family: var(--font-mono);
+    font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+    line-height: 1.75;
+    min-height: 7.5rem;
+    max-height: 7.5rem;
+    overflow: hidden;
+    user-select: none;
+    word-break: break-word;
+    outline: none;
+  }
+  .hero-arena .char.pending { color: #6e6a62; opacity: 1; }
+  .hero-arena .char.correct { color: var(--gold); }
+  .hero-arena .char.wrong { color: #e05a4a; background: rgba(224,90,74,0.12); border-radius: 2px; }
+  .hero-arena .char.current {
+    color: #6e6a62;
+    border-bottom: 2px solid var(--gold2);
+    animation: blink 1s step-end infinite;
+  }
+  #hero-typing-input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    height: 0;
+    width: 0;
+  }
+  .hero-arena-foot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .hero-hint { color: var(--muted); font-size: 13px; font-weight: 400; }
+  .hero-arena-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  .hero-secondary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 22px;
+  }
+  .hero-tile {
+    border: 1px solid rgba(201,168,76,0.35);
+    padding: 16px;
+    background: var(--bg2);
+    text-align: left;
+    color: inherit;
+    font: inherit;
+    width: 100%;
+  }
+  .hero-tile-link { cursor: pointer; }
+  .hero-tile-link:hover, .hero-tile-link:focus { border-color: var(--gold); outline: none; }
+  .hero-tile h3 {
+    margin: 0 0 6px;
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--cream);
+  }
+  .hero-tile p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.45; font-weight: 400; }
+  .hero-tile-tag {
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
   }
 
   /* AD BANNERS */
@@ -1009,7 +1102,9 @@
     .page { padding-top: 118px; }
   }
   @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-stats-row { grid-template-columns: repeat(2, 1fr); }
+    .hero-secondary { grid-template-columns: 1fr; }
+    .hero-arena-label { display: none; }
     .features-grid { grid-template-columns: 1fr; }
     .stats-bar { grid-template-columns: repeat(2, 1fr) !important; }
     .practice-with-ads { grid-template-columns: 1fr; }
@@ -1068,32 +1163,54 @@
 
 <!-- ===== HOME PAGE ===== -->
 <div id="page-home" class="page active">
-  <div class="hero fade-in">
-    <div>
-      <div class="hero-label">Elite Typing Training</div>
-      <h1>Type faster.<br>Think <em>sharper.</em></h1>
-      <p>Professional-grade typing practice for developers, writers, and anyone who wants to command their keyboard with precision and speed. Track your growth. Climb the ranks.</p>
-      <div class="hero-actions">
-        <button class="btn-primary btn-large" onclick="showPage('practice')">Start Practicing</button>
-        <button class="btn-ghost btn-large" onclick="showPage('leaderboard')">View Rankings</button>
+  <div class="home-hero fade-in">
+    <p class="hero-eyebrow">— Free typing speed test</p>
+    <h1 class="hero-title">Type faster. Think <em>sharper.</em></h1>
+    <p class="hero-sub">Your test is ready. Hit any key and race the clock — then beat your score.</p>
+
+    <div class="hero-modes" id="hero-modes" role="tablist" aria-label="Test mode">
+      <button class="hero-chip active" type="button" data-mode="timed" data-duration="30">30 sec</button>
+      <button class="hero-chip" type="button" data-mode="timed" data-duration="15">15 sec</button>
+      <button class="hero-chip" type="button" data-mode="timed" data-duration="60">60 sec</button>
+      <button class="hero-chip" type="button" data-mode="words">Words</button>
+      <button class="hero-chip" type="button" data-mode="code">Code</button>
+    </div>
+
+    <div class="hero-stats-row">
+      <div class="hero-stat"><div class="hero-stat-n" id="hero-live-wpm">0</div><div class="hero-stat-l">WPM</div></div>
+      <div class="hero-stat"><div class="hero-stat-n" id="hero-live-acc">100</div><div class="hero-stat-l">Accuracy %</div></div>
+      <div class="hero-stat"><div class="hero-stat-n" id="hero-live-time">30</div><div class="hero-stat-l">Seconds left</div></div>
+      <div class="hero-stat"><div class="hero-stat-n" id="hero-live-err">0</div><div class="hero-stat-l">Errors</div></div>
+    </div>
+
+    <div class="hero-arena" id="hero-arena">
+      <div class="hero-arena-label">Start typing — no click required</div>
+      <div class="hero-passage" id="hero-text-display" aria-live="polite"></div>
+      <input type="text" id="hero-typing-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Typing test input" />
+      <div class="hero-arena-foot">
+        <div class="hero-hint" id="hero-hint">Click the box (or just start typing) · Esc resets</div>
+        <div class="hero-arena-actions">
+          <button class="btn-ghost" type="button" id="hero-reset">Reset</button>
+          <button class="btn-primary" type="button" id="hero-rankings">View Rankings</button>
+        </div>
       </div>
     </div>
-    <div class="hero-stats">
-      <div class="stat-box">
-        <div class="stat-num" id="hero-wpm">--</div>
-        <div class="stat-label">Your Best WPM</div>
+
+    <div class="hero-secondary">
+      <div class="hero-tile hero-tile-link" tabindex="0" role="link" onclick="showPage('games')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showPage('games')}">
+        <div class="hero-tile-tag">Games</div>
+        <h3>Word Fall · Survival · Type Racer</h3>
+        <p>Pressure modes when you want a challenge, not a drill.</p>
       </div>
-      <div class="stat-box">
-        <div class="stat-num">14K+</div>
-        <div class="stat-label">Active Typists</div>
+      <div class="hero-tile hero-tile-link" tabindex="0" role="link" onclick="showPage('learn')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showPage('learn')}">
+        <div class="hero-tile-tag">Lessons</div>
+        <h3>Home row to punctuation</h3>
+        <p>Six guided lessons. Unlock the next when you finish the last.</p>
       </div>
-      <div class="stat-box">
-        <div class="stat-num">98%</div>
-        <div class="stat-label">Avg. Accuracy</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">∞</div>
-        <div class="stat-label">Words to Type</div>
+      <div class="hero-tile">
+        <div class="hero-tile-tag">Your best</div>
+        <h3 id="hero-best-label">Take your first test</h3>
+        <p id="hero-best-copy">Personal best shows here after you finish — no empty dashes.</p>
       </div>
     </div>
   </div>
@@ -1378,19 +1495,19 @@
           <div class="practice-title" style="font-family:var(--font-display);font-size:1.4rem;color:var(--cream)">Typing Practice</div>
         </div>
         <div class="mode-tabs">
-          <button class="mode-tab active" onclick="setMode('timed',this)">Timed</button>
-          <button class="mode-tab" onclick="setMode('words',this)">Words</button>
-          <button class="mode-tab" onclick="setMode('code',this)">Code</button>
+          <button class="mode-tab active" data-mode="timed" onclick="setMode('timed',this)">Timed</button>
+          <button class="mode-tab" data-mode="words" onclick="setMode('words',this)">Words</button>
+          <button class="mode-tab" data-mode="code" onclick="setMode('code',this)">Code</button>
         </div>
       </div>
 
       <!-- TIME SELECTOR -->
       <div id="time-selector" style="display:flex;gap:0.5rem;margin-bottom:1.5rem;align-items:center">
         <span style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-right:0.5rem">Duration</span>
-        <button class="lb-filter active" onclick="setDuration(15,this)">15s</button>
-        <button class="lb-filter" onclick="setDuration(30,this)">30s</button>
-        <button class="lb-filter" onclick="setDuration(60,this)">60s</button>
-        <button class="lb-filter" onclick="setDuration(120,this)">2min</button>
+        <button class="lb-filter" data-duration="15" onclick="setDuration(15,this)">15s</button>
+        <button class="lb-filter active" data-duration="30" onclick="setDuration(30,this)">30s</button>
+        <button class="lb-filter" data-duration="60" onclick="setDuration(60,this)">60s</button>
+        <button class="lb-filter" data-duration="120" onclick="setDuration(120,this)">2min</button>
       </div>
 
       <!-- STATS BAR -->
@@ -1404,7 +1521,7 @@
           <div class="stat-lbl">Accuracy %</div>
         </div>
         <div class="stat-item">
-          <div class="stat-val" id="timer-display">15</div>
+          <div class="stat-val" id="timer-display">30</div>
           <div class="stat-lbl">Seconds Left</div>
         </div>
         <div class="stat-item">
@@ -2201,8 +2318,8 @@
 // ============================================================
 const state = {
   currentMode: 'timed',
-  duration: 15,
-  timeLeft: 15,
+  duration: 30,
+  timeLeft: 30,
   timer: null,
   started: false,
   finished: false,
@@ -2260,12 +2377,47 @@ function generateText() {
 // RENDER TEXT
 // ============================================================
 let fullText = '';
+
+function escapeChar(ch) {
+  if (ch === ' ') return '&nbsp;';
+  if (ch === '&') return '&amp;';
+  if (ch === '<') return '&lt;';
+  if (ch === '>') return '&gt;';
+  return ch;
+}
+
+function textDisplays() {
+  return ['hero-text-display', 'text-display']
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+}
+
+function setText(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = value;
+}
+
+function typingPageActive() {
+  const home = document.getElementById('page-home');
+  const practice = document.getElementById('page-practice');
+  return !!((home && home.classList.contains('active')) || (practice && practice.classList.contains('active')));
+}
+
+function activeTypingInput() {
+  const home = document.getElementById('page-home');
+  if (home && home.classList.contains('active')) return document.getElementById('hero-typing-input');
+  return document.getElementById('typing-input');
+}
+
 function renderText() {
   fullText = generateText();
-  const display = document.getElementById('text-display');
-  display.innerHTML = fullText.split('').map((ch, i) =>
-    `<span class="char pending" data-i="${i}">${ch === ' ' ? '&nbsp;' : ch}</span>`
+  const html = fullText.split('').map((ch, i) =>
+    `<span class="char pending" data-i="${i}">${escapeChar(ch)}</span>`
   ).join('');
+  textDisplays().forEach(display => {
+    display.innerHTML = html;
+    display.scrollTop = 0;
+  });
 }
 
 // ============================================================
@@ -2282,14 +2434,30 @@ function initTest() {
   state.timeLeft = state.duration;
   renderText();
   updateCharHighlight();
-  document.getElementById('wpm-display').textContent = '0';
-  document.getElementById('acc-display').textContent = '100';
-  document.getElementById('timer-display').textContent = state.duration;
-  document.getElementById('errors-display').textContent = '0';
-  document.getElementById('typing-input').value = '';
-  document.getElementById('results-overlay').classList.remove('show');
-  document.getElementById('click-hint').style.display = 'block';
-  document.getElementById('click-hint').classList.remove('focused');
+  const timeLabel = state.currentMode === 'timed' ? state.duration : '—';
+  setText('wpm-display', '0');
+  setText('hero-live-wpm', '0');
+  setText('acc-display', '100');
+  setText('hero-live-acc', '100');
+  setText('timer-display', timeLabel);
+  setText('hero-live-time', timeLabel);
+  setText('errors-display', '0');
+  setText('hero-live-err', '0');
+  setText('hero-hint', 'Click the box (or just start typing) · Esc resets');
+  ['typing-input', 'hero-typing-input'].forEach(id => {
+    const input = document.getElementById(id);
+    if (input) input.value = '';
+  });
+  const wpmEl = document.getElementById('wpm-display');
+  if (wpmEl) wpmEl.className = 'stat-val';
+  const overlay = document.getElementById('results-overlay');
+  if (overlay) overlay.classList.remove('show');
+  const clickHint = document.getElementById('click-hint');
+  if (clickHint) {
+    clickHint.style.display = 'block';
+    clickHint.classList.remove('focused');
+    clickHint.textContent = 'Click here or press any key to start typing';
+  }
   const sbBtn = document.getElementById('lb-submit-btn');
   if (sbBtn) { sbBtn.disabled = false; sbBtn.textContent = 'Post Score to Leaderboard'; }
   const sbStatus = document.getElementById('lb-submit-status');
@@ -2304,92 +2472,139 @@ function restartTest() {
 // FOCUS
 // ============================================================
 function focusInput() {
-  const input = document.getElementById('typing-input');
-  input.focus();
-  document.getElementById('click-hint').classList.add('focused');
-  document.getElementById('click-hint').textContent = '— Typing mode active —';
+  const input = activeTypingInput();
+  if (input) input.focus({ preventScroll: true });
+  const clickHint = document.getElementById('click-hint');
+  if (clickHint && document.getElementById('page-practice')?.classList.contains('active')) {
+    clickHint.classList.add('focused');
+    clickHint.textContent = '— Typing mode active —';
+  }
 }
 
 // ============================================================
 // TYPING LOGIC
 // ============================================================
+let typedFromKey = false;
+
+function typingTargetBlocked(e) {
+  if (document.querySelector('.modal-overlay.show')) return true;
+  const t = e.target;
+  if (!t || !t.tagName) return false;
+  const tag = t.tagName;
+  if (tag === 'SELECT' || tag === 'TEXTAREA') return true;
+  if ((tag === 'BUTTON' || tag === 'A') && (e.key === ' ' || e.key === 'Enter')) return true;
+  if (tag === 'INPUT' && t.id !== 'typing-input' && t.id !== 'hero-typing-input') return true;
+  return false;
+}
+
 document.addEventListener('keydown', (e) => {
-  const page = document.getElementById('page-practice');
-  if (!page.classList.contains('active')) return;
+  if (!typingPageActive()) return;
+  if (typingTargetBlocked(e)) return;
+  if (e.key === 'Escape') {
+    e.preventDefault();
+    restartTest();
+    return;
+  }
   if (state.finished) return;
-  if (['Escape'].includes(e.key)) { restartTest(); return; }
+  if (e.metaKey || e.ctrlKey || e.altKey || e.isComposing) return;
+  if (e.key.length !== 1) return;
+  e.preventDefault();
+  typedFromKey = true;
   focusInput();
+  typeChar(e.key);
+  ['typing-input', 'hero-typing-input'].forEach(id => {
+    const input = document.getElementById(id);
+    if (input) input.value = '';
+  });
+  queueMicrotask(() => { typedFromKey = false; });
 });
 
-document.getElementById('typing-input').addEventListener('input', function(e) {
-  if (state.finished) return;
-  const input = this.value;
-  const ch = input[input.length - 1];
+function bindTypingInput(el) {
+  if (!el) return;
+  el.addEventListener('input', function() {
+    const ch = this.value.slice(-1);
+    this.value = '';
+    if (!typingPageActive()) return;
+    if (typedFromKey) return;
+    if (ch) typeChar(ch);
+  });
+}
+bindTypingInput(document.getElementById('typing-input'));
+bindTypingInput(document.getElementById('hero-typing-input'));
 
-  if (!state.started && input.length > 0) {
-    state.started = true;
-    state.startTime = Date.now();
-    startTimer();
-  }
-
-  // Process the latest character
+function typeChar(ch) {
+  if (state.finished || !ch) return;
   const idx = state.currentIndex;
   if (idx >= fullText.length) return;
 
-  const expected = fullText[idx];
-  const span = document.querySelector(`[data-i="${idx}"]`);
-
-  if (ch === expected) {
-    span.className = 'char correct';
-    state.correctTyped++;
-  } else if (ch !== undefined) {
-    span.className = 'char wrong';
-    state.errors++;
-    document.getElementById('errors-display').textContent = state.errors;
+  if (!state.started) {
+    state.started = true;
+    state.startTime = Date.now();
+    startTimer();
+    setText('hero-hint', 'Keep going · Esc resets');
+    const clickHint = document.getElementById('click-hint');
+    if (clickHint) {
+      clickHint.classList.add('focused');
+      clickHint.style.display = 'block';
+      clickHint.textContent = '— Typing mode active —';
+    }
   }
+
+  const expected = fullText[idx];
+  const cls = ch === expected ? 'correct' : 'wrong';
+  if (cls === 'correct') state.correctTyped++;
+  else {
+    state.errors++;
+    setText('errors-display', state.errors);
+    setText('hero-live-err', state.errors);
+  }
+  textDisplays().forEach(display => {
+    const span = display.querySelector(`[data-i="${idx}"]`);
+    if (span) span.className = 'char ' + cls;
+  });
 
   state.currentIndex++;
   state.totalTyped++;
-  this.value = '';
-
   updateCharHighlight();
   updateLiveStats();
 
-  if (state.currentMode === 'words' && state.currentIndex >= fullText.length) {
-    endTest();
-  }
-});
+  if (state.currentMode !== 'timed' && state.currentIndex >= fullText.length) endTest();
+}
 
 function updateCharHighlight() {
-  const spans = document.querySelectorAll('.char');
-  spans.forEach((s, i) => {
-    if (i === state.currentIndex && !state.finished) {
-      if (!s.classList.contains('wrong') && !s.classList.contains('correct')) {
-        s.classList.remove('pending');
-        s.classList.add('current');
-      }
-    } else if (i > state.currentIndex && s.classList.contains('current')) {
-      s.classList.remove('current');
-      s.classList.add('pending');
-    }
+  textDisplays().forEach(display => {
+    display.querySelectorAll('.char').forEach((s, i) => {
+      if (i < state.currentIndex) return;
+      if (i === state.currentIndex && !state.finished) s.className = 'char current';
+      else s.className = 'char pending';
+    });
   });
-  const cur = document.querySelector(`[data-i="${state.currentIndex}"]`);
-  if (cur && !cur.classList.contains('correct') && !cur.classList.contains('wrong')) {
-    cur.classList.add('current');
-    cur.classList.remove('pending');
+  const display = document.getElementById('hero-text-display');
+  const cur = display?.querySelector('.char.current');
+  if (!display || !cur) return;
+  const line = cur.offsetTop;
+  const viewBottom = display.scrollTop + display.clientHeight;
+  if (line + cur.offsetHeight > viewBottom - 4) {
+    display.scrollTop = line + cur.offsetHeight - display.clientHeight + 8;
+  } else if (line < display.scrollTop) {
+    display.scrollTop = line;
   }
 }
 
 function updateLiveStats() {
-  if (!state.started) return;
-  const elapsed = (Date.now() - state.startTime) / 1000 / 60;
-  const wpm = elapsed > 0 ? Math.round((state.correctTyped / 5) / elapsed) : 0;
+  if (!state.started || !state.startTime) return;
+  // Floor the first second so a few early keystrokes do not flash a four-digit WPM.
+  const elapsedMs = Math.max(Date.now() - state.startTime, 1000);
+  const minutes = elapsedMs / 60000;
+  const wpm = Math.round((state.correctTyped / 5) / minutes);
   const acc = state.totalTyped > 0 ? Math.round((state.correctTyped / state.totalTyped) * 100) : 100;
-  document.getElementById('wpm-display').textContent = wpm;
-  document.getElementById('acc-display').textContent = acc;
+  setText('wpm-display', wpm);
+  setText('hero-live-wpm', wpm);
+  setText('acc-display', acc);
+  setText('hero-live-acc', acc);
 
   const wpmEl = document.getElementById('wpm-display');
-  wpmEl.className = 'stat-val' + (wpm > 80 ? ' good' : wpm < 20 && state.started ? ' danger' : '');
+  if (wpmEl) wpmEl.className = 'stat-val' + (wpm > 80 ? ' good' : wpm < 20 && state.started ? ' danger' : '');
 }
 
 // ============================================================
@@ -2399,7 +2614,9 @@ function startTimer() {
   if (state.currentMode !== 'timed') return;
   state.timer = setInterval(() => {
     state.timeLeft--;
-    document.getElementById('timer-display').textContent = state.timeLeft;
+    setText('timer-display', state.timeLeft);
+    setText('hero-live-time', state.timeLeft);
+    updateLiveStats();
     if (state.timeLeft <= 0) endTest();
   }, 1000);
 }
@@ -2408,6 +2625,7 @@ function startTimer() {
 // END TEST
 // ============================================================
 function endTest() {
+  if (state.finished) return;
   clearInterval(state.timer);
   state.finished = true;
 
@@ -2419,18 +2637,21 @@ function endTest() {
   document.getElementById('r-acc').textContent = acc + '%';
   document.getElementById('r-errors').textContent = state.errors;
   document.getElementById('r-chars').textContent = state.correctTyped;
+  setText('wpm-display', wpm);
+  setText('hero-live-wpm', wpm);
+  setText('acc-display', acc);
+  setText('hero-live-acc', acc);
+  setText('hero-hint', 'Test complete — reset to try again');
 
   const pb = document.getElementById('r-personal-best');
   if (wpm > state.bestWpm) {
     state.bestWpm = wpm;
     localStorage.setItem('sumnuBest', wpm);
     pb.textContent = '★ New Personal Best!';
-    document.getElementById('hero-wpm').textContent = wpm;
-    document.getElementById('sidebar-best').textContent = wpm;
-    document.getElementById('p-best').textContent = wpm;
   } else {
     pb.textContent = '';
   }
+  refreshBestDisplays(state.bestWpm);
 
   document.getElementById('results-overlay').classList.add('show');
   playSound('complete');
@@ -2470,21 +2691,54 @@ function doSaveResult(wpm, acc) {
 // ============================================================
 // MODE & DURATION
 // ============================================================
+function syncModeControls() {
+  document.querySelectorAll('.hero-chip').forEach(chip => {
+    const mode = chip.dataset.mode;
+    const dur = chip.dataset.duration ? parseInt(chip.dataset.duration, 10) : null;
+    const on = mode === state.currentMode && (mode !== 'timed' || dur === state.duration);
+    chip.classList.toggle('active', on);
+    chip.setAttribute('aria-selected', on ? 'true' : 'false');
+  });
+  document.querySelectorAll('.mode-tab').forEach(tab => {
+    if (!tab.dataset.mode) return;
+    tab.classList.toggle('active', tab.dataset.mode === state.currentMode);
+  });
+  document.querySelectorAll('#time-selector .lb-filter').forEach(b => {
+    const d = parseInt(b.dataset.duration, 10);
+    b.classList.toggle('active', state.currentMode === 'timed' && d === state.duration);
+  });
+  const ts = document.getElementById('time-selector');
+  if (ts) ts.style.display = state.currentMode === 'timed' ? 'flex' : 'none';
+}
+
 function setMode(mode, btn) {
   state.currentMode = mode;
-  document.querySelectorAll('.mode-tab').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const ts = document.getElementById('time-selector');
-  ts.style.display = mode === 'timed' ? 'flex' : 'none';
+  syncModeControls();
   restartTest();
 }
 
 function setDuration(d, btn) {
+  state.currentMode = 'timed';
   state.duration = d;
-  document.querySelectorAll('#time-selector .lb-filter').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+  syncModeControls();
   restartTest();
 }
+
+document.getElementById('hero-modes')?.addEventListener('click', (e) => {
+  const btn = e.target.closest('.hero-chip');
+  if (!btn) return;
+  if (btn.dataset.mode === 'timed') setDuration(parseInt(btn.dataset.duration, 10), btn);
+  else setMode(btn.dataset.mode, btn);
+});
+document.getElementById('hero-reset')?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  restartTest();
+});
+document.getElementById('hero-rankings')?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  showPage('leaderboard');
+});
+document.getElementById('hero-arena')?.addEventListener('click', () => focusInput());
 
 // ============================================================
 // SUPABASE
@@ -2782,6 +3036,22 @@ async function submitToLeaderboard() {
 // ============================================================
 // PROFILE / HISTORY
 // ============================================================
+function refreshBestDisplays(value) {
+  const n = Number(value) || 0;
+  setText('sidebar-best', n > 0 ? String(n) : '--');
+  setText('p-best', n > 0 ? String(n) : '--');
+  const label = document.getElementById('hero-best-label');
+  const copy = document.getElementById('hero-best-copy');
+  if (!label) return;
+  if (n > 0) {
+    label.textContent = n + ' WPM personal best';
+    if (copy) copy.textContent = 'Saved on this browser. Finish another test to beat it.';
+  } else {
+    label.textContent = 'Take your first test';
+    if (copy) copy.textContent = 'Personal best shows here after you finish — no empty dashes.';
+  }
+}
+
 function updateProfileStats() {
   const h = state.history;
   if (!h.length) return;
@@ -2789,12 +3059,11 @@ function updateProfileStats() {
   const best = Math.max(...wpms);
   const avg = Math.round(wpms.reduce((a,b)=>a+b,0)/wpms.length);
   const avgAcc = Math.round(h.map(x=>x.acc).reduce((a,b)=>a+b,0)/h.length);
-  document.getElementById('p-best').textContent = best;
   document.getElementById('p-avg').textContent = avg;
   document.getElementById('p-tests').textContent = h.length;
   document.getElementById('p-acc').textContent = avgAcc + '%';
-  document.getElementById('hero-wpm').textContent = best;
-  document.getElementById('sidebar-best').textContent = best;
+  if (best > state.bestWpm) state.bestWpm = best;
+  refreshBestDisplays(Math.max(best, state.bestWpm || 0));
 }
 
 function renderHistoryTable() {
@@ -2898,10 +3167,23 @@ function showPage(name, btn) {
   if (btn) {
     btn.classList.add('active');
   } else {
+    const aliases = {
+      home: ['home'],
+      practice: ['practice'],
+      learn: ['learn'],
+      games: ['games'],
+      leaderboard: ['rankings', 'leaderboard'],
+      profile: ['profile', 'my profile']
+    };
+    const keys = aliases[name] || [name];
     document.querySelectorAll('nav button').forEach(b => {
-      if (b.textContent.toLowerCase().includes(name) ||
-          (name==='home' && b.textContent==='Home')) b.classList.add('active');
+      const label = b.textContent.toLowerCase().trim();
+      if (keys.some(k => label.includes(k))) b.classList.add('active');
     });
+  }
+  if (name !== 'home' && name !== 'practice') {
+    document.getElementById('hero-typing-input')?.blur();
+    document.getElementById('typing-input')?.blur();
   }
 
   if (name === 'leaderboard') renderLeaderboard('daily');
@@ -3012,8 +3294,7 @@ function importProgress(event) {
       if (data.bestWpm && data.bestWpm > state.bestWpm) {
         state.bestWpm = data.bestWpm;
         localStorage.setItem('sumnuBest', data.bestWpm);
-        document.getElementById('hero-wpm').textContent = data.bestWpm;
-        document.getElementById('sidebar-best').textContent = data.bestWpm;
+        refreshBestDisplays(data.bestWpm);
       }
 
       // Restore settings if present
@@ -3067,8 +3348,7 @@ function clearAllData() {
   updateProfileStats();
   renderHistoryTable();
   renderChart();
-  document.getElementById('hero-wpm').textContent = '--';
-  document.getElementById('sidebar-best').textContent = '--';
+  refreshBestDisplays(0);
   document.getElementById('import-status').style.display = 'none';
   showToast('All local data cleared.');
 }
@@ -3846,11 +4126,7 @@ function setGameDifficulty(diff) {
 // ============================================================
 window.addEventListener('load', () => {
   initTest();
-  if (state.bestWpm > 0) {
-    document.getElementById('hero-wpm').textContent = state.bestWpm;
-    document.getElementById('sidebar-best').textContent = state.bestWpm;
-    document.getElementById('p-best').textContent = state.bestWpm;
-  }
+  refreshBestDisplays(state.bestWpm);
   updateProfileStats();
   // Auth state is restored automatically by onAuthStateChange above
   // Restore sound setting
