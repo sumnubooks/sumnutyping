@@ -321,7 +321,6 @@
     font-size: clamp(1.05rem, 2.2vw, 1.35rem);
     line-height: 1.75;
     min-height: 7.5rem;
-    max-height: 7.5rem;
     overflow: hidden;
     user-select: none;
     word-break: break-word;
@@ -2320,6 +2319,7 @@ const state = {
   currentMode: 'timed',
   duration: 30,
   timeLeft: 30,
+  usingHeroPassage: true,
   timer: null,
   started: false,
   finished: false,
@@ -2357,7 +2357,26 @@ const codePhrases = [
 // ============================================================
 // GENERATE TEXT
 // ============================================================
+const HERO_PASSAGES = {
+  15: 'Focus on accuracy first and speed will follow as your fingers learn the map of the keyboard.',
+  30: 'The quickest path to higher WPM is deliberate practice. Keep your eyes on the screen, use all ten fingers, and let muscle memory do the heavy lifting over time.',
+  60: 'Professional typists treat the keyboard like an instrument. Short daily sessions beat weekend marathons. When accuracy dips below ninety five percent, slow down until every key lands clean, then raise the pace again.',
+  words: 'Practice turns awkward finger reaches into automatic motion so your thoughts reach the page without fighting the keys.',
+  code: 'const score = Math.round(correct / 5 / minutes); if (accuracy < 0.95) { slowDown(); }'
+};
+
+function homeIsActive() {
+  return !!document.getElementById('page-home')?.classList.contains('active');
+}
+
 function generateText() {
+  if (homeIsActive()) {
+    state.usingHeroPassage = true;
+    if (state.currentMode === 'code') return HERO_PASSAGES.code;
+    if (state.currentMode === 'words') return HERO_PASSAGES.words;
+    return HERO_PASSAGES[state.duration] || HERO_PASSAGES[30];
+  }
+  state.usingHeroPassage = false;
   if (state.currentMode === 'code') {
     return codePhrases[Math.floor(Math.random() * codePhrases.length)] + ' ' +
            codePhrases[Math.floor(Math.random() * codePhrases.length)];
@@ -2568,7 +2587,7 @@ function typeChar(ch) {
   updateCharHighlight();
   updateLiveStats();
 
-  if (state.currentMode !== 'timed' && state.currentIndex >= fullText.length) endTest();
+  if (state.currentIndex >= fullText.length && (state.currentMode !== 'timed' || state.usingHeroPassage)) endTest();
 }
 
 function updateCharHighlight() {
@@ -3184,6 +3203,8 @@ function showPage(name, btn) {
   if (name !== 'home' && name !== 'practice') {
     document.getElementById('hero-typing-input')?.blur();
     document.getElementById('typing-input')?.blur();
+  } else if (!state.started && !state.finished) {
+    restartTest();
   }
 
   if (name === 'leaderboard') renderLeaderboard('daily');
