@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /.netlify/
 
 Sitemap: https://sumnutyping.com/sitemap.xml

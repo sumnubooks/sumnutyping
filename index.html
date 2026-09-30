@@ -62,9 +62,10 @@
 }
 </script>
 
-<!-- ═══ FAVICON (inline SVG) ═══ -->
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%230A0A0F'/><text y='72' x='10' font-size='65' font-family='serif' fill='%23C9A84C'>S</text></svg>">
-<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%230A0A0F'/><text y='72' x='10' font-size='65' font-family='serif' fill='%23C9A84C'>S</text></svg>">
+<!-- ═══ FAVICON ═══ -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1133,6 +1134,45 @@
   :fullscreen { background: var(--bg); }
   :-webkit-full-screen { background: var(--bg); }
 
+
+  /* MOBILE READABILITY AND TAP TARGETS (390px audit, Sep 30 2026) */
+  @media (max-width: 768px) {
+    nav { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 0 0.9rem; }
+    nav::-webkit-scrollbar { display: none; }
+    nav button, nav a.nav-link { font-size: 16px; min-height: 44px; display: inline-flex; align-items: center; white-space: nowrap; flex: 0 0 auto; padding: 0 0.15rem; }
+    nav button.active::after { bottom: 6px; }
+    .logo { min-height: 44px; display: inline-flex; align-items: center; }
+    .btn-primary, .btn-ghost { font-size: 16px !important; min-height: 44px; }
+    .hero-chip, .mode-tab, .lb-filter, .game-diff-btn { font-size: 16px; min-height: 44px; }
+    .hero-chip { padding: 0 16px; }
+    #difficulty, select { font-size: 16px; min-height: 44px; }
+    .hero-eyebrow, .hero-sub, .hero-stat-l, .hero-hint, .hero-tile-tag, .hero-tile p, .feature-card p,
+    .section-label, .stat-lbl, .lb-cell, .lb-subtitle, .mini-lbl, .h-cell, .settings-label, .settings-desc,
+    .click-to-type, .diff-label, .profile-joined, .badge, .results-label, .r-label,
+    .footer-col h4, .footer-col a, .footer-brand p, .footer-bottom p, .footer-bottom a,
+    .modal p, .modal label, .form-group label, .toast,
+    .page [style*="font-size:0."], .page [style*="font-size: 0."], .page [style*="font-size:0.85rem"] > a, footer [style*="font-size:0."],
+    header [style*="font-size:0."], .modal [style*="font-size:0."] { font-size: 16px !important; }
+    .footer-col a, .footer-bottom a { display: flex; align-items: center; min-height: 44px; margin-bottom: 0; }
+    .page [style*="flex-wrap:wrap"] > a[href] { display: inline-flex; align-items: center; min-height: 44px; }
+    .page a[href*="buymeacoffee"] { min-height: 44px; }
+    nav button, nav a.nav-link { min-width: 44px; justify-content: center; }
+    header .header-right { flex-wrap: wrap; }
+    .practice-header { flex-wrap: wrap; gap: 1rem; }
+    #time-selector { flex-wrap: wrap; }
+    .mode-tabs { max-width: 100%; }
+    .mode-tab { flex: 1 1 auto; padding-left: 0.9rem; padding-right: 0.9rem; }
+    .footer-inner { gap: 1.5rem 1rem; }
+    .footer-inner > * { min-width: 0; }
+    .footer-col a { overflow-wrap: anywhere; }
+    .practice-main, .stats-bar, .typing-container { min-width: 0; max-width: 100%; }
+    .footer-bottom { flex-wrap: wrap; gap: 0.75rem 1.5rem; }
+    .footer-bottom > * { min-width: 0; max-width: 100%; }
+    .profile-grid { grid-template-columns: minmax(0, 1fr); }
+    .profile-grid > * { min-width: 0; }
+    #wpm-chart { max-width: 100%; }
+    .page { padding-top: calc(var(--hdr-h, 160px) + 12px); }
+  }
 </style>
 </head>
 <body>
@@ -1263,7 +1303,7 @@
   </div>
 
 
-  <!-- ═══ RICH CONTENT SECTION (for Google AdSense approval) ═══ -->
+  <!-- ═══ GUIDES AND TIPS SECTION ═══ -->
 
   <!-- AD BANNER -->
   <div class="ad-banner">
@@ -1415,7 +1455,7 @@
 
     <article style="margin-bottom:3rem">
       <h2 style="font-family:var(--font-display);font-size:1.5rem;color:var(--cream);margin-bottom:1rem">Guides</h2>
-      <p style="color:var(--muted);line-height:1.8;font-size:0.9rem;font-weight:400;margin-bottom:1rem">Longer reading has its own address, so you can open a topic without scrolling this page. The tools on this site are unchanged.</p>
+      <p style="color:var(--muted);line-height:1.8;font-size:0.9rem;font-weight:400;margin-bottom:1rem">Want more detail? Each topic below has a full guide.</p>
       <div style="display:flex;flex-wrap:wrap;gap:0.75rem 1.25rem;font-size:0.85rem">
         <a href="/about/" style="color:var(--gold)">About</a>
         <a href="/guides/" style="color:var(--gold)">All guides</a>
@@ -1716,7 +1756,7 @@
 
     <div style="font-family:var(--font-display);font-size:1.75rem;color:var(--cream);margin-bottom:0.25rem">Typing Games</div>
     <div style="color:var(--muted);font-size:0.875rem;font-weight:400;margin-bottom:0.75rem">Practice your speed the fun way</div>
-    <p style="color:var(--muted);line-height:1.7;font-size:0.85rem;font-weight:400;margin-bottom:0.75rem">Word Fall, Survival, and Type Racer train different habits. Easy, Medium, and Hard change the word list for Word Fall and Survival. Type Racer races a ghost of your own saved speed. The long version is one guide, not three thin posts.</p>
+    <p style="color:var(--muted);line-height:1.7;font-size:0.85rem;font-weight:400;margin-bottom:0.75rem">Word Fall, Survival, and Type Racer train different habits. Easy, Medium, and Hard change the word list for Word Fall and Survival. Type Racer races a ghost of your own saved speed. The games guide covers all three in more detail.</p>
     <div style="display:flex;flex-wrap:wrap;gap:0.6rem 1rem;font-size:0.82rem;margin-bottom:1.5rem">
       <a href="/guides/games/" style="color:var(--gold)">Games guide</a>
       <a href="/guides/practice/" style="color:var(--gold)">Practice modes</a>
@@ -2067,160 +2107,6 @@
   </div>
 </div>
 
-
-<!-- ===== PRIVACY POLICY PAGE ===== -->
-<div id="page-privacy" class="page">
-  <div style="max-width:800px;margin:0 auto;padding:3rem 2rem">
-    <div style="font-family:var(--font-display);font-size:2rem;color:var(--cream);margin-bottom:0.5rem">Privacy Policy</div>
-    <div style="font-size:0.8rem;color:var(--muted);margin-bottom:1rem;font-weight:400">Last updated: September 23, 2026</div>
-    <p style="color:var(--muted);line-height:1.7;font-size:0.85rem;font-weight:400;margin-bottom:2rem">The indexable copy of this policy is at <a href="/privacy/" style="color:var(--gold)">/privacy/</a>. This September 23, 2026 update does not add live ad units.</p>
-
-    <div style="display:flex;flex-direction:column;gap:2rem">
-
-      <section>
-        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">1. Introduction</h2>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">Welcome to SumnuTyping.com ("we", "our", or "us"). We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, and share information about you when you use our website at sumnutyping.com.</p>
-      </section>
-
-      <section>
-        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">2. Information We Collect</h2>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400;margin-bottom:0.75rem">We collect the following types of information:</p>
-        <ul style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400;padding-left:1.5rem">
-          <li style="margin-bottom:0.5rem"><strong style="color:var(--text)">Account Information:</strong> When you create an account, we collect your username, email address, and password (stored securely via Supabase authentication).</li>
-          <li style="margin-bottom:0.5rem"><strong style="color:var(--text)">Usage Data:</strong> We collect typing test results including words per minute (WPM), accuracy, errors, and test duration when you choose to save them.</li>
-          <li style="margin-bottom:0.5rem"><strong style="color:var(--text)">Local Storage Data:</strong> We store your typing history, settings preferences, and achievements locally in your browser using localStorage.</li>
-          <li style="margin-bottom:0.5rem"><strong style="color:var(--text)">Google Sign-In:</strong> If you sign in with Google, we receive your name and email address from Google. We do not receive your Google password.</li>
-          <li><strong style="color:var(--text)">Cookies and Tracking:</strong> We use cookies and similar technologies for authentication and to serve advertisements through Google AdSense.</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">3. How We Use Your Information</h2>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400;margin-bottom:0.75rem">We use the information we collect to:</p>
-        <ul style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400;padding-left:1.5rem">
-          <li style="margin-bottom:0.5rem">Provide, operate, and maintain our typing practice service</li>
-          <li style="margin-bottom:0.5rem">Display your scores on the global leaderboard (only if you choose to post them)</li>
-          <li style="margin-bottom:0.5rem">Track your typing progress and improvement over time</li>
-          <li style="margin-bottom:0.5rem">Send you account-related emails such as password resets</li>
-          <li>Display relevant advertisements through Google AdSense</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">4. Google AdSense and Advertising</h2>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400;margin-bottom:0.75rem">The site loads Google’s AdSense script and shows labeled advertisement placeholders. This September 23, 2026 update does not add live ad units. Because the script loads, Google may receive technical data under Google’s own policies. If live units are enabled later, this section will be updated first. The canonical wording is on the <a href="/privacy/" style="color:var(--gold)">privacy page</a>.</p>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" style="color:var(--gold)">Google Ad Settings</a>. You can also opt out by visiting <a href="https://www.aboutads.info" target="_blank" style="color:var(--gold)">aboutads.info</a>.</p>
-      </section>
-
-      <section>
-        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">5. Data Sharing</h2>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">We do not sell your personal information to third parties. We share data only with:</p>
-        <ul style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400;padding-left:1.5rem;margin-top:0.75rem">
-          <li style="margin-bottom:0.5rem"><strong style="color:var(--text)">Supabase:</strong> Our database provider that stores account information and leaderboard scores.</li>
-          <li style="margin-bottom:0.5rem"><strong style="color:var(--text)">Google:</strong> For authentication (Google Sign-In) and advertising (Google AdSense).</li>
-          <li><strong style="color:var(--text)">Netlify:</strong> Our hosting provider that serves the website.</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">6. Data Retention and Deletion</h2>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">Your account data is retained as long as your account is active. You may delete your local browser data at any time using the "Clear Data" option in your Profile settings. To request deletion of your account and associated data, contact us at sales@sumnubooks.com.</p>
-      </section>
-
-      <section>
-        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">7. Children's Privacy</h2>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">SumnuTyping is not directed to children under 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided us with personal information, please contact us and we will delete it promptly.</p>
-      </section>
-
-      <section>
-        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">8. Your Rights</h2>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">Depending on your location, you may have the right to access, correct, or delete your personal data. Users in the European Economic Area (EEA) have additional rights under GDPR. To exercise any of these rights, contact us at sales@sumnubooks.com.</p>
-      </section>
-
-      <section>
-        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">9. Changes to This Policy</h2>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">We may update this Privacy Policy from time to time. We will notify you of any changes by updating the date at the top of this page. Continued use of the site after changes constitutes acceptance of the updated policy.</p>
-      </section>
-
-      <section>
-        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">10. Contact Us</h2>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">If you have any questions about this Privacy Policy, please contact us at <a href="mailto:sales@sumnubooks.com" style="color:var(--gold)">sales@sumnubooks.com</a>.</p>
-      </section>
-
-    </div>
-  </div>
-</div>
-
-<!-- ===== TERMS OF SERVICE PAGE ===== -->
-<div id="page-terms" class="page">
-  <div style="max-width:800px;margin:0 auto;padding:3rem 2rem">
-    <div style="font-family:var(--font-display);font-size:2rem;color:var(--cream);margin-bottom:0.5rem">Terms of Service</div>
-    <div style="font-size:0.8rem;color:var(--muted);margin-bottom:1rem;font-weight:400">Last updated: September 23, 2026</div>
-    <p style="color:var(--muted);line-height:1.7;font-size:0.85rem;font-weight:400;margin-bottom:2rem">The indexable copy of these terms is at <a href="/terms/" style="color:var(--gold)">/terms/</a>.</p>
-
-    <div style="display:flex;flex-direction:column;gap:2rem">
-
-      <section>
-        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">1. Acceptance of Terms</h2>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">By accessing or using SumnuTyping.com, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the site.</p>
-      </section>
-
-      <section>
-        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">2. Description of Service</h2>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">SumnuTyping provides a free online typing practice platform including typing speed tests, typing games, touch typing lessons, and a global leaderboard. The service is provided free of charge and is supported by advertising revenue.</p>
-      </section>
-
-      <section>
-        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">3. User Accounts</h2>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400;margin-bottom:0.75rem">You may use SumnuTyping without creating an account. If you create an account, you are responsible for maintaining the security of your account and password. You agree to provide accurate information when creating your account.</p>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">You must be at least 13 years old to create an account. We reserve the right to terminate accounts that violate these terms.</p>
-      </section>
-
-      <section>
-        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">4. Acceptable Use</h2>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400;margin-bottom:0.75rem">You agree not to:</p>
-        <ul style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400;padding-left:1.5rem">
-          <li style="margin-bottom:0.5rem">Use automated tools or bots to artificially inflate typing scores on the leaderboard</li>
-          <li style="margin-bottom:0.5rem">Attempt to hack, disrupt, or damage the site or its infrastructure</li>
-          <li style="margin-bottom:0.5rem">Use the site for any unlawful purpose</li>
-          <li style="margin-bottom:0.5rem">Impersonate another person or create misleading usernames</li>
-          <li>Attempt to bypass or manipulate the advertising system</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">5. Leaderboard and User Content</h2>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">When you post a score to the leaderboard, your chosen username and score become publicly visible. We reserve the right to remove any scores or usernames that we deem inappropriate or that appear to be fraudulently obtained.</p>
-      </section>
-
-      <section>
-        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">6. Advertising</h2>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">The site loads Google’s AdSense script and shows labeled advertisement placeholders. This September 23, 2026 revision does not turn on live ad units. If live units are added later, the privacy policy will be updated first. We are not responsible for the content of third-party advertisements if they are shown. The canonical wording is on the <a href="/terms/" style="color:var(--gold)">terms page</a>.</p>
-      </section>
-
-      <section>
-        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">7. Disclaimer of Warranties</h2>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">SumnuTyping is provided "as is" without warranties of any kind. We do not guarantee that the site will be available at all times or that it will be error-free. We reserve the right to modify, suspend, or discontinue the service at any time.</p>
-      </section>
-
-      <section>
-        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">8. Limitation of Liability</h2>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">To the fullest extent permitted by law, SumnuTyping shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the site or inability to use the site.</p>
-      </section>
-
-      <section>
-        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">9. Changes to Terms</h2>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">We reserve the right to modify these Terms of Service at any time. Changes will be effective immediately upon posting. Continued use of the site after changes constitutes acceptance of the updated terms.</p>
-      </section>
-
-      <section>
-        <h2 style="font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">10. Contact</h2>
-        <p style="color:var(--muted);line-height:1.8;font-size:0.875rem;font-weight:400">For questions about these Terms of Service, contact us at <a href="mailto:sales@sumnubooks.com" style="color:var(--gold)">sales@sumnubooks.com</a>.</p>
-      </section>
-
-    </div>
-  </div>
-</div>
 
 <!-- SIGN IN MODAL -->
 <div class="modal-overlay" id="modal-signin">
@@ -4166,7 +4052,8 @@ function applyEntryFromQuery() {
   try {
     var params = new URLSearchParams(window.location.search);
     var page = params.get('page');
-    var pages = { home:1, practice:1, learn:1, games:1, leaderboard:1, profile:1, privacy:1, terms:1 };
+    if (page === 'privacy' || page === 'terms') { window.location.replace('/' + page + '/'); return; }
+    var pages = { home:1, practice:1, learn:1, games:1, leaderboard:1, profile:1 };
     if (!page || !pages[page]) return;
     showPage(page);
     if (page === 'practice') {
@@ -4201,6 +4088,10 @@ function applyEntryFromQuery() {
     }
   } catch (err) {}
 }
+</script>
+<script>
+// Keep page content clear of the fixed header when it wraps on small screens
+(function(){function setHeaderOffset(){var h=document.querySelector('header');if(h)document.documentElement.style.setProperty('--hdr-h',h.offsetHeight+'px');}setHeaderOffset();window.addEventListener('resize',setHeaderOffset);window.addEventListener('load',setHeaderOffset);})();
 </script>
 </body>
 </html>

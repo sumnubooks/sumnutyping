@@ -161,3 +161,19 @@ th, td {
   vertical-align: top;
 }
 th { color: var(--text3); font-weight: 600; }
+
+/* Mobile readability and tap targets (390px audit, Sep 30 2026) */
+@media (max-width: 768px) {
+  header.top { padding: 4px 16px; }
+  .brand { display: inline-flex; align-items: center; min-height: 44px; }
+  .top nav { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 0 18px; margin-top: 0; font-size: 16px; }
+  .top nav::-webkit-scrollbar { display: none; }
+  .top nav a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; white-space: nowrap; flex: 0 0 auto; }
+  footer, footer nav { font-size: 16px; }
+  footer nav { gap: 0 18px; }
+  footer nav a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; }
+  .crumbs, .meta, .card span, .btn, table { font-size: 16px; }
+  .crumbs a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; }
+  .btn { min-height: 44px; display: inline-flex; align-items: center; }
+  td a { display: inline-flex; align-items: center; min-height: 44px; }
+}
