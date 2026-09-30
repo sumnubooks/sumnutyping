@@ -389,25 +389,6 @@
     margin-bottom: 8px;
   }
 
-  /* AD BANNERS */
-  .ad-banner {
-    max-width: 1100px;
-    margin: 0 auto 2rem;
-    padding: 0 2rem;
-  }
-  .ad-slot {
-    background: var(--bg2);
-    border: 1px dashed var(--muted2);
-    padding: 1rem;
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-  .ad-slot-728 { height: 90px; display: flex; align-items: center; justify-content: center; }
-  .ad-slot-300 { height: 250px; display: flex; align-items: center; justify-content: center; }
-  .ad-label { font-size: 0.6rem; letter-spacing: 0.15em; color: var(--muted2); margin-bottom: 0.2rem; }
 
   /* FEATURES */
   .features {
@@ -1153,7 +1134,7 @@
     .modal p, .modal label, .form-group label, .toast,
     .page [style*="font-size:0."], .page [style*="font-size: 0."], .page [style*="font-size:0.85rem"] > a, footer [style*="font-size:0."],
     header [style*="font-size:0."], .modal [style*="font-size:0."] { font-size: 16px !important; }
-    .footer-col a, .footer-bottom a { display: flex; align-items: center; min-height: 44px; margin-bottom: 0; }
+    .footer-col a, .footer-bottom a { display: flex; align-items: center; min-height: 44px; min-width: 44px; margin-bottom: 0; }
     .page [style*="flex-wrap:wrap"] > a[href] { display: inline-flex; align-items: center; min-height: 44px; }
     .page a[href*="buymeacoffee"] { min-height: 44px; }
     nav button, nav a.nav-link { min-width: 44px; justify-content: center; }
@@ -1254,16 +1235,6 @@
     </div>
   </div>
 
-  <!-- AD BANNER -->
-  <div class="ad-banner">
-    <div class="ad-slot ad-slot-728">
-      <div>
-        <div class="ad-label">Advertisement</div>
-        <div>728 × 90 — Leaderboard Ad</div>
-      </div>
-    </div>
-  </div>
-
   <!-- FEATURES -->
   <div class="features fade-in">
     <div class="section-label">Why SumnuTyping</div>
@@ -1305,12 +1276,6 @@
 
   <!-- ═══ GUIDES AND TIPS SECTION ═══ -->
 
-  <!-- AD BANNER -->
-  <div class="ad-banner">
-    <div class="ad-slot ad-slot-728">
-      <div><div class="ad-label">Advertisement</div><div>728 × 90 — Leaderboard Ad</div></div>
-    </div>
-  </div>
 
   <div style="max-width:1100px;margin:0 auto;padding:0 2rem 4rem">
 
@@ -1359,10 +1324,6 @@
       </div>
     </article>
 
-    <!-- AD BANNER -->
-    <div class="ad-slot ad-slot-728" style="margin-bottom:3rem">
-      <div><div class="ad-label">Advertisement</div><div>728 × 90</div></div>
-    </div>
 
     <!-- WHAT IS WPM -->
     <article style="margin-bottom:4rem">
@@ -1634,14 +1595,8 @@
       </div>
     </div>
 
-    <!-- RIGHT SIDEBAR WITH ADS -->
+    <!-- RIGHT SIDEBAR -->
     <div style="display:flex;flex-direction:column;gap:1.5rem;padding-top:4rem">
-      <div class="ad-slot ad-slot-300">
-        <div>
-          <div class="ad-label">Advertisement</div>
-          <div>300 × 250</div>
-        </div>
-      </div>
       <div style="background:var(--bg2);border:1px solid var(--border);padding:1.5rem">
         <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem">Your Best Today</div>
         <div style="font-family:var(--font-display);font-size:2.5rem;color:var(--cream)" id="sidebar-best">--</div>
@@ -1649,12 +1604,6 @@
         <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border2)">
           <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem">Today's Rank</div>
           <div style="font-family:var(--font-mono);font-size:1.2rem;color:var(--gold)">#--</div>
-        </div>
-      </div>
-      <div class="ad-slot ad-slot-300">
-        <div>
-          <div class="ad-label">Advertisement</div>
-          <div>300 × 250</div>
         </div>
       </div>
     </div>
@@ -1679,10 +1628,6 @@
 <div id="page-learn" class="page">
   <div style="max-width:1000px;margin:0 auto;padding:2.5rem 2rem">
 
-    <!-- AD -->
-    <div class="ad-slot ad-slot-728" style="margin-bottom:2rem">
-      <div><div class="ad-label">Advertisement</div><div>728 × 90</div></div>
-    </div>
 
     <div style="font-family:var(--font-display);font-size:1.75rem;color:var(--cream);margin-bottom:0.25rem">Learn to Type</div>
     <div style="color:var(--muted);font-size:0.875rem;font-weight:400;margin-bottom:0.75rem">Master the keyboard from the ground up — finger by finger, row by row</div>
@@ -1749,10 +1694,6 @@
 <div id="page-games" class="page">
   <div style="max-width:1000px;margin:0 auto;padding:2.5rem 2rem">
 
-    <!-- AD -->
-    <div class="ad-slot ad-slot-728" style="margin-bottom:2rem">
-      <div><div class="ad-label">Advertisement</div><div>728 × 90</div></div>
-    </div>
 
     <div style="font-family:var(--font-display);font-size:1.75rem;color:var(--cream);margin-bottom:0.25rem">Typing Games</div>
     <div style="color:var(--muted);font-size:0.875rem;font-weight:400;margin-bottom:0.75rem">Practice your speed the fun way</div>
@@ -1921,10 +1862,6 @@
 
 <div id="page-leaderboard" class="page">
   <div class="leaderboard-wrap fade-in">
-    <!-- AD TOP -->
-    <div class="ad-slot ad-slot-728" style="margin-bottom:2rem">
-      <div><div class="ad-label">Advertisement</div><div>728 × 90 — Leaderboard Ad</div></div>
-    </div>
 
     <div class="lb-title">Global Rankings</div>
     <div class="lb-subtitle">The world's fastest typists, ranked by peak performance</div>
@@ -1952,10 +1889,6 @@
       <button class="btn-ghost" onclick="showModal('signup')">Create Account to Appear Here</button>
     </div>
 
-    <!-- AD BOTTOM -->
-    <div class="ad-slot ad-slot-728" style="margin-top:1rem">
-      <div><div class="ad-label">Advertisement</div><div>728 × 90 — Leaderboard Ad</div></div>
-    </div>
   </div>
 </div>
 
