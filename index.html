@@ -1129,7 +1129,7 @@
     #difficulty, select { font-size: 16px; min-height: 44px; }
     .hero-eyebrow, .hero-sub, .hero-stat-l, .hero-hint, .hero-tile-tag, .hero-tile p, .feature-card p,
     .section-label, .stat-lbl, .lb-cell, .lb-subtitle, .mini-lbl, .h-cell, .settings-label, .settings-desc,
-    .click-to-type, .diff-label, .profile-joined, .badge, .results-label, .r-label,
+    .click-to-type, .diff-label, .profile-joined, .badge, .results-label, .r-label, .lb-rank,
     .footer-col h4, .footer-col a, .footer-brand p, .footer-bottom p, .footer-bottom a,
     .modal p, .modal label, .form-group label, .toast,
     .page [style*="font-size:0."], .page [style*="font-size: 0."], .page [style*="font-size:0.85rem"] > a, footer [style*="font-size:0."],
@@ -1209,6 +1209,7 @@
       <input type="text" id="hero-typing-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Typing test input" />
       <div class="hero-arena-foot">
         <div class="hero-hint" id="hero-hint">Click the box (or just start typing) · Esc resets</div>
+        <div id="hero-save-status" role="status" aria-live="polite" style="display:none;font-size:16px;line-height:1.5;margin-top:0.5rem;font-weight:400"></div>
         <div class="hero-arena-actions">
           <button class="btn-ghost" type="button" id="hero-reset">Reset</button>
           <button class="btn-primary" type="button" id="hero-rankings">View Rankings</button>
@@ -1886,7 +1887,8 @@
     </div>
 
     <div style="text-align:center;padding:2rem 0">
-      <button class="btn-ghost" onclick="showModal('signup')">Create Account to Appear Here</button>
+      <button class="btn-ghost" id="lb-cta-guest" onclick="showModal('signup')">Create Account to Appear Here</button>
+      <p id="lb-cta-signed-in" style="display:none;color:var(--muted);font-weight:400;line-height:1.6">Signed in as <span id="lb-cta-name" style="color:var(--gold)"></span>. Every test you finish is posted here automatically.</p>
     </div>
 
   </div>
@@ -2056,6 +2058,7 @@
       <input type="password" id="signin-password" placeholder="••••••••" autocomplete="current-password">
     </div>
     <div id="signin-error" style="font-size:0.8rem;color:var(--red);margin-bottom:0.75rem;min-height:1rem"></div>
+    <button class="btn-ghost" id="signin-resend" style="display:none;width:100%;padding:0.6rem;margin-bottom:0.75rem" onclick="resendConfirmation(document.getElementById('signin-email').value.trim(), document.getElementById('signin-error'))">Resend confirmation email</button>
     <button class="btn-primary" style="width:100%;padding:0.75rem" id="signin-btn" onclick="doSignIn()">Sign In</button>
     <div style="display:flex;align-items:center;gap:0.75rem;margin:1.25rem 0">
       <div style="flex:1;height:1px;background:var(--border)"></div>
@@ -2108,8 +2111,11 @@
   <div class="modal" style="max-width:380px;text-align:center">
     <div style="font-size:2.5rem;margin-bottom:1rem">✉️</div>
     <h2 style="margin-bottom:0.5rem">Check your email</h2>
-    <p style="margin-bottom:1.5rem">We sent a confirmation link to <strong id="confirm-email-shown"></strong>. Click it to activate your account, then come back and sign in.</p>
-    <button class="btn-primary" style="width:100%;padding:0.75rem" onclick="closeModal('confirm')">Got it</button>
+    <p style="margin-bottom:1rem">One more step: we sent a confirmation link to <strong id="confirm-email-shown"></strong>. Your account works after you click it, and the link signs you in.</p>
+    <p style="margin-bottom:1.25rem;font-size:0.85rem">It comes from <strong>noreply@mail.app.supabase.io</strong> and usually arrives within a minute. If you don't see it, check your spam or promotions folder.</p>
+    <button class="btn-primary" style="width:100%;padding:0.75rem;margin-bottom:0.75rem" onclick="closeModal('confirm')">Got it</button>
+    <button class="btn-ghost" style="width:100%;padding:0.75rem" onclick="resendConfirmation(document.getElementById('confirm-email-shown').textContent, document.getElementById('confirm-resend-status'))">Resend the email</button>
+    <div id="confirm-resend-status" style="font-size:0.85rem;margin-top:0.6rem;min-height:1rem;color:var(--muted)"></div>
   </div>
 </div>
 
@@ -2300,6 +2306,8 @@ function initTest() {
   if (sbBtn) { sbBtn.disabled = false; sbBtn.textContent = 'Post Score to Leaderboard'; }
   const sbStatus = document.getElementById('lb-submit-status');
   if (sbStatus) sbStatus.textContent = '';
+  const heroSave = document.getElementById('hero-save-status');
+  if (heroSave) { heroSave.textContent = ''; heroSave.style.display = 'none'; }
 }
 
 function restartTest() {
@@ -2494,6 +2502,11 @@ function endTest() {
   document.getElementById('results-overlay').classList.add('show');
   playSound('complete');
 
+  // Signed-in typists: post the score to Global Rankings without an extra tap
+  state.testId = Date.now();
+  setScoreStatus('', 'var(--muted)');
+  submitToLeaderboard(true);
+
   // Auto-save if enabled
   if (document.getElementById('set-autosave')?.checked) {
     doSaveResult(wpm, acc);
@@ -2583,7 +2596,22 @@ document.getElementById('hero-arena')?.addEventListener('click', () => focusInpu
 // ============================================================
 const SUPABASE_URL = 'https://etzpivuheowkdtmgubxm.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_T5vqGLaPEszxb5e4V5bB4w_7TXNT-Tn';
-const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+// What the auth redirect (email confirmation or Google) put in the URL, read before the client clears it
+const AUTH_REDIRECT = (function () {
+  try {
+    const h = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+    const q = new URLSearchParams(window.location.search);
+    return {
+      type: h.get('type') || '',
+      hasToken: h.has('access_token') || q.has('code'),
+      error: h.get('error_description') || q.get('error_description') || ''
+    };
+  } catch (e) { return { type: '', hasToken: false, error: '' }; }
+})();
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+  auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
+});
+const AUTH_REDIRECT_URL = window.location.origin + '/';
 
 // ============================================================
 // LEADERBOARD
@@ -2610,7 +2638,7 @@ async function renderLeaderboard(filter) {
   table.innerHTML = header + `<div style="text-align:center;padding:2rem;color:var(--muted);font-size:0.85rem;font-weight:400">Loading scores…</div>`;
 
   try {
-    let query = sb.from('scores').select('*').order('wpm', { ascending: false }).limit(50);
+    let query = sb.from('scores').select('*').neq('mode', 'probe').order('wpm', { ascending: false }).limit(50);
 
     const dateFrom = getDateFilter(filter);
     if (dateFrom) query = query.gte('created_at', dateFrom);
@@ -2620,7 +2648,7 @@ async function renderLeaderboard(filter) {
     const { data, error } = await query;
     if (error) throw error;
 
-    const myUsername = localStorage.getItem('sumnuUsername') || '';
+    const myUsername = currentUser ? displayName(currentUser) : '';
 
     // Deduplicate: keep only best score per username
     const best = {};
@@ -2651,7 +2679,7 @@ async function renderLeaderboard(filter) {
     }
     table.innerHTML = rows;
   } catch (err) {
-    table.innerHTML = header + `<div style="text-align:center;padding:2rem;color:var(--red);font-size:0.85rem;font-weight:400">Could not load scores. Check your connection.</div>`;
+    table.innerHTML = header + `<div style="text-align:center;padding:2rem;color:var(--red);font-size:0.85rem;font-weight:400">Could not load scores: ${escHtml(err && err.message ? err.message : 'network error')}</div>`;
     console.error(err);
   }
 }
@@ -2671,9 +2699,17 @@ function setLbFilter(filter, btn) {
 // ============================================================
 let currentUser = null;
 
+// One name used everywhere (header, profile, leaderboard rows) for email and Google accounts alike
+function displayName(user) {
+  if (!user) return '';
+  const m = user.user_metadata || {};
+  const raw = m.username || (m.full_name || '').split(' ')[0] || (m.name || '').split(' ')[0] || (user.email || '').split('@')[0] || 'typist';
+  return String(raw).trim().slice(0, 20) || 'typist';
+}
+
 function updateAuthUI(user) {
   currentUser = user;
-  const username = user?.user_metadata?.username || user?.user_metadata?.full_name?.split(' ')[0] || user?.user_metadata?.name?.split(' ')[0] || user?.email?.split('@')[0] || '';
+  const username = displayName(user);
 
   // Header
   const signinBtn = document.getElementById('hdr-signin');
@@ -2723,12 +2759,56 @@ function updateAuthUI(user) {
     if (signedInArea) signedInArea.style.display = 'none';
     if (guestArea)    guestArea.style.display = 'block';
   }
+
+  // Rankings call to action: only for guests
+  const lbGuest = document.getElementById('lb-cta-guest');
+  const lbSigned = document.getElementById('lb-cta-signed-in');
+  const lbName = document.getElementById('lb-cta-name');
+  if (lbGuest)  lbGuest.style.display = user ? 'none' : '';
+  if (lbSigned) lbSigned.style.display = user ? '' : 'none';
+  if (lbName)   lbName.textContent = username;
 }
 
-// Listen for auth state changes (login, logout, session restore)
-sb.auth.onAuthStateChange((_event, session) => {
+// Listen for auth state changes (login, logout, session restore after a redirect)
+sb.auth.onAuthStateChange((event, session) => {
   updateAuthUI(session?.user || null);
+  if (event === 'SIGNED_IN' && AUTH_REDIRECT.hasToken) {
+    AUTH_REDIRECT.hasToken = false;
+    if (window.location.href.endsWith('#')) history.replaceState(null, '', window.location.pathname + window.location.search);
+    showToast(AUTH_REDIRECT.type === 'signup' ? 'Email confirmed. You are signed in.' : 'You are signed in as ' + displayName(session.user) + '.');
+  }
+  if (document.getElementById('page-leaderboard')?.classList.contains('active')) renderLeaderboard(currentLbFilter);
 });
+if (AUTH_REDIRECT.error) {
+  setTimeout(() => showToast('Sign-in link problem: ' + AUTH_REDIRECT.error.replace(/\+/g, ' ')), 600);
+}
+
+// Resolve the stored session before anything that needs it (saving a score)
+async function getSignedInUser() {
+  try {
+    const { data } = await sb.auth.getSession();
+    const user = data?.session?.user || null;
+    if (user && (!currentUser || currentUser.id !== user.id)) updateAuthUI(user);
+    return user;
+  } catch (e) { return currentUser; }
+}
+
+function friendlyAuthError(error) {
+  const msg = (error && error.message) || 'Something went wrong.';
+  if (/rate limit/i.test(msg)) return 'Too many emails have been sent from this site in the last hour. Please try again later.';
+  if (/not confirmed/i.test(msg)) return 'Your email is not confirmed yet. Use the link we emailed you, or resend it below.';
+  if (/invalid login credentials/i.test(msg)) return 'Email or password is incorrect. If you signed up with Google, use Continue with Google.';
+  return msg;
+}
+
+async function resendConfirmation(email, statusEl) {
+  if (!email) return;
+  if (statusEl) { statusEl.style.color = 'var(--muted)'; statusEl.textContent = 'Sending…'; }
+  const { error } = await sb.auth.resend({ type: 'signup', email, options: { emailRedirectTo: AUTH_REDIRECT_URL } });
+  if (!statusEl) return;
+  if (error) { statusEl.style.color = 'var(--red)'; statusEl.textContent = friendlyAuthError(error); }
+  else { statusEl.style.color = 'var(--green)'; statusEl.textContent = 'Sent again to ' + email + '.'; }
+}
 
 // ============================================================
 // SIGN UP
@@ -2748,22 +2828,36 @@ async function doSignUp() {
   btn.disabled = true;
   btn.textContent = 'Creating account…';
 
-  const { error } = await sb.auth.signUp({
-    email,
-    password,
-    options: { data: { username } }
-  });
+  let data = null, error = null;
+  try {
+    ({ data, error } = await sb.auth.signUp({
+      email,
+      password,
+      options: { data: { username }, emailRedirectTo: AUTH_REDIRECT_URL }
+    }));
+  } catch (e) { error = e; }
 
   btn.disabled = false;
   btn.textContent = 'Create Account';
 
   if (error) {
-    errEl.textContent = error.message;
-  } else {
-    closeModal('signup');
-    document.getElementById('confirm-email-shown').textContent = email;
-    showModal('confirm');
+    errEl.textContent = friendlyAuthError(error);
+    return;
   }
+  // Supabase answers "success" without sending anything when the address is already registered
+  if (data?.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) {
+    errEl.textContent = 'An account with this email already exists. Sign in instead, or use Continue with Google if that is how you joined.';
+    return;
+  }
+  closeModal('signup');
+  if (data?.session) {
+    showToast('Account created. You are signed in.');
+    return;
+  }
+  document.getElementById('confirm-email-shown').textContent = email;
+  const rs = document.getElementById('confirm-resend-status');
+  if (rs) rs.textContent = '';
+  showModal('confirm');
 }
 
 // ============================================================
@@ -2787,8 +2881,11 @@ async function doSignIn() {
   btn.disabled = false;
   btn.textContent = 'Sign In';
 
+  const resendBtn = document.getElementById('signin-resend');
+  if (resendBtn) resendBtn.style.display = 'none';
   if (error) {
-    errEl.textContent = error.message;
+    errEl.textContent = friendlyAuthError(error);
+    if (/not confirmed/i.test(error.message || '') && resendBtn) resendBtn.style.display = '';
   } else {
     closeModal('signin');
     showToast('Welcome back! You are signed in.');
@@ -2810,11 +2907,11 @@ async function doGoogleSignIn() {
   const { error } = await sb.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: 'https://sumnutyping.com'
+      redirectTo: AUTH_REDIRECT_URL
     }
   });
   if (error) {
-    showToast('Google sign-in failed. Please try again.');
+    showToast('Google sign-in failed: ' + (error.message || 'please try again.'));
     console.error(error);
   }
 }
@@ -2822,52 +2919,53 @@ async function doGoogleSignIn() {
 // ============================================================
 // SUBMIT SCORE TO LEADERBOARD
 // ============================================================
-async function submitToLeaderboard() {
-  if (!currentUser) {
-    showModal('signin');
-    return;
-  }
+const MAX_PLAUSIBLE_WPM = 250;
+let lastPostedTestId = null;
 
+function setScoreStatus(text, color) {
   const statusEl = document.getElementById('lb-submit-status');
-  const btn      = document.getElementById('lb-submit-btn');
-  const wpm = parseInt(document.getElementById('r-wpm').textContent);
-  const acc = parseInt(document.getElementById('r-acc').textContent);
+  if (statusEl) { statusEl.style.color = color; statusEl.textContent = text; }
+  const heroEl = document.getElementById('hero-save-status');
+  if (heroEl) { heroEl.style.color = color; heroEl.textContent = text; heroEl.style.display = text ? 'block' : 'none'; }
+}
 
-  if (!wpm || wpm < 1) {
-    statusEl.style.color = 'var(--red)';
-    statusEl.textContent = 'No valid score to submit.';
+// Called automatically when a test ends, and by the "Post Score" button as a retry
+async function submitToLeaderboard(auto) {
+  const btn = document.getElementById('lb-submit-btn');
+  const user = await getSignedInUser();
+  if (!user) {
+    if (!auto) showModal('signin');
     return;
   }
+  const testId = state.testId;
+  if (testId && testId === lastPostedTestId) return;
 
-  btn.disabled = true;
-  btn.textContent = 'Posting…';
-  statusEl.style.color = 'var(--muted)';
-  statusEl.textContent = 'Submitting…';
+  const wpm = parseInt(document.getElementById('r-wpm').textContent, 10);
+  const acc = parseInt(document.getElementById('r-acc').textContent, 10);
+  if (!wpm || wpm < 1) { setScoreStatus('No valid score to post.', 'var(--red)'); return; }
+  if (wpm > MAX_PLAUSIBLE_WPM) { setScoreStatus('Not posted: ' + wpm + ' WPM is above the ' + MAX_PLAUSIBLE_WPM + ' WPM limit.', 'var(--red)'); return; }
 
-  const username = currentUser.user_metadata?.username || currentUser.email.split('@')[0];
+  if (btn) { btn.disabled = true; btn.textContent = 'Posting…'; }
+  setScoreStatus('Saving your score…', 'var(--muted)');
 
   try {
     const { error } = await sb.from('scores').insert({
-      username,
-      user_id: currentUser.id,
+      username: displayName(user),
+      user_id: user.id,
       wpm,
-      accuracy: acc,
+      accuracy: isNaN(acc) ? 0 : acc,
       errors: state.errors,
       mode: state.currentMode + (state.currentMode === 'timed' ? ' ' + state.duration + 's' : ''),
       difficulty: document.getElementById('difficulty')?.value || 'medium'
     });
     if (error) throw error;
-
-    statusEl.style.color = 'var(--green)';
-    statusEl.textContent = '✓ Score posted to leaderboard!';
-    btn.textContent = 'Posted ✓';
-    showToast('Score posted! Check the Rankings page.');
+    lastPostedTestId = testId;
+    setScoreStatus('✓ Saved to Global Rankings as ' + displayName(user) + '.', 'var(--green)');
+    if (btn) btn.textContent = 'Posted ✓';
   } catch (err) {
-    statusEl.style.color = 'var(--red)';
-    statusEl.textContent = '✗ Failed to post. Try again.';
-    btn.disabled = false;
-    btn.textContent = 'Post Score to Leaderboard';
-    console.error(err);
+    console.error('Score save failed', err);
+    setScoreStatus('✗ Score not saved: ' + ((err && err.message) || 'network error') + '. Tap Post Score to retry.', 'var(--red)');
+    if (btn) { btn.disabled = false; btn.textContent = 'Post Score to Leaderboard'; }
   }
 }
 
