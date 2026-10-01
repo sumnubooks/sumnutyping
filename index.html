@@ -1172,6 +1172,88 @@
     #wpm-chart { max-width: 100%; }
     .page { padding-top: calc(var(--hdr-h, 160px) + 12px); }
   }
+  /* ===== 10-KEY ===== */
+  .tk-wrap { max-width: 1100px; margin: 0 auto; padding: 2.5rem 2rem 3rem; }
+  .tk-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .tk-title { font-family: var(--font-display); font-size: 1.75rem; font-weight: 400; color: var(--cream); margin-bottom: 0.25rem; }
+  .tk-sub { color: var(--muted); font-size: 0.95rem; font-weight: 400; line-height: 1.6; max-width: 60ch; }
+  .tk-phone-note { display: none; background: var(--bg3); border: 1px solid var(--gold); color: var(--text); padding: 1rem 1.1rem; line-height: 1.6; margin-bottom: 1.25rem; font-weight: 400; }
+  .tk-phone-note a { color: var(--gold); }
+  .tk-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-bottom: 1.25rem; }
+  .tk-controls .diff-label { margin-right: 0.25rem; }
+  .tk-restart { margin-left: auto; }
+  .tk-main { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 1.5rem; align-items: start; }
+  .tk-box { background: var(--bg2); border: 1px solid var(--border); padding: 1.5rem; outline: none; cursor: text; min-width: 0; }
+  .tk-box:focus, .tk-box.tk-active { border-color: var(--gold); }
+  .tk-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; margin-bottom: 1.25rem; }
+  .tk-stat { background: var(--bg3); border: 1px solid var(--border2); padding: 0.75rem; text-align: center; }
+  .tk-stat-v { font-family: var(--font-mono); font-size: 1.5rem; color: var(--gold); }
+  .tk-stat-l { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 0.2rem; }
+  .tk-sheet { font-family: var(--font-mono); font-size: 1.35rem; border: 1px solid var(--border2); background: var(--bg); }
+  .tk-row { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr) minmax(0, 1fr) 2rem; align-items: center; gap: 0.5rem; padding: 0.45rem 0.9rem; border-bottom: 1px solid var(--border2); min-height: 2.6rem; }
+  .tk-row:last-child { border-bottom: none; }
+  .tk-row .tk-n { color: var(--muted2); font-size: 0.85rem; }
+  .tk-row .tk-target { text-align: right; color: var(--muted); }
+  .tk-row .tk-typed { text-align: right; color: var(--text); white-space: nowrap; overflow: hidden; }
+  .tk-row .tk-mark { text-align: center; font-size: 1rem; }
+  .tk-row.done .tk-target { color: var(--muted2); }
+  .tk-row.ok .tk-mark { color: var(--green); }
+  .tk-row.bad .tk-mark, .tk-row.bad .tk-typed { color: var(--red); }
+  .tk-row.cur { background: rgba(201,168,76,0.08); }
+  .tk-row.cur .tk-target { color: var(--cream); }
+  .tk-row.cur .tk-typed::after { content: ''; display: inline-block; width: 2px; height: 1.1em; background: var(--gold); margin-left: 2px; vertical-align: -0.15em; animation: tkBlink 1s steps(1) infinite; }
+  .tk-row.cur.wrong .tk-typed { color: var(--red); }
+  .tk-row.next .tk-target { color: var(--muted2); }
+  @keyframes tkBlink { 50% { opacity: 0; } }
+  .tk-hint { color: var(--muted); font-size: 0.85rem; font-weight: 400; margin-top: 1rem; line-height: 1.6; }
+  .tk-warn { margin-top: 0.75rem; border-left: 3px solid var(--gold); background: var(--bg3); padding: 0.6rem 0.8rem; color: var(--text); font-size: 0.85rem; line-height: 1.55; font-weight: 400; }
+  .tk-side { background: var(--bg2); border: 1px solid var(--border); padding: 1.25rem; }
+  .tk-pad { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(5, 48px); gap: 6px; }
+  .tk-key { display: flex; align-items: center; justify-content: center; position: relative; background: var(--bg3); border: 1px solid var(--border); font-family: var(--font-mono); font-size: 1.05rem; color: var(--muted); transition: background 0.1s, color 0.1s, border-color 0.1s; }
+  .tk-key.dim { opacity: 0.45; font-size: 0.8rem; }
+  .tk-key.k0 { grid-column: span 2; }
+  .tk-key.kenter { grid-row: span 2; font-size: 0.75rem; letter-spacing: 0.08em; }
+  .tk-key.kplus { grid-row: span 2; }
+  .tk-key.k5::after { content: ''; position: absolute; bottom: 8px; width: 12px; height: 2px; background: var(--muted); }
+  .tk-key.expect { background: var(--gold); color: #0A0A0F; border-color: var(--gold); }
+  .tk-key.pressed { border-color: var(--cream); color: var(--cream); }
+  .tk-key.expect.pressed { color: #0A0A0F; }
+  .tk-pad-cap { color: var(--muted); font-size: 0.8rem; line-height: 1.55; margin: 1rem 0 0.75rem; font-weight: 400; }
+  .tk-learn-link { color: var(--gold); font-size: 0.85rem; display: inline-flex; align-items: center; min-height: 44px; }
+  .tk-results { background: var(--bg2); border: 1px solid var(--gold); padding: 1.75rem; margin-top: 1.5rem; }
+  .tk-results-title { font-family: var(--font-display); font-size: 1.4rem; color: var(--cream); margin-bottom: 1rem; }
+  .tk-results-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; }
+  .tk-r { background: var(--bg3); border: 1px solid var(--border2); padding: 0.9rem; text-align: center; }
+  .tk-r-v { font-family: var(--font-mono); font-size: 1.5rem; color: var(--cream); }
+  .tk-r-main .tk-r-v { color: var(--gold); font-size: 2rem; }
+  .tk-r-l { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 0.25rem; }
+  .tk-formula { margin-top: 1.25rem; background: var(--bg); border: 1px solid var(--border2); padding: 1rem 1.1rem; color: var(--muted); font-size: 0.85rem; line-height: 1.7; font-weight: 400; }
+  .tk-formula code { font-family: var(--font-mono); color: var(--text); }
+  .tk-formula strong { color: var(--cream); font-weight: 500; }
+  .tk-save { margin-top: 1rem; min-height: 1.2rem; font-size: 0.9rem; font-weight: 400; }
+  .tk-results-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
+  .lb-boards { display: flex; flex-wrap: wrap; gap: 0; margin-bottom: 1rem; }
+  .lb-row .lb-test { white-space: nowrap; }
+  @media (max-width: 768px), (pointer: coarse) {
+    .tk-phone-note { display: block; }
+  }
+  @media (max-width: 860px) {
+    .tk-main { grid-template-columns: minmax(0, 1fr); }
+    .tk-side { max-width: 360px; }
+  }
+  @media (max-width: 768px) {
+    .tk-wrap { padding: 1.5rem 1rem 2.5rem; }
+    .tk-sub, .tk-phone-note, .tk-hint, .tk-warn, .tk-pad-cap, .tk-learn-link, .tk-formula, .tk-save, .tk-stat-l, .tk-r-l, .tk-row .tk-n { font-size: 16px !important; }
+    .tk-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tk-results-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tk-sheet { font-size: 1.1rem; }
+    .tk-row { grid-template-columns: 2rem minmax(0, 1fr) minmax(0, 1fr) 1.5rem; padding: 0.45rem 0.6rem; }
+    .tk-key.dim, .tk-key.kenter { font-size: 16px; }
+    .tk-key.kenter { letter-spacing: 0; }
+    .tk-restart { margin-left: 0; }
+    .tk-box, .tk-side, .tk-results { padding: 1rem; }
+    .lb-table.lb-tenkey .lb-row { grid-template-columns: 36px minmax(0, 1fr) 74px 58px; }
+  }
 </style>
 </head>
 <body>
@@ -1184,6 +1266,7 @@
     <button onclick="showPage('practice', this)">Practice</button>
     <button onclick="showPage('learn', this)">Learn</button>
     <button onclick="showPage('games', this)">Games</button>
+    <button onclick="showPage('tenkey', this)">10-Key</button>
     <button onclick="showPage('leaderboard', this)">Rankings</button>
     <button onclick="showPage('profile', this)">My Profile</button>
     <a class="nav-link" href="/guides/">Guides</a>
@@ -1443,6 +1526,7 @@
         <a href="/guides/learn/" style="color:var(--gold)">Learn hub</a>
         <a href="/guides/games/" style="color:var(--gold)">Games</a>
         <a href="/guides/what-is-wpm/" style="color:var(--gold)">What is WPM</a>
+        <a href="/10-key/" style="color:var(--gold)">10-key test guide</a>
         <a href="/changelog/" style="color:var(--gold)">Updates</a>
         <a href="/privacy/" style="color:var(--gold)">Privacy</a>
         <a href="/terms/" style="color:var(--gold)">Terms</a>
@@ -1465,6 +1549,7 @@
         <a onclick="showPage('learn')" style="cursor:pointer">Lessons</a>
         <a href="/guides/practice/">Practice guide</a>
         <a href="/guides/learn/">Learn hub</a>
+        <a href="/10-key/">10-key guide</a>
       </div>
       <div class="footer-col">
         <h4>Games</h4>
@@ -1625,6 +1710,12 @@
           <div style="font-family:var(--font-mono);font-size:1.2rem;color:var(--gold)">#--</div>
         </div>
       </div>
+      <div style="background:var(--bg2);border:1px solid var(--border);padding:1.5rem">
+        <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem">New: 10-Key</div>
+        <p style="color:var(--muted);font-size:0.85rem;line-height:1.6;font-weight:400;margin-bottom:1rem">Number-pad speed in keystrokes per hour, the way data entry jobs test it.</p>
+        <button class="btn-ghost" style="width:100%" onclick="showPage('tenkey')">Take the 10-key test</button>
+        <a class="tk-learn-link" href="/10-key/" style="margin-top:0.5rem">What is 10-key?</a>
+      </div>
     </div>
   </div>
   <section style="max-width:1100px;margin:0 auto;padding:0 2rem 3rem">
@@ -1637,8 +1728,82 @@
       <a href="/guides/what-is-wpm/" style="color:var(--gold)">What is WPM</a>
       <a href="/guides/learn/" style="color:var(--gold)">Lessons</a>
       <a href="/guides/games/" style="color:var(--gold)">Games</a>
+      <a href="/?page=tenkey" style="color:var(--gold)">10-key test</a>
+      <a href="/10-key/" style="color:var(--gold)">10-key guide</a>
     </div>
   </section>
+</div>
+
+<!-- ===== 10-KEY PAGE ===== -->
+<div id="page-tenkey" class="page">
+  <div class="tk-wrap">
+    <div class="tk-head">
+      <div>
+        <h1 class="tk-title">10-Key Test</h1>
+        <p class="tk-sub">Number-pad speed in keystrokes per hour (KPH), the measure used for data entry and accounting jobs.</p>
+      </div>
+      <div class="mode-tabs" role="tablist" aria-label="10-key mode">
+        <button class="mode-tab active" id="tk-tab-test" role="tab" aria-selected="true" onclick="tkSetView('test')">Test</button>
+        <button class="mode-tab" id="tk-tab-drills" role="tab" aria-selected="false" onclick="tkSetView('drills')">Drills</button>
+      </div>
+    </div>
+
+    <p class="tk-phone-note" id="tk-phone-note">This test needs a computer keyboard with a number pad, so it won't work on a phone or tablet screen. You can still read <a href="/10-key/">how 10-key works</a> or check the <a href="/?page=leaderboard&amp;board=tenkey">10-key rankings</a>.</p>
+
+    <div class="tk-controls" id="tk-test-controls">
+      <span class="diff-label">Duration</span>
+      <button class="lb-filter tk-dur" data-min="1" onclick="tkSetDuration(1, this)">1 min</button>
+      <button class="lb-filter tk-dur active" data-min="3" onclick="tkSetDuration(3, this)">3 min</button>
+      <button class="lb-filter tk-dur" data-min="5" onclick="tkSetDuration(5, this)">5 min</button>
+      <button class="btn-ghost tk-restart" onclick="tkReset()">↺ Restart</button>
+    </div>
+    <div class="tk-controls" id="tk-drill-controls" style="display:none">
+      <span class="diff-label">Drill</span>
+      <button class="lb-filter tk-drill active" data-drill="home" onclick="tkSetDrill('home', this)">Home row 4-5-6</button>
+      <button class="lb-filter tk-drill" data-drill="full" onclick="tkSetDrill('full', this)">Full pad</button>
+      <button class="lb-filter tk-drill" data-drill="decimal" onclick="tkSetDrill('decimal', this)">Decimals + Enter</button>
+      <button class="lb-filter tk-drill" data-drill="mixed" onclick="tkSetDrill('mixed', this)">Mixed amounts</button>
+      <button class="btn-ghost tk-restart" onclick="tkReset()">↺ New set</button>
+    </div>
+
+    <div class="tk-main">
+      <div class="tk-box" id="tk-box" tabindex="0" onclick="tkFocus()" aria-label="10-key entry area. Type the highlighted number on your number pad and press Enter.">
+        <div class="tk-stats">
+          <div class="tk-stat"><div class="tk-stat-v" id="tk-time">3:00</div><div class="tk-stat-l" id="tk-time-l">Time left</div></div>
+          <div class="tk-stat"><div class="tk-stat-v" id="tk-net">0</div><div class="tk-stat-l">Net KPH</div></div>
+          <div class="tk-stat"><div class="tk-stat-v" id="tk-gross">0</div><div class="tk-stat-l">Gross KPH</div></div>
+          <div class="tk-stat"><div class="tk-stat-v" id="tk-acc">100</div><div class="tk-stat-l">Accuracy %</div></div>
+        </div>
+        <div class="tk-sheet" id="tk-sheet" aria-live="off"></div>
+        <div class="tk-hint" id="tk-hint">Click here, then type the highlighted number on your number pad and press Enter. Commas are display only. The clock starts on your first key.</div>
+        <div class="tk-warn" id="tk-numlock" style="display:none">NumLock looks off. Your number pad is still being read here, but turn NumLock on so it types digits in other programs too.</div>
+        <div class="tk-warn" id="tk-toprow" style="display:none">You're using the top-row number keys. That works, but it isn't a 10-key test; scores entered mostly on the top row are labelled "top row" in the rankings.</div>
+      </div>
+      <div class="tk-side">
+        <div class="tk-pad" id="tk-pad" aria-hidden="true"></div>
+        <p class="tk-pad-cap">The next key lights up. Rest your index, middle and ring fingers on 4, 5 and 6; most keyboards have a bump on 5. Thumb on 0, little finger on Enter.</p>
+        <a class="tk-learn-link" href="/10-key/">What is 10-key? Benchmarks and tips →</a>
+      </div>
+    </div>
+
+    <div class="tk-results" id="tk-results" style="display:none" role="region" aria-label="10-key results">
+      <div class="tk-results-title" id="tk-results-title">Test complete</div>
+      <div class="tk-results-grid">
+        <div class="tk-r tk-r-main"><div class="tk-r-v" id="tk-r-net">0</div><div class="tk-r-l">Net KPH</div></div>
+        <div class="tk-r"><div class="tk-r-v" id="tk-r-gross">0</div><div class="tk-r-l">Gross KPH</div></div>
+        <div class="tk-r"><div class="tk-r-v" id="tk-r-acc">0%</div><div class="tk-r-l">Accuracy</div></div>
+        <div class="tk-r"><div class="tk-r-v" id="tk-r-entries">0 / 0</div><div class="tk-r-l">Entries correct</div></div>
+        <div class="tk-r"><div class="tk-r-v" id="tk-r-keys">0</div><div class="tk-r-l">Keystrokes</div></div>
+        <div class="tk-r"><div class="tk-r-v" id="tk-r-pad">0%</div><div class="tk-r-l">From number pad</div></div>
+      </div>
+      <div class="tk-formula" id="tk-formula"></div>
+      <div class="tk-save" id="tk-save-status" role="status" aria-live="polite"></div>
+      <div class="tk-results-actions">
+        <button class="btn-primary" onclick="tkReset()">Try again</button>
+        <button class="btn-ghost" onclick="showPage('leaderboard'); setLbBoard('tenkey')">10-key rankings</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ===== LEADERBOARD PAGE ===== -->
@@ -1653,6 +1818,8 @@
     <p style="color:var(--muted);line-height:1.7;font-size:0.85rem;font-weight:400;margin-bottom:0.75rem">Six lessons run in order: home row, top row, bottom row, full alphabet, numbers, punctuation. The next lesson stays locked in this browser until you finish the one before it. The diagram is QWERTY. Read the short note for a lesson before you drill it.</p>
     <div style="display:flex;flex-wrap:wrap;gap:0.6rem 1rem;font-size:0.82rem;margin-bottom:1.5rem">
       <a href="/guides/learn/" style="color:var(--gold)">Learn hub</a>
+      <a href="/10-key/" style="color:var(--gold)">10-key (number pad) guide</a>
+      <a href="/?page=tenkey" style="color:var(--gold)">10-key drills</a>
       <a href="/guides/learn/home-row/" style="color:var(--gold)">Home row</a>
       <a href="/guides/learn/top-row/" style="color:var(--gold)">Top row</a>
       <a href="/guides/learn/bottom-row/" style="color:var(--gold)">Bottom row</a>
@@ -1883,24 +2050,32 @@
   <div class="leaderboard-wrap fade-in">
 
     <div class="lb-title">Global Rankings</div>
-    <div class="lb-subtitle">The world's fastest typists, ranked by peak performance</div>
+    <div class="lb-subtitle" id="lb-subtitle-text">The world's fastest typists, ranked by peak performance</div>
+
+    <div class="mode-tabs lb-boards" role="tablist" aria-label="Leaderboard">
+      <button class="mode-tab active" id="lb-board-typing" role="tab" aria-selected="true" onclick="setLbBoard('typing')">Typing · WPM</button>
+      <button class="mode-tab" id="lb-board-tenkey" role="tab" aria-selected="false" onclick="setLbBoard('tenkey')">10-Key · KPH</button>
+    </div>
 
     <div class="lb-filters" id="lb-filters">
       <button class="lb-filter active" onclick="setLbFilter('daily',this)">Today</button>
       <button class="lb-filter" onclick="setLbFilter('weekly',this)">This Week</button>
       <button class="lb-filter" onclick="setLbFilter('alltime',this)">All Time</button>
-      <button class="lb-filter" onclick="setLbFilter('60',this)">60s Test</button>
-      <button class="lb-filter" onclick="setLbFilter('30',this)">30s Test</button>
+      <button class="lb-filter lb-typing-only" onclick="setLbFilter('60',this)">60s Test</button>
+      <button class="lb-filter lb-typing-only" onclick="setLbFilter('30',this)">30s Test</button>
+      <button class="lb-filter lb-tenkey-only" style="display:none" onclick="setLbFilter('1m',this)">1 min</button>
+      <button class="lb-filter lb-tenkey-only" style="display:none" onclick="setLbFilter('3m',this)">3 min</button>
+      <button class="lb-filter lb-tenkey-only" style="display:none" onclick="setLbFilter('5m',this)">5 min</button>
     </div>
 
     <div class="lb-table" id="lb-table">
       <div class="lb-row header">
         <div class="lb-cell"><span class="lb-h-full">Rank</span><span class="lb-h-short" aria-hidden="true">#</span></div>
         <div class="lb-cell">Typist</div>
-        <div class="lb-cell">WPM</div>
+        <div class="lb-cell" id="lb-h-score">WPM</div>
         <div class="lb-cell"><span class="lb-h-full">Accuracy</span><span class="lb-h-short">Acc</span></div>
         <div class="lb-cell">Date</div>
-        <div class="lb-cell">Level</div>
+        <div class="lb-cell" id="lb-h-6">Level</div>
       </div>
     </div>
 
@@ -2635,6 +2810,32 @@ const AUTH_REDIRECT_URL = window.location.origin + '/';
 // LEADERBOARD
 // ============================================================
 let currentLbFilter = 'daily';
+let currentLbBoard = 'typing';   // 'typing' (WPM) or 'tenkey' (KPH); both live in public.scores, split by mode
+
+function tenkeyLevel(kph) {
+  return kph >= 15000 ? 'Expert' : kph >= 12000 ? 'Fast' : kph >= 8000 ? 'Job-ready' : kph >= 5000 ? 'Developing' : 'Building';
+}
+
+function setLbBoard(board) {
+  currentLbBoard = board === 'tenkey' ? 'tenkey' : 'typing';
+  ['typing', 'tenkey'].forEach(b => {
+    const btn = document.getElementById('lb-board-' + b);
+    if (btn) { btn.classList.toggle('active', b === currentLbBoard); btn.setAttribute('aria-selected', b === currentLbBoard ? 'true' : 'false'); }
+  });
+  document.querySelectorAll('#lb-filters .lb-typing-only').forEach(b => b.style.display = currentLbBoard === 'typing' ? '' : 'none');
+  document.querySelectorAll('#lb-filters .lb-tenkey-only').forEach(b => b.style.display = currentLbBoard === 'tenkey' ? '' : 'none');
+  document.querySelectorAll('#lb-filters .lb-filter').forEach(b => b.classList.remove('active'));
+  const today = document.querySelector('#lb-filters .lb-filter');
+  if (today) today.classList.add('active');
+  const table = document.getElementById('lb-table');
+  if (table) table.classList.toggle('lb-tenkey', currentLbBoard === 'tenkey');
+  const tenkey = currentLbBoard === 'tenkey';
+  const hs = document.getElementById('lb-h-score'); if (hs) hs.textContent = tenkey ? 'KPH' : 'WPM';
+  const h6 = document.getElementById('lb-h-6'); if (h6) h6.textContent = tenkey ? 'Test' : 'Level';
+  const sub = document.getElementById('lb-subtitle-text');
+  if (sub) sub.textContent = tenkey ? '10-key: net keystrokes per hour on the number pad' : "The world's fastest typists, ranked by peak performance";
+  renderLeaderboard('daily');
+}
 
 function getDateFilter(filter) {
   const now = new Date();
@@ -2649,21 +2850,28 @@ function getDateFilter(filter) {
   return null; // alltime, 60, 30 = no date filter
 }
 
+let lbRenderSeq = 0;
 async function renderLeaderboard(filter) {
   currentLbFilter = filter;
+  const seq = ++lbRenderSeq;   // a slower, older request must not overwrite a newer board
   const table = document.getElementById('lb-table');
   const header = table.querySelector('.lb-row.header').outerHTML;
   table.innerHTML = header + `<div style="text-align:center;padding:2rem;color:var(--muted);font-size:0.85rem;font-weight:400">Loading scores…</div>`;
 
   try {
-    let query = sb.from('scores').select('*').neq('mode', 'probe').order('wpm', { ascending: false }).limit(50);
+    const tenkey = currentLbBoard === 'tenkey';
+    let query = sb.from('scores').select('*').order('wpm', { ascending: false }).limit(50);
+    // Typing (WPM) and 10-key (KPH) share the table; never mix them
+    query = tenkey ? query.eq('mode', 'tenkey') : query.not('mode', 'in', '(probe,tenkey)');
 
     const dateFrom = getDateFilter(filter);
     if (dateFrom) query = query.gte('created_at', dateFrom);
-    if (filter === '60') query = query.eq('mode', 'timed 60s');
-    if (filter === '30') query = query.eq('mode', 'timed 30s');
+    if (!tenkey && filter === '60') query = query.eq('mode', 'timed 60s');
+    if (!tenkey && filter === '30') query = query.eq('mode', 'timed 30s');
+    if (tenkey && /^[135]m$/.test(filter)) query = query.like('difficulty', filter[0] + ' min%');
 
     const { data, error } = await query;
+    if (seq !== lbRenderSeq) return;
     if (error) throw error;
 
     const myUsername = currentUser ? displayName(currentUser) : '';
@@ -2677,26 +2885,29 @@ async function renderLeaderboard(filter) {
 
     let rows = header;
     if (rows_data.length === 0) {
-      rows += `<div style="text-align:center;padding:2.5rem;color:var(--muted);font-size:0.85rem;font-weight:400">No scores yet — be the first! Complete a test and post your score.</div>`;
+      rows += `<div style="text-align:center;padding:2.5rem;color:var(--muted);font-size:0.85rem;font-weight:400">${tenkey ? 'No 10-key scores here yet. Finish a 10-key test while signed in to post one.' : 'No scores yet — be the first! Complete a test and post your score.'}</div>`;
     } else {
       rows_data.forEach((d, i) => {
         const r = i + 1;
         const rankClass = r===1?'gold':r===2?'silver':r===3?'bronze':'';
         const isYou = myUsername && d.username.toLowerCase() === myUsername.toLowerCase();
-        const level = d.wpm >= 120 ? 'Grandmaster' : d.wpm >= 90 ? 'Elite' : d.wpm >= 70 ? 'Expert' : d.wpm >= 50 ? 'Advanced' : d.wpm >= 30 ? 'Intermediate' : 'Beginner';
+        const level = tenkey ? tenkeyLevel(d.wpm) : d.wpm >= 120 ? 'Grandmaster' : d.wpm >= 90 ? 'Elite' : d.wpm >= 70 ? 'Expert' : d.wpm >= 50 ? 'Advanced' : d.wpm >= 30 ? 'Intermediate' : 'Beginner';
+        const sixth = tenkey ? `<span class="lb-test">${escHtml(d.difficulty || '')}</span>` : `<span class="lb-badge">${level}</span>`;
+        const subExtra = tenkey ? escHtml(d.difficulty || '') + ' · ' + level : level;
         const date = new Date(d.created_at).toLocaleDateString();
         rows += `<div class="lb-row ${isYou?'lb-you':''}">
           <div class="lb-cell"><span class="lb-rank ${rankClass}">${r===1?'👑':r===2?'🥈':r===3?'🥉':r}</span></div>
-          <div class="lb-cell lb-name"><span class="lb-name-row"><span class="lb-name-text">${escHtml(d.username)}</span></span><span class="lb-sub">${new Date(d.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} · ${level}</span></div>
-          <div class="lb-cell lb-wpm">${d.wpm}</div>
+          <div class="lb-cell lb-name"><span class="lb-name-row"><span class="lb-name-text">${escHtml(d.username)}</span></span><span class="lb-sub">${new Date(d.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} · ${subExtra}</span></div>
+          <div class="lb-cell lb-wpm">${tenkey ? Number(d.wpm).toLocaleString() : d.wpm}</div>
           <div class="lb-cell lb-acc">${d.accuracy}%</div>
           <div class="lb-cell" style="font-size:0.75rem;color:var(--muted)">${date}</div>
-          <div class="lb-cell"><span class="lb-badge">${level}</span></div>
+          <div class="lb-cell">${sixth}</div>
         </div>`;
       });
     }
     table.innerHTML = rows;
   } catch (err) {
+    if (seq !== lbRenderSeq) return;
     table.innerHTML = header + `<div style="text-align:center;padding:2rem;color:var(--red);font-size:0.85rem;font-weight:400">Could not load scores: ${escHtml(err && err.message ? err.message : 'network error')}</div>`;
     console.error(err);
   }
@@ -3127,7 +3338,8 @@ function showPage(name, btn) {
       learn: ['learn'],
       games: ['games'],
       leaderboard: ['rankings', 'leaderboard'],
-      profile: ['profile', 'my profile']
+      profile: ['profile', 'my profile'],
+      tenkey: ['10-key']
     };
     const keys = aliases[name] || [name];
     document.querySelectorAll('nav button').forEach(b => {
@@ -3143,6 +3355,7 @@ function showPage(name, btn) {
   }
 
   if (name === 'leaderboard') renderLeaderboard('daily');
+  if (name === 'tenkey') tkOnShow(); else if (typeof tkOnHide === 'function') tkOnHide();
   if (name === 'learn') { buildKeyboard(); buildLessonsGrid(); }
   if (name === 'games') { document.getElementById('game-select-screen').style.display='block'; document.getElementById('game-wordfall').style.display='none'; document.getElementById('game-survival').style.display='none'; document.getElementById('game-racer').style.display='none'; }
   if (name === 'profile') { updateProfileStats(); renderHistoryTable(); setTimeout(renderChart, 100); renderBadges(); }
@@ -4102,9 +4315,10 @@ function applyEntryFromQuery() {
     var params = new URLSearchParams(window.location.search);
     var page = params.get('page');
     if (page === 'privacy' || page === 'terms') { window.location.replace('/' + page + '/'); return; }
-    var pages = { home:1, practice:1, learn:1, games:1, leaderboard:1, profile:1 };
+    var pages = { home:1, practice:1, learn:1, games:1, leaderboard:1, profile:1, tenkey:1 };
     if (!page || !pages[page]) return;
     showPage(page);
+    if (page === 'leaderboard' && params.get('board') === 'tenkey') setLbBoard('tenkey');
     if (page === 'practice') {
       var mode = (params.get('mode') || '').toLowerCase();
       if (mode === 'timed' || mode === 'words' || mode === 'code') {
@@ -4137,6 +4351,316 @@ function applyEntryFromQuery() {
     }
   } catch (err) {}
 }
+</script>
+<script>
+// ============================================================
+// 10-KEY TEST AND DRILLS
+// ============================================================
+const TK_MAX_PLAUSIBLE_KPH = 40000;
+const TK_DRILL_LEN = 15;
+const tk = {
+  view: 'test', minutes: 3, drill: 'home',
+  items: [], idx: 0, buf: '', results: [],
+  started: false, finished: false, startTime: 0, timer: null,
+  grossKeys: 0, netKeys: 0, padKeys: 0, topKeys: 0, numlockOff: false, testId: 0
+};
+
+function tkRand(n) { return Math.floor(Math.random() * n); }
+function tkDigits(len, pool) {
+  let s = '';
+  for (let i = 0; i < len; i++) s += pool[tkRand(pool.length)];
+  return s;
+}
+function tkNoLeadZero(s) { return s.length > 1 && s[0] === '0' ? String(1 + tkRand(9)) + s.slice(1) : s; }
+function tkAmount() {
+  const intLen = [1, 2, 3, 3, 4, 4, 5][tkRand(7)];
+  return tkNoLeadZero(tkDigits(intLen, '0123456789')) + '.' + tkDigits(2, '0123456789');
+}
+function tkInteger() { return tkNoLeadZero(tkDigits(3 + tkRand(4), '0123456789')); }
+function tkMakeItem(kind) {
+  if (kind === 'home') return tkDigits(3 + tkRand(3), '456');
+  if (kind === 'full') {
+    const runs = ['789', '456', '123', '147', '258', '369', '159', '357', '102', '540', '870', '963'];
+    return Math.random() < 0.4 ? runs[tkRand(runs.length)] : tkNoLeadZero(tkDigits(3 + tkRand(3), '0123456789'));
+  }
+  if (kind === 'decimal') {
+    const r = tkRand(3);
+    if (r === 0) return '0.' + tkDigits(2, '0123456789');
+    if (r === 1) return String(1 + tkRand(9)) + '.' + tkDigits(2, '0123456789');
+    return String(10 + tkRand(90)) + '.' + tkDigits(2, '0123456789');
+  }
+  return Math.random() < 0.6 ? tkAmount() : tkInteger();
+}
+function tkFormat(raw) {
+  const parts = raw.split('.');
+  if (parts[0].length > 3 && (raw.includes('.') || tk.view === 'test' || tk.drill === 'mixed')) parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return parts.join('.');
+}
+function tkEnsureItems() {
+  const kind = tk.view === 'test' ? 'mixed' : tk.drill;
+  const want = tk.view === 'test' ? tk.idx + 12 : TK_DRILL_LEN;
+  while (tk.items.length < want) tk.items.push(tkMakeItem(kind));
+}
+
+function tkPadKeys() {
+  return [
+    ['Num', 'dim'], ['/', 'dim'], ['*', 'dim'], ['−', 'dim'],
+    ['7', 'k7'], ['8', 'k8'], ['9', 'k9'], ['+', 'dim kplus'],
+    ['4', 'k4'], ['5', 'k5'], ['6', 'k6'],
+    ['1', 'k1'], ['2', 'k2'], ['3', 'k3'], ['Enter', 'kenter'],
+    ['0', 'k0'], ['.', 'kdot']
+  ];
+}
+function tkBuildPad() {
+  const pad = document.getElementById('tk-pad');
+  if (!pad || pad.childElementCount) return;
+  pad.innerHTML = tkPadKeys().map(([label, cls]) => `<div class="tk-key ${cls}" data-k="${label === 'Enter' ? 'enter' : label}">${label}</div>`).join('');
+}
+function tkKeyEl(ch) {
+  const k = ch === '\n' ? 'enter' : ch;
+  return document.querySelector(`#tk-pad .tk-key[data-k="${k}"]`);
+}
+function tkExpectedKey() {
+  const target = tk.items[tk.idx];
+  if (target == null || tk.finished) return null;
+  if (!target.startsWith(tk.buf)) return null;
+  return tk.buf.length >= target.length ? '\n' : target[tk.buf.length];
+}
+function tkFlash(ch) {
+  const el = tkKeyEl(ch);
+  if (!el) return;
+  el.classList.add('pressed');
+  setTimeout(() => el.classList.remove('pressed'), 120);
+}
+
+function tkRender() {
+  tkEnsureItems();
+  const sheet = document.getElementById('tk-sheet');
+  if (!sheet) return;
+  const from = Math.max(0, tk.idx - 3);
+  const to = tk.view === 'test' ? tk.idx + 5 : Math.min(tk.items.length - 1, tk.idx + 5);
+  let html = '';
+  for (let i = from; i <= to && i < tk.items.length; i++) {
+    const t = tk.items[i];
+    if (i < tk.idx) {
+      const r = tk.results[i];
+      html += `<div class="tk-row done ${r.ok ? 'ok' : 'bad'}"><span class="tk-n">${i + 1}</span><span class="tk-target">${tkFormat(t)}</span><span class="tk-typed">${escHtml(r.typed)}</span><span class="tk-mark">${r.ok ? '✓' : '✗'}</span></div>`;
+    } else if (i === tk.idx && !tk.finished) {
+      const wrong = !t.startsWith(tk.buf);
+      html += `<div class="tk-row cur ${wrong ? 'wrong' : ''}"><span class="tk-n">${i + 1}</span><span class="tk-target">${tkFormat(t)}</span><span class="tk-typed">${escHtml(tk.buf)}</span><span class="tk-mark"></span></div>`;
+    } else {
+      html += `<div class="tk-row next"><span class="tk-n">${i + 1}</span><span class="tk-target">${tkFormat(t)}</span><span class="tk-typed"></span><span class="tk-mark"></span></div>`;
+    }
+  }
+  sheet.innerHTML = html;
+  document.querySelectorAll('#tk-pad .tk-key.expect').forEach(k => k.classList.remove('expect'));
+  const exp = tkExpectedKey();
+  if (exp != null) { const el = tkKeyEl(exp); if (el) el.classList.add('expect'); }
+}
+
+function tkElapsedMs() {
+  if (!tk.started) return 0;
+  const ms = Date.now() - tk.startTime;
+  return tk.view === 'test' ? Math.min(ms, tk.minutes * 60000) : ms;
+}
+function tkScores(ms) {
+  const minutes = ms / 60000;
+  const gross = minutes > 0 ? Math.round(tk.grossKeys / minutes * 60) : 0;
+  const net = minutes > 0 ? Math.round(tk.netKeys / minutes * 60) : 0;
+  const acc = tk.grossKeys > 0 ? Math.round(tk.netKeys / tk.grossKeys * 1000) / 10 : 100;
+  return { minutes, gross, net, acc };
+}
+function tkFmtTime(ms) {
+  const s = Math.max(0, Math.ceil(ms / 1000));
+  return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+}
+function tkUpdateStats() {
+  const ms = tkElapsedMs();
+  const sc = tkScores(ms);
+  const showRate = ms >= 3000;
+  setText('tk-net', showRate ? sc.net.toLocaleString() : '0');
+  setText('tk-gross', showRate ? sc.gross.toLocaleString() : '0');
+  setText('tk-acc', String(Math.round(sc.acc)));
+  if (tk.view === 'test') {
+    setText('tk-time-l', 'Time left');
+    setText('tk-time', tkFmtTime(tk.minutes * 60000 - ms));
+  } else {
+    setText('tk-time-l', 'Entries');
+    setText('tk-time', Math.min(tk.idx, TK_DRILL_LEN) + '/' + TK_DRILL_LEN);
+  }
+  const top = document.getElementById('tk-toprow');
+  const counted = tk.padKeys + tk.topKeys;
+  if (top) top.style.display = counted >= 5 && tk.topKeys / counted > 0.2 ? '' : 'none';
+  const nl = document.getElementById('tk-numlock');
+  if (nl) nl.style.display = tk.numlockOff ? '' : 'none';
+}
+
+function tkReset() {
+  clearInterval(tk.timer);
+  Object.assign(tk, { items: [], idx: 0, buf: '', results: [], started: false, finished: false, startTime: 0, timer: null,
+    grossKeys: 0, netKeys: 0, padKeys: 0, topKeys: 0, numlockOff: false, testId: 0 });
+  const res = document.getElementById('tk-results');
+  if (res) res.style.display = 'none';
+  setText('tk-save-status', '');
+  const hint = document.getElementById('tk-hint');
+  if (hint) hint.style.display = '';
+  tkBuildPad();
+  tkRender();
+  tkUpdateStats();
+}
+function tkSetView(view) {
+  tk.view = view;
+  ['test', 'drills'].forEach(v => {
+    const b = document.getElementById('tk-tab-' + v);
+    if (b) { b.classList.toggle('active', v === view); b.setAttribute('aria-selected', v === view ? 'true' : 'false'); }
+  });
+  document.getElementById('tk-test-controls').style.display = view === 'test' ? '' : 'none';
+  document.getElementById('tk-drill-controls').style.display = view === 'drills' ? '' : 'none';
+  tkReset();
+}
+function tkSetDuration(min, btn) {
+  tk.minutes = min;
+  document.querySelectorAll('.tk-dur').forEach(b => b.classList.toggle('active', b === btn));
+  tkReset();
+}
+function tkSetDrill(kind, btn) {
+  tk.drill = kind;
+  document.querySelectorAll('.tk-drill').forEach(b => b.classList.toggle('active', b === btn));
+  tkReset();
+}
+function tkFocus() {
+  const box = document.getElementById('tk-box');
+  if (box) { box.focus({ preventScroll: true }); box.classList.add('tk-active'); }
+}
+
+function tkStart() {
+  tk.started = true;
+  tk.startTime = Date.now();
+  const hint = document.getElementById('tk-hint');
+  if (hint) hint.style.display = 'none';
+  clearInterval(tk.timer);
+  tk.timer = setInterval(() => {
+    tkUpdateStats();
+    if (tk.view === 'test' && Date.now() - tk.startTime >= tk.minutes * 60000) tkFinish();
+  }, 200);
+}
+
+function tkFinish() {
+  if (tk.finished) return;
+  tk.finished = true;
+  clearInterval(tk.timer);
+  const ms = tk.view === 'test' ? tk.minutes * 60000 : tkElapsedMs();
+  const sc = tkScores(ms);
+  const correct = tk.results.filter(r => r.ok).length;
+  const counted = tk.padKeys + tk.topKeys;
+  const padShare = counted ? Math.round(tk.padKeys / counted * 100) : 0;
+  tkUpdateStats();
+  tkRender();
+  setText('tk-r-net', sc.net.toLocaleString());
+  setText('tk-r-gross', sc.gross.toLocaleString());
+  setText('tk-r-acc', sc.acc + '%');
+  setText('tk-r-entries', correct + ' / ' + tk.results.length);
+  setText('tk-r-keys', tk.grossKeys.toLocaleString());
+  setText('tk-r-pad', padShare + '%');
+  const mins = Math.round(sc.minutes * 100) / 100;
+  setText('tk-results-title', tk.view === 'test' ? tk.minutes + '-minute test complete' : 'Drill complete');
+  document.getElementById('tk-formula').innerHTML =
+    `<strong>How these numbers are worked out.</strong> Keystrokes are every digit, decimal point and Enter you pressed (Backspace is not counted). ` +
+    `You pressed <code>${tk.grossKeys}</code> keys in <code>${mins}</code> min; the entries you got exactly right contain <code>${tk.netKeys}</code> keys (digits, decimal and the Enter that committed them).<br>` +
+    `<code>Gross KPH = ${tk.grossKeys} ÷ ${mins} × 60 = ${sc.gross.toLocaleString()}</code><br>` +
+    `<code>Net KPH = ${tk.netKeys} ÷ ${mins} × 60 = ${sc.net.toLocaleString()}</code> (keys in wrong entries, and keys you deleted, earn nothing)<br>` +
+    `<code>Accuracy = ${tk.netKeys} ÷ ${tk.grossKeys} = ${sc.acc}%</code>`;
+  document.getElementById('tk-results').style.display = '';
+  document.getElementById('tk-results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  if (tk.view === 'test') {
+    tk.testId = Date.now();
+    tkSubmitScore(sc, padShare);
+  } else {
+    setText('tk-save-status', 'Drills are practice only and are not posted to the rankings.');
+    document.getElementById('tk-save-status').style.color = 'var(--muted)';
+  }
+}
+
+async function tkSubmitScore(sc, padShare) {
+  const el = document.getElementById('tk-save-status');
+  const say = (text, color) => { if (el) { el.textContent = text; el.style.color = color; } };
+  const user = await getSignedInUser();
+  if (!user) { say('Sign in to post 10-key scores to the rankings. Your result is shown above either way.', 'var(--muted)'); return; }
+  if (!tk.results.length || sc.net < 1) { say('No complete entries, so nothing was posted.', 'var(--muted)'); return; }
+  if (sc.net > TK_MAX_PLAUSIBLE_KPH) { say('Not posted: ' + sc.net.toLocaleString() + ' KPH is above the ' + TK_MAX_PLAUSIBLE_KPH.toLocaleString() + ' KPH limit.', 'var(--red)'); return; }
+  say('Saving your score…', 'var(--muted)');
+  try {
+    const { error } = await sb.from('scores').insert({
+      username: displayName(user),
+      user_id: user.id,
+      wpm: sc.net,                       // 10-key rows store net KPH here; mode = 'tenkey' keeps them off the WPM board
+      accuracy: Math.round(sc.acc),
+      errors: tk.results.filter(r => !r.ok).length,
+      mode: 'tenkey',
+      difficulty: tk.minutes + ' min' + (padShare < 50 ? ' · top row' : '')
+    });
+    if (error) throw error;
+    say('✓ Saved to the 10-key rankings as ' + displayName(user) + '.', 'var(--green)');
+  } catch (err) {
+    console.error('10-key save failed', err);
+    say('✗ Score not saved: ' + ((err && err.message) || 'network error') + '.', 'var(--red)');
+  }
+}
+
+function tkKeyFrom(e) {
+  const c = e.code || '';
+  let m = c.match(/^Numpad(\d)$/);
+  if (m) return { ch: m[1], pad: true, numlockOff: !/^\d$/.test(e.key) };
+  if (c === 'NumpadDecimal') return { ch: '.', pad: true, numlockOff: !(e.key === '.' || e.key === ',') };
+  if (c === 'NumpadEnter') return { ch: '\n', pad: true };
+  if (e.key === 'Backspace') return { ch: '\b' };
+  if (e.shiftKey) return null;
+  m = c.match(/^Digit(\d)$/);
+  if (m) return { ch: m[1], pad: false };
+  if (c === 'Period') return { ch: '.', pad: false };
+  if (e.key === 'Enter') return { ch: '\n', pad: false };
+  if (/^\d$/.test(e.key)) return { ch: e.key, pad: e.location === 3 };
+  if (e.key === '.') return { ch: '.', pad: e.location === 3 };
+  return null;
+}
+
+function tkHandleKey(e) {
+  if (!document.getElementById('page-tenkey')?.classList.contains('active')) return;
+  if (document.querySelector('.modal-overlay.show')) return;
+  const tag = (e.target && e.target.tagName) || '';
+  if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  const k = tkKeyFrom(e);
+  if (!k || tk.finished) return;
+  e.preventDefault();
+  if (document.activeElement && document.activeElement !== document.body && document.activeElement.id !== 'tk-box') document.activeElement.blur();
+  document.getElementById('tk-box')?.classList.add('tk-active');
+  if (k.numlockOff) tk.numlockOff = true;
+  if (k.ch === '\b') { if (tk.buf) { tk.buf = tk.buf.slice(0, -1); tkRender(); } return; }
+  if (k.ch === '\n' && !tk.buf) return;            // empty Enter: ignored, not counted
+  if (!tk.started) tkStart();
+  tk.grossKeys++;
+  if (k.pad) tk.padKeys++; else tk.topKeys++;
+  tkFlash(k.ch);
+  if (k.ch === '\n') {
+    const target = tk.items[tk.idx];
+    const ok = tk.buf === target;
+    tk.results[tk.idx] = { typed: tk.buf, ok };
+    if (ok) tk.netKeys += target.length + 1;
+    tk.idx++;
+    tk.buf = '';
+    if (tk.view === 'drills' && tk.idx >= TK_DRILL_LEN) { tkRender(); tkFinish(); return; }
+  } else {
+    if (tk.buf.length >= 14) return;
+    tk.buf += k.ch;
+  }
+  tkRender();
+  tkUpdateStats();
+}
+document.addEventListener('keydown', tkHandleKey);
+
+function tkOnShow() { tkBuildPad(); if (!tk.started || tk.finished) tkReset(); }
+function tkOnHide() { if (tk.started && !tk.finished) tkReset(); }
 </script>
 <script>
 // Keep page content clear of the fixed header when it wraps on small screens
