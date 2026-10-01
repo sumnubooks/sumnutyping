@@ -713,7 +713,7 @@
   }
   .lb-row {
     display: grid;
-    grid-template-columns: 60px 1fr 100px 100px 100px 90px;
+    grid-template-columns: 60px minmax(0, 1fr) 100px 100px 110px 130px;
     gap: 0;
     border-bottom: 1px solid var(--border2);
     align-items: center;
@@ -761,6 +761,10 @@
   }
   .lb-you { background: rgba(201,168,76,0.08); }
   .lb-you .lb-name::after { content: ' (You)'; color: var(--gold); font-size: 0.75rem; }
+  .lb-name { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.35rem; min-width: 0; }
+  .lb-name-text { min-width: 0; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .lb-you .lb-name::after { flex-shrink: 0; }
+  .lb-sub, .lb-h-short { display: none; }
 
   /* ===== PROFILE ===== */
   .profile-wrap {
@@ -1090,8 +1094,22 @@
     .stats-bar { grid-template-columns: repeat(2, 1fr) !important; }
     .practice-with-ads { grid-template-columns: 1fr; }
     .profile-grid { grid-template-columns: 1fr; }
-    .lb-row { grid-template-columns: 40px 1fr 70px 70px; }
+    /* Rankings: four columns that always fit; date and level stack under the name */
+    .lb-row { grid-template-columns: 36px minmax(0, 1fr) 56px 62px; }
     .lb-cell:nth-child(5), .lb-cell:nth-child(6) { display: none; }
+    .lb-cell { padding: 0.75rem 0.3rem; min-width: 0; }
+    .lb-cell:first-child { padding-left: 0.6rem; }
+    .lb-cell:nth-child(3), .lb-cell:nth-child(4) { text-align: right; }
+    .lb-cell:nth-child(4) { padding-right: 0.6rem; }
+    .lb-row.header .lb-cell { letter-spacing: 0.04em; white-space: nowrap; overflow: hidden; }
+    .lb-h-full { display: none; }
+    .lb-h-short { display: inline; }
+    .lb-name { flex-wrap: nowrap; flex-direction: column; align-items: flex-start; }
+    .lb-name-row { display: flex; align-items: baseline; gap: 0.35rem; min-width: 0; max-width: 100%; }
+    .lb-you .lb-name::after { content: none; }
+    .lb-you .lb-sub::before { content: '(You) · '; color: var(--gold); }
+    .lb-sub { display: block; color: var(--muted); font-weight: 400; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .lb-badge { white-space: nowrap; }
     .footer-inner { grid-template-columns: 1fr 1fr; }
     .results-grid { grid-template-columns: repeat(2, 1fr); }
     header { align-items: flex-start; }
@@ -1877,11 +1895,11 @@
 
     <div class="lb-table" id="lb-table">
       <div class="lb-row header">
-        <div class="lb-cell">Rank</div>
+        <div class="lb-cell"><span class="lb-h-full">Rank</span><span class="lb-h-short" aria-hidden="true">#</span></div>
         <div class="lb-cell">Typist</div>
         <div class="lb-cell">WPM</div>
-        <div class="lb-cell">Accuracy</div>
-        <div class="lb-cell">Tests</div>
+        <div class="lb-cell"><span class="lb-h-full">Accuracy</span><span class="lb-h-short">Acc</span></div>
+        <div class="lb-cell">Date</div>
         <div class="lb-cell">Level</div>
       </div>
     </div>
@@ -2669,7 +2687,7 @@ async function renderLeaderboard(filter) {
         const date = new Date(d.created_at).toLocaleDateString();
         rows += `<div class="lb-row ${isYou?'lb-you':''}">
           <div class="lb-cell"><span class="lb-rank ${rankClass}">${r===1?'👑':r===2?'🥈':r===3?'🥉':r}</span></div>
-          <div class="lb-cell lb-name">${escHtml(d.username)}</div>
+          <div class="lb-cell lb-name"><span class="lb-name-row"><span class="lb-name-text">${escHtml(d.username)}</span></span><span class="lb-sub">${new Date(d.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} · ${level}</span></div>
           <div class="lb-cell lb-wpm">${d.wpm}</div>
           <div class="lb-cell lb-acc">${d.accuracy}%</div>
           <div class="lb-cell" style="font-size:0.75rem;color:var(--muted)">${date}</div>
