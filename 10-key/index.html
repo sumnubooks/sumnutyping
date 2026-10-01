@@ -16,6 +16,34 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/content/content.css">
+<style>
+  /* Finger chart (shared markup with /10-key/) */
+  .fg { --fg-i:#6EA8FE; --fg-m:#63D297; --fg-r:#C29FFF; --fg-t:#F5B461; --fg-p:#FF8FA3; display:flex; flex-wrap:wrap; gap:1.25rem 1.75rem; align-items:flex-start; }
+  .fg-pad { display:grid; grid-template-columns:repeat(4, minmax(0, 60px)); grid-auto-rows:56px; gap:6px; flex:0 0 auto; }
+  .fg-k { position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; border:1px solid rgba(0,0,0,0.35); color:#0A0A0F; font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; line-height:1; }
+  .fg-lab { font-size:20px; font-weight:600; }
+  .fg-word .fg-lab, .fg-n .fg-lab { font-size:16px; }
+  .fg-ini { font-size:16px; font-weight:700; font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; opacity:0.85; }
+  .fg-tall { grid-row:span 2; }
+  .fg-wide { grid-column:span 2; }
+  .fg-i { background:var(--fg-i); } .fg-m { background:var(--fg-m); } .fg-r { background:var(--fg-r); } .fg-t { background:var(--fg-t); } .fg-p { background:var(--fg-p); }
+  .fg-n { background:#2A2A33; color:#B8B4AC; }
+  .fg-home { outline:3px solid #F4EFE6; outline-offset:-3px; }
+  .fg-bump .fg-lab::after { content:''; display:block; width:16px; height:3px; margin:3px auto 0; background:#0A0A0F; border-radius:2px; }
+  .fg-info { flex:1 1 260px; min-width:0; }
+  .fg-legend { list-style:none; margin:0; padding:0; display:grid; gap:0.5rem; }
+  .fg-legend li { display:flex; align-items:center; gap:0.6rem; font-size:16px; line-height:1.4; }
+  .fg-sw { flex:0 0 auto; width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center; color:#0A0A0F; font-weight:700; font-size:16px; font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .fg-bumpsw { background:#F4EFE6; position:relative; }
+  .fg-bumpsw::after { content:''; width:14px; height:3px; background:#0A0A0F; border-radius:2px; }
+  .fg-also { opacity:0.75; }
+  .fg-keys { font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:16px; font-variant-numeric:lining-nums tabular-nums; }
+  .fg-tip { margin:0.9rem 0 0; border-left:3px solid #C9A84C; padding:0.6rem 0.8rem; background:rgba(201,168,76,0.08); font-size:16px; line-height:1.55; }
+  @media (max-width: 400px) { .fg-pad { grid-template-columns:repeat(4, minmax(0, 1fr)); width:100%; } }
+  .fg-wrap { margin:18px 0 22px; padding:18px; background:var(--surface); border:1px solid var(--border); }
+  .fg-wrap .fg-legend li, .fg-wrap .fg-tip { color:var(--text); }
+  @media (max-width: 400px) { .fg-wrap { padding:14px; } }
+</style>
 </head>
 <body>
 <header class="top">
@@ -61,6 +89,40 @@
 
 <h2>Finger placement</h2>
 <p>The standard technique uses one hand, usually the right, with each finger owning a column:</p>
+<figure class="fg-wrap" aria-label="Finger placement chart">
+  <div class="fg">
+    <div class="fg-pad" role="img" aria-label="Numeric keypad finger chart. Index finger: 1, 4 and 7. Middle finger: 2, 5 and 8, plus slash; 5 is the home key and has a raised bump. Ring finger: 3, 6, 9 and the decimal point, plus asterisk. Thumb: 0. Little finger (pinky): Enter, plus and minus. Rest your index, middle and ring fingers on 4, 5 and 6.">
+      <span class="fg-k fg-n"><span class="fg-lab">Num</span></span>
+      <span class="fg-k fg-m"><span class="fg-lab">/</span><span class="fg-ini">M</span></span>
+      <span class="fg-k fg-r"><span class="fg-lab">*</span><span class="fg-ini">R</span></span>
+      <span class="fg-k fg-p"><span class="fg-lab">−</span><span class="fg-ini">P</span></span>
+      <span class="fg-k fg-i"><span class="fg-lab">7</span><span class="fg-ini">I</span></span>
+      <span class="fg-k fg-m"><span class="fg-lab">8</span><span class="fg-ini">M</span></span>
+      <span class="fg-k fg-r"><span class="fg-lab">9</span><span class="fg-ini">R</span></span>
+      <span class="fg-k fg-p fg-tall"><span class="fg-lab">+</span><span class="fg-ini">P</span></span>
+      <span class="fg-k fg-i fg-home"><span class="fg-lab">4</span><span class="fg-ini">I</span></span>
+      <span class="fg-k fg-m fg-home fg-bump"><span class="fg-lab">5</span><span class="fg-ini">M</span></span>
+      <span class="fg-k fg-r fg-home"><span class="fg-lab">6</span><span class="fg-ini">R</span></span>
+      <span class="fg-k fg-i"><span class="fg-lab">1</span><span class="fg-ini">I</span></span>
+      <span class="fg-k fg-m"><span class="fg-lab">2</span><span class="fg-ini">M</span></span>
+      <span class="fg-k fg-r"><span class="fg-lab">3</span><span class="fg-ini">R</span></span>
+      <span class="fg-k fg-p fg-tall fg-word"><span class="fg-lab">Enter</span><span class="fg-ini">P</span></span>
+      <span class="fg-k fg-t fg-wide"><span class="fg-lab">0</span><span class="fg-ini">T</span></span>
+      <span class="fg-k fg-r"><span class="fg-lab">.</span><span class="fg-ini">R</span></span>
+    </div>
+    <div class="fg-info">
+      <ul class="fg-legend" aria-label="Finger legend">
+        <li><span class="fg-sw fg-i" aria-hidden="true">I</span><span><strong>Index</strong> <span class="fg-keys">1 · 4 · 7</span></span></li>
+        <li><span class="fg-sw fg-m" aria-hidden="true">M</span><span><strong>Middle</strong> <span class="fg-keys">2 · 5 · 8</span> <span class="fg-also">(also <span class="fg-keys">/</span>)</span></span></li>
+        <li><span class="fg-sw fg-r" aria-hidden="true">R</span><span><strong>Ring</strong> <span class="fg-keys">3 · 6 · 9 · .</span> decimal point <span class="fg-also">(also <span class="fg-keys">*</span>)</span></span></li>
+        <li><span class="fg-sw fg-t" aria-hidden="true">T</span><span><strong>Thumb</strong> <span class="fg-keys">0</span></span></li>
+        <li><span class="fg-sw fg-p" aria-hidden="true">P</span><span><strong>Pinky</strong> <span class="fg-keys">Enter · + · −</span></span></li>
+        <li><span class="fg-sw fg-bumpsw" aria-hidden="true"></span><span>Bar on 5 = the raised bump. Thick borders mark the home row 4-5-6.</span></li>
+      </ul>
+      <p class="fg-tip"><strong>Home row 4-5-6:</strong> keep your index, middle and ring fingers resting on 4-5-6, and return there after every reach. Feel for the bump on 5 instead of looking down.</p>
+    </div>
+  </div>
+</figure>
 <ul>
   <li><strong>Index finger:</strong> 4 at home, reaching up to 7 and down to 1.</li>
   <li><strong>Middle finger:</strong> 5 at home (the bump), up to 8, down to 2, and the / key.</li>

@@ -1234,6 +1234,57 @@
   .tk-results-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
   .lb-boards { display: flex; flex-wrap: wrap; gap: 0; margin-bottom: 1rem; }
   .lb-row .lb-test { white-space: nowrap; }
+
+  /* Finger chart (shared markup with /10-key/) */
+  .fg { --fg-i:#6EA8FE; --fg-m:#63D297; --fg-r:#C29FFF; --fg-t:#F5B461; --fg-p:#FF8FA3; display:flex; flex-wrap:wrap; gap:1.25rem 1.75rem; align-items:flex-start; }
+  .fg-pad { display:grid; grid-template-columns:repeat(4, minmax(0, 60px)); grid-auto-rows:56px; gap:6px; flex:0 0 auto; }
+  .fg-k { position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; border:1px solid rgba(0,0,0,0.35); color:#0A0A0F; font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; line-height:1; }
+  .fg-lab { font-size:20px; font-weight:600; }
+  .fg-word .fg-lab, .fg-n .fg-lab { font-size:16px; }
+  .fg-ini { font-size:16px; font-weight:700; font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; opacity:0.85; }
+  .fg-tall { grid-row:span 2; }
+  .fg-wide { grid-column:span 2; }
+  .fg-i { background:var(--fg-i); } .fg-m { background:var(--fg-m); } .fg-r { background:var(--fg-r); } .fg-t { background:var(--fg-t); } .fg-p { background:var(--fg-p); }
+  .fg-n { background:#2A2A33; color:#B8B4AC; }
+  .fg-home { outline:3px solid #F4EFE6; outline-offset:-3px; }
+  .fg-bump .fg-lab::after { content:''; display:block; width:16px; height:3px; margin:3px auto 0; background:#0A0A0F; border-radius:2px; }
+  .fg-info { flex:1 1 260px; min-width:0; }
+  .fg-legend { list-style:none; margin:0; padding:0; display:grid; gap:0.5rem; }
+  .fg-legend li { display:flex; align-items:center; gap:0.6rem; font-size:16px; line-height:1.4; }
+  .fg-sw { flex:0 0 auto; width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center; color:#0A0A0F; font-weight:700; font-size:16px; font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .fg-bumpsw { background:#F4EFE6; position:relative; }
+  .fg-bumpsw::after { content:''; width:14px; height:3px; background:#0A0A0F; border-radius:2px; }
+  .fg-also { opacity:0.75; }
+  .fg-keys { font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:16px; font-variant-numeric:lining-nums tabular-nums; }
+  .fg-tip { margin:0.9rem 0 0; border-left:3px solid #C9A84C; padding:0.6rem 0.8rem; background:rgba(201,168,76,0.08); font-size:16px; line-height:1.55; }
+  @media (max-width: 400px) { .fg-pad { grid-template-columns:repeat(4, minmax(0, 1fr)); width:100%; } }
+  .tk-fg { background:var(--bg2); border:1px solid var(--border); margin-bottom:1.25rem; }
+  .tk-fg > summary { cursor:pointer; list-style:none; display:flex; align-items:center; gap:0.6rem; min-height:48px; padding:0.6rem 1.1rem; color:var(--cream); font-size:1rem; font-weight:500; }
+  .tk-fg > summary::-webkit-details-marker { display:none; }
+  .tk-fg > summary::before { content:'▸'; color:var(--gold); transition:transform 0.15s; }
+  .tk-fg[open] > summary::before { transform:rotate(90deg); }
+  .tk-fg > summary:focus-visible { outline:2px solid var(--gold); outline-offset:-2px; }
+  .tk-fg-hint { color:var(--muted); font-size:0.85rem; font-weight:400; margin-left:auto; }
+  .tk-fg-body { padding:0.25rem 1.1rem 1.25rem; color:var(--text); }
+  .fg-legend li, .fg-tip { color:var(--text); font-weight:400; }
+  .tk-fi { display:none; position:absolute; top:3px; right:5px; font-size:0.7rem; font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-weight:700; line-height:1; color:var(--muted); }
+  .tk-pad.fingers .tk-fi { display:block; }
+  .tk-pad.fingers .tk-key.f-i { box-shadow:inset 0 -4px 0 #6EA8FE; } .tk-pad.fingers .tk-key.f-m { box-shadow:inset 0 -4px 0 #63D297; }
+  .tk-pad.fingers .tk-key.f-r { box-shadow:inset 0 -4px 0 #C29FFF; } .tk-pad.fingers .tk-key.f-t { box-shadow:inset 0 -4px 0 #F5B461; }
+  .tk-pad.fingers .tk-key.f-p { box-shadow:inset 0 -4px 0 #FF8FA3; }
+  .tk-pad.fingers .tk-key.expect.f-i { background:#6EA8FE; border-color:#6EA8FE; } .tk-pad.fingers .tk-key.expect.f-m { background:#63D297; border-color:#63D297; }
+  .tk-pad.fingers .tk-key.expect.f-r { background:#C29FFF; border-color:#C29FFF; } .tk-pad.fingers .tk-key.expect.f-t { background:#F5B461; border-color:#F5B461; }
+  .tk-pad.fingers .tk-key.expect.f-p { background:#FF8FA3; border-color:#FF8FA3; }
+  .tk-pad.fingers .tk-key.expect { box-shadow:0 0 0 2px #F4EFE6; color:#0A0A0F; }
+  .tk-pad.fingers .tk-key.expect .tk-fi { color:#0A0A0F; }
+  .tk-next-finger { display:none; margin:0.9rem 0 0; font-size:0.95rem; color:var(--cream); font-weight:400; line-height:1.5; }
+  .tk-next-finger .tk-nf-sw { display:inline-block; width:0.9em; height:0.9em; vertical-align:-0.1em; margin-right:0.35em; border:1px solid rgba(0,0,0,0.4); }
+  @media (max-width: 768px) {
+    .tk-fg > summary, .tk-fg-hint, .tk-next-finger, .tk-fi { font-size:16px !important; }
+    .tk-fg-hint { margin-left:0; flex-basis:100%; }
+    .tk-fg > summary { flex-wrap:wrap; padding:0.6rem 1rem; }
+    .tk-fg-body { padding:0.25rem 1rem 1rem; }
+  }
   @media (max-width: 768px), (pointer: coarse) {
     .tk-phone-note { display: block; }
   }
@@ -1766,6 +1817,44 @@
       <button class="btn-ghost tk-restart" onclick="tkReset()">↺ New set</button>
     </div>
 
+    <details class="tk-fg" id="tk-fg">
+      <summary>New to 10-key? Finger guide <span class="tk-fg-hint">Which finger presses which key</span></summary>
+      <div class="tk-fg-body">
+  <div class="fg">
+    <div class="fg-pad" role="img" aria-label="Numeric keypad finger chart. Index finger: 1, 4 and 7. Middle finger: 2, 5 and 8, plus slash; 5 is the home key and has a raised bump. Ring finger: 3, 6, 9 and the decimal point, plus asterisk. Thumb: 0. Little finger (pinky): Enter, plus and minus. Rest your index, middle and ring fingers on 4, 5 and 6.">
+      <span class="fg-k fg-n"><span class="fg-lab">Num</span></span>
+      <span class="fg-k fg-m"><span class="fg-lab">/</span><span class="fg-ini">M</span></span>
+      <span class="fg-k fg-r"><span class="fg-lab">*</span><span class="fg-ini">R</span></span>
+      <span class="fg-k fg-p"><span class="fg-lab">−</span><span class="fg-ini">P</span></span>
+      <span class="fg-k fg-i"><span class="fg-lab">7</span><span class="fg-ini">I</span></span>
+      <span class="fg-k fg-m"><span class="fg-lab">8</span><span class="fg-ini">M</span></span>
+      <span class="fg-k fg-r"><span class="fg-lab">9</span><span class="fg-ini">R</span></span>
+      <span class="fg-k fg-p fg-tall"><span class="fg-lab">+</span><span class="fg-ini">P</span></span>
+      <span class="fg-k fg-i fg-home"><span class="fg-lab">4</span><span class="fg-ini">I</span></span>
+      <span class="fg-k fg-m fg-home fg-bump"><span class="fg-lab">5</span><span class="fg-ini">M</span></span>
+      <span class="fg-k fg-r fg-home"><span class="fg-lab">6</span><span class="fg-ini">R</span></span>
+      <span class="fg-k fg-i"><span class="fg-lab">1</span><span class="fg-ini">I</span></span>
+      <span class="fg-k fg-m"><span class="fg-lab">2</span><span class="fg-ini">M</span></span>
+      <span class="fg-k fg-r"><span class="fg-lab">3</span><span class="fg-ini">R</span></span>
+      <span class="fg-k fg-p fg-tall fg-word"><span class="fg-lab">Enter</span><span class="fg-ini">P</span></span>
+      <span class="fg-k fg-t fg-wide"><span class="fg-lab">0</span><span class="fg-ini">T</span></span>
+      <span class="fg-k fg-r"><span class="fg-lab">.</span><span class="fg-ini">R</span></span>
+    </div>
+    <div class="fg-info">
+      <ul class="fg-legend" aria-label="Finger legend">
+        <li><span class="fg-sw fg-i" aria-hidden="true">I</span><span><strong>Index</strong> <span class="fg-keys">1 · 4 · 7</span></span></li>
+        <li><span class="fg-sw fg-m" aria-hidden="true">M</span><span><strong>Middle</strong> <span class="fg-keys">2 · 5 · 8</span> <span class="fg-also">(also <span class="fg-keys">/</span>)</span></span></li>
+        <li><span class="fg-sw fg-r" aria-hidden="true">R</span><span><strong>Ring</strong> <span class="fg-keys">3 · 6 · 9 · .</span> decimal point <span class="fg-also">(also <span class="fg-keys">*</span>)</span></span></li>
+        <li><span class="fg-sw fg-t" aria-hidden="true">T</span><span><strong>Thumb</strong> <span class="fg-keys">0</span></span></li>
+        <li><span class="fg-sw fg-p" aria-hidden="true">P</span><span><strong>Pinky</strong> <span class="fg-keys">Enter · + · −</span></span></li>
+        <li><span class="fg-sw fg-bumpsw" aria-hidden="true"></span><span>Bar on 5 = the raised bump. Thick borders mark the home row 4-5-6.</span></li>
+      </ul>
+      <p class="fg-tip"><strong>Home row 4-5-6:</strong> keep your index, middle and ring fingers resting on 4-5-6, and return there after every reach. Feel for the bump on 5 instead of looking down.</p>
+    </div>
+  </div>
+      </div>
+    </details>
+
     <div class="tk-main">
       <div class="tk-box" id="tk-box" tabindex="0" onclick="tkFocus()" aria-label="10-key entry area. Type the highlighted number on your number pad and press Enter.">
         <div class="tk-stats">
@@ -1781,6 +1870,7 @@
       </div>
       <div class="tk-side">
         <div class="tk-pad" id="tk-pad" aria-hidden="true"></div>
+        <p class="tk-next-finger" id="tk-next-finger" aria-live="off"></p>
         <p class="tk-pad-cap">The next key lights up. Rest your index, middle and ring fingers on 4, 5 and 6; most keyboards have a bump on 5. Thumb on 0, little finger on Enter.</p>
         <a class="tk-learn-link" href="/10-key/">What is 10-key? Benchmarks and tips →</a>
       </div>
@@ -4402,6 +4492,9 @@ function tkEnsureItems() {
   while (tk.items.length < want) tk.items.push(tkMakeItem(kind));
 }
 
+const TK_FINGER = { '1': 'i', '4': 'i', '7': 'i', '2': 'm', '5': 'm', '8': 'm', '/': 'm', '3': 'r', '6': 'r', '9': 'r', '.': 'r', '*': 'r', '0': 't', 'enter': 'p', '+': 'p', '−': 'p' };
+const TK_FINGER_NAME = { i: 'Index finger', m: 'Middle finger', r: 'Ring finger', t: 'Thumb', p: 'Pinky' };
+const TK_FINGER_COLOR = { i: '#6EA8FE', m: '#63D297', r: '#C29FFF', t: '#F5B461', p: '#FF8FA3' };
 function tkPadKeys() {
   return [
     ['Num', 'dim'], ['/', 'dim'], ['*', 'dim'], ['−', 'dim'],
@@ -4414,7 +4507,11 @@ function tkPadKeys() {
 function tkBuildPad() {
   const pad = document.getElementById('tk-pad');
   if (!pad || pad.childElementCount) return;
-  pad.innerHTML = tkPadKeys().map(([label, cls]) => `<div class="tk-key ${cls}" data-k="${label === 'Enter' ? 'enter' : label}">${label}</div>`).join('');
+  pad.innerHTML = tkPadKeys().map(([label, cls]) => {
+    const k = label === 'Enter' ? 'enter' : label;
+    const f = TK_FINGER[k];
+    return `<div class="tk-key ${cls}${f ? ' f-' + f : ''}" data-k="${k}">${label}${f ? `<span class="tk-fi">${f.toUpperCase()}</span>` : ''}</div>`;
+  }).join('');
 }
 function tkKeyEl(ch) {
   const k = ch === '\n' ? 'enter' : ch;
@@ -4456,6 +4553,21 @@ function tkRender() {
   document.querySelectorAll('#tk-pad .tk-key.expect').forEach(k => k.classList.remove('expect'));
   const exp = tkExpectedKey();
   if (exp != null) { const el = tkKeyEl(exp); if (el) el.classList.add('expect'); }
+  tkShowFinger(exp);
+}
+// Drills: tint the next key with its finger colour and name the finger (colour is never the only cue).
+function tkShowFinger(exp) {
+  const drills = tk.view === 'drills';
+  const pad = document.getElementById('tk-pad');
+  if (pad) pad.classList.toggle('fingers', drills);
+  const nf = document.getElementById('tk-next-finger');
+  if (!nf) return;
+  if (!drills || exp == null) { nf.style.display = 'none'; nf.textContent = ''; return; }
+  const k = exp === '\n' ? 'enter' : exp;
+  const f = TK_FINGER[k];
+  const label = k === 'enter' ? 'Enter' : k === '.' ? 'decimal point' : k;
+  nf.innerHTML = `<span class="tk-nf-sw" style="background:${TK_FINGER_COLOR[f]}" aria-hidden="true"></span>Next key: <strong>${label}</strong> · ${TK_FINGER_NAME[f]} (${f.toUpperCase()})`;
+  nf.style.display = 'block';
 }
 
 function tkElapsedMs() {
@@ -4659,7 +4771,22 @@ function tkHandleKey(e) {
 }
 document.addEventListener('keydown', tkHandleKey);
 
-function tkOnShow() { tkBuildPad(); if (!tk.started || tk.finished) tkReset(); }
+// Finger guide: open by default on a first visit, then remember the visitor's choice.
+let tkFgInit = false;
+function tkInitFingerGuide() {
+  if (tkFgInit) return;
+  const d = document.getElementById('tk-fg');
+  if (!d) return;
+  tkFgInit = true;
+  let pref = null;
+  try { pref = localStorage.getItem('st_tk_fingerguide'); } catch (e) {}
+  d.open = pref === null || pref === 'open';
+  if (pref === null) { try { localStorage.setItem('st_tk_fingerguide', 'seen'); } catch (e) {} }
+  d.querySelector('summary').addEventListener('click', () => {
+    setTimeout(() => { try { localStorage.setItem('st_tk_fingerguide', d.open ? 'open' : 'closed'); } catch (e) {} }, 0);
+  });
+}
+function tkOnShow() { tkBuildPad(); tkInitFingerGuide(); if (!tk.started || tk.finished) tkReset(); }
 function tkOnHide() { if (tk.started && !tk.finished) tkReset(); }
 </script>
 <script>
